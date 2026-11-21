@@ -1,6 +1,13 @@
-# Twilight Princess Tracker
-This is a pack for PopTracker Twilight Princess with Archipelago integration.
+# Twilight Princess (Dusklight) Tracker
+A PopTracker pack for **Twilight Princess (Dusklight)** in Archipelago, ported from
+[Kizugaya's TPRAP_poptracker](https://github.com/Kizugaya/TPRAP_poptracker).
 You can get the actual PopTracker program from [here](https://github.com/black-sliver/PopTracker/releases/latest).
+
+## Install
+Download the zip from the [latest release](https://github.com/MasterKafey/TP_Dusklight_poptracker/releases),
+put it (unzipped or not) in PopTracker's `packs` folder, open the pack and pick a "Standard Archipelago
+Tracker" variant. Connect with the AP button (server, slot name, password): items, checks and the
+seed's settings are tracked automatically. PopTracker offers updates on its own.
 # Credits
 Big Thanks to [AudioPixie](https://github.com/AudioPixie) and [Darkzant](https://github.com/darkzant) for letting me use their assets
 
