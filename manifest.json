@@ -1,7 +1,7 @@
 {
 	"name": "Twilight Princess (Dusklight) Archipelago Tracker",
 	"package_uid": "tp_dusklight_ap_tracker",
-	"package_version": "0.1.2",
+	"package_version": "0.1.3",
 	"versions_url": "https://raw.githubusercontent.com/MasterKafey/TP_Dusklight_poptracker/versions/versions.json",
 	"platform": "PC",
 	"game_name": "Twilight Princess (Dusklight)",
