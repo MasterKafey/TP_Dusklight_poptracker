@@ -377,9 +377,6 @@
 					},
 					{
 						"name": "North Faron Lost Woods Entrance",
-						"access_rules": [
-							"^$canAccess|NorthFaronLostWoodsEntrance"
-						],
 						"children": [
 							{
 								"name": "South Castle Town Stone",
@@ -394,7 +391,7 @@
 									{
 										"hosted_item": "nfwhowlingstone",
 										"access_rules": [
-											"{^$canAccess|NorthFaronLostWoodsEntrance, shadowcrystal}"
+											"{$DLEvent|Howl at North Faron Woods Howling Stone}"
 										]
 									}
 								]

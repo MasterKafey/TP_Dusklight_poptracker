@@ -1713,12 +1713,9 @@
 									{
 										"hosted_item": "lhhowlingstone",
 										"access_rules": [
-											"{shadowcrystal}"
+											"{$DLEvent|Howl at Lake Hylia Howling Stone}"
 										]
 									}
-								],
-								"access_rules": [
-									"^$canAccess|LakeHylia"
 								]
 							}
 						]
@@ -2253,12 +2250,9 @@
 									{
 										"hosted_item": "uzrhowlingstone",
 										"access_rules": [
-											"{shadowcrystal}"
+											"{$DLEvent|Howl at Upper Zoras River Howling Stone}"
 										]
 									}
-								],
-								"access_rules": [
-									"^$canAccess|UpperZorasRiver"
 								]
 							}
 						]
@@ -2620,13 +2614,10 @@
 								"sections": [
 									{
 										"access_rules": [
-											"hook, shadowcrystal"
+											"$DLEvent|Reekfish Scent"
 										],
 										"hosted_item": "reekfishscent"
 									}
-								],
-								"access_rules": [
-									"^$canAccess|ZorasDomain"
 								]
 							}
 						]
@@ -3023,9 +3014,6 @@
 					},
 					{
 						"name": "Castle Town Doctors Office Lower",
-						"access_rules": [
-							"^$canAccess|CastleTownDoctorsOfficeLower"
-						],
 						"children": [
 							{
 								"name": "Medicine Scent",
@@ -3040,7 +3028,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"shadowcrystal"
+											"$DLEvent|Medicine Scent"
 										],
 										"hosted_item": "medicinescent"
 									}

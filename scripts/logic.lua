@@ -664,17 +664,28 @@ end
 
 -- Access rule entry point ------------------------------------------------------------------------
 
-function DLAccess(name)
-	if DL.setting("Logic Rules") == "No Logic" then return true end
+local function ensureResult()
 	if DL.dirty or DL.result == nil then
 		local ok, err = pcall(DL.search)
 		if not ok then
 			print("DL logic error: " .. tostring(err))
 			DL.dirty = false
-			DL.result = {locations = {}}
+			DL.result = {locations = {}, events = {}}
 		end
 	end
-	return DL.result.locations[name] == true
+	return DL.result
+end
+
+-- "$DLAccess|<apworld location name>": is the check in logic?
+function DLAccess(name)
+	if DL.setting("Logic Rules") == "No Logic" then return true end
+	return ensureResult().locations[name] == true
+end
+
+-- "$DLEvent|<world graph event>": is the event reachable (howling stones, scents...)?
+function DLEvent(name)
+	if DL.setting("Logic Rules") == "No Logic" then return true end
+	return ensureResult().events[name] == true
 end
 
 function DLInvalidate()

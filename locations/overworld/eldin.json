@@ -60,12 +60,9 @@
 									{
 										"hosted_item": "dmhowlingstone",
 										"access_rules": [
-											"{^$canAccess|DeathMountainTrail, shadowcrystal}"
+											"{$DLEvent|Howl at Death Mountain Howling Stone}"
 										]
 									}
-								],
-								"access_rules": [
-									"^$canAccess|DeathMountainTrail"
 								]
 							},
 							{
@@ -257,12 +254,9 @@
 									{
 										"hosted_item": "hvhowlingstone",
 										"access_rules": [
-											"{^$canAccess|HiddenVillage, shadowcrystal}"
+											"{$DLEvent|Howl at Hidden Village Howling Stone}"
 										]
 									}
-								],
-								"access_rules": [
-									"^$canAccess|HiddenVillage"
 								]
 							},
 							{

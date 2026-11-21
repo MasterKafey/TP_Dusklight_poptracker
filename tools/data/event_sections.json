@@ -1,0 +1,12 @@
+{
+	"_comment": "Tracker sections that are not checks but follow an event of the apworld's world graph: section path -> [event name, wrap in {} (shown as 'inspectable', like the original pack did)].",
+	"@Eldin Province/Death Mountain/Death Mountain Trail/Ordon Spring Stone/": ["Howl at Death Mountain Howling Stone", true],
+	"@Eldin Province/Hidden Village/Hidden Village/North Castle Town Stone/": ["Howl at Hidden Village Howling Stone", true],
+	"@Faron Province/Faron Woods/North Faron Lost Woods Entrance/South Castle Town Stone/": ["Howl at North Faron Woods Howling Stone", true],
+	"@Lanayru Province/Lake Hylia/Lake Hylia/Gerudo Desert Stone/": ["Howl at Lake Hylia Howling Stone", true],
+	"@Lanayru Province/Zoras Domain/Upper Zoras River/West Castle Town Stone/": ["Howl at Upper Zoras River Howling Stone", true],
+	"@Snowpeak Province/Snowpeak/Snowpeak Climb Upper/Kakariko Graveyard Stone/": ["Howl at Snowpeak Mountain Howling Stone", true],
+	"@Arbiters Grounds/Arbiters Grounds Lobby/Torch Room Poe/Poe Scent": ["Poe Scent", false],
+	"@Lanayru Province/Zoras Domain/Zoras Domain/Reekfish Scent/": ["Reekfish Scent", false],
+	"@Lanayru Province/Submaps/Castle Town Doctors Office Lower/Medicine Scent/": ["Medicine Scent", false]
+}

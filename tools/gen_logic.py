@@ -329,12 +329,20 @@ SKIP_FILES = ("main map.json",)
 def rewrite_locations() -> None:
     """Point every mapped section at the generated logic.
 
-    A mapped section's rule becomes "$DLAccess|<name>". The old region rules on the locations
+    A mapped section's rule becomes "$DLAccess|<name>" (or "$DLEvent|<event>" for the sections
+    listed in event_sections.json). The old region rules on the locations
     above it are removed and pushed down into the sections that are not mapped (hint signs,
     boss markers, scents...), so those keep exactly the rule they had.
     """
     paths = json.loads((DATA / "location_paths.json").read_text("utf-8"))
-    by_path = {p: name for name, ps in paths.items() for p in ps}
+    by_path = {p: "$DLAccess|" + name for name, ps in paths.items() for p in ps}
+    # Non-check sections (howling stones, scents) follow a world graph event.
+    events = json.loads((DATA / "event_sections.json").read_text("utf-8"))
+    for p, value in events.items():
+        if not p.startswith("_"):
+            event, inspect = value
+            rule = "$DLEvent|" + event
+            by_path[p] = "{" + rule + "}" if inspect else rule
     found = set()
 
     def combine(a: list[str] | None, b: list[str] | None) -> list[str] | None:
@@ -364,10 +372,10 @@ def rewrite_locations() -> None:
         rules = combine(inherited, node.pop("access_rules", None))
         for s in node.get("sections") or []:
             code = "@" + path + "/" + s.get("name", "")
-            name = by_path.get(code)
-            if name:
+            rule = by_path.get(code)
+            if rule:
                 found.add(code)
-                s["access_rules"] = ["$DLAccess|" + name]
+                s["access_rules"] = [rule]
             else:
                 s["access_rules"] = combine(rules, s.get("access_rules"))
         for c in node.get("children") or []:

@@ -102,7 +102,7 @@
 							{
 								"name": "Poe Scent",
 								"access_rules": [
-									"^$canAccess|ArbitersGroundsLobby, shadowcrystal"
+									"$DLEvent|Poe Scent"
 								],
 								"hosted_item": "poescent"
 							}
