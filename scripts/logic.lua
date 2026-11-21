@@ -385,7 +385,18 @@ local function settingsKey()
 	return table.concat(parts, ";")
 end
 
-local function buildGraph()
+-- The graph is built by a resumable builder so it can run a slice at a time from a frame handler
+-- (a full build costs a few million Lua instructions; PopTracker aborts a frame handler after
+-- 600000, and slower hosts time out on long script loads). DL.buildStep(b, budget) processes
+-- about `budget` areas (or locations in the last phase) and returns true when b.g is complete.
+
+local LOCATION_NAMES = {}
+for name in pairs(DL_LOCATIONS) do LOCATION_NAMES[#LOCATION_NAMES + 1] = name end
+table.sort(LOCATION_NAMES)
+
+local BUILD_PHASES = {"copies", "exits", "events", "locations", "vanilla", "done"}
+
+function DL.newBuild(key)
 	macro_cache = {}
 	local s = DL.setting
 	local areas = DL_AREAS
@@ -396,15 +407,20 @@ local function buildGraph()
 		return a.twilight ~= "" and s(a.twilight .. " Twilight Cleared") == "Off"
 	end
 
+	local reach = {}
 	local g = {
 		out = {},        -- node -> list of {to, rule}
 		events = {},     -- list of {hub, name, rule}
 		locations = {},  -- name -> list of {hub, rule}
+		location_names = {},
 		vanilla = {},    -- list of {name, item}
 		start = startingItems(),
 		held = {},
 		roots = {},
+		reach = reach,   -- node -> true, filled by the search; compiled form checks read it
 	}
+	local b = {key = key, g = g, phase = 1, i = 1}
+
 	local function node(ai, ft) return ai * 64 + ft end
 	local function edge(from, to, rule)
 		if rule == false then return end
@@ -424,20 +440,7 @@ local function buildGraph()
 		return r
 	end
 
-	-- Form contexts and copies
 	local copies = {}
-	for ai, a in ipairs(areas) do
-		local fts = {HD, HN, WD, WN}
-		if twilightActive(a) then fts[#fts + 1] = TW; fts[#fts + 1] = TH end
-		local set = {}
-		for _, ft in ipairs(fts) do
-			set[ft] = true
-			edge(node(ai, ft), node(ai, 0), true)
-		end
-		copies[ai] = set
-	end
-	DL.reach = {}
-	local reach = DL.reach
 	local forms_cache = {}
 	local function areaForms(ai)
 		local f = forms_cache[ai]
@@ -462,11 +465,35 @@ local function buildGraph()
 		return f
 	end
 
-	local root = index["Root"]
-	for _, ft in ipairs(FORM_TIMES) do g.roots[#g.roots + 1] = node(root, ft) end
-
 	local has_sc = function() return count("Shadow Crystal") >= 1 end
-	for ai, a in ipairs(areas) do
+	local not_twilight = {"macro", "Not Twilight"}
+	local unshuffled = {}
+	if SLOT_DATA and SLOT_DATA.unshuffled_dungeons then
+		for _, d in ipairs(SLOT_DATA.unshuffled_dungeons) do unshuffled[d] = true end
+	end
+
+	b.work = {}
+
+	-- Form contexts and copies of each area
+	b.work.copies = function(ai)
+		local a = areas[ai]
+		local fts = {HD, HN, WD, WN}
+		if twilightActive(a) then fts[#fts + 1] = TW; fts[#fts + 1] = TH end
+		local set = {}
+		for _, ft in ipairs(fts) do
+			set[ft] = true
+			edge(node(ai, ft), node(ai, 0), true)
+		end
+		copies[ai] = set
+	end
+
+	-- Time/form changes and exits
+	b.work.exits = function(ai)
+		local a = areas[ai]
+		if ai == 1 then
+			local root = index["Root"]
+			for _, ft in ipairs(FORM_TIMES) do g.roots[#g.roots + 1] = node(root, ft) end
+		end
 		local cs = copies[ai]
 		local clr = cleared(a)
 		local can_transform = a.can_transform == "Always" or (
@@ -518,7 +545,8 @@ local function buildGraph()
 	end
 
 	-- Events
-	for ai, a in ipairs(areas) do
+	b.work.events = function(ai)
+		local a = areas[ai]
 		local evs = {}
 		local seen = {}
 		for _, e in ipairs(a.events) do evs[#evs + 1] = e; seen[e[1]] = true end
@@ -538,8 +566,8 @@ local function buildGraph()
 	end
 
 	-- Locations
-	local not_twilight = {"macro", "Not Twilight"}
-	for ai, a in ipairs(areas) do
+	b.work.locations = function(ai)
+		local a = areas[ai]
 		local forms = areaForms(ai)
 		for _, l in ipairs(a.locations) do
 			local name, req = l[1], l[2]
@@ -550,18 +578,20 @@ local function buildGraph()
 				end
 				local rule = compile(req, forms)
 				local list = g.locations[name]
-				if not list then list = {}; g.locations[name] = list end
+				if not list then
+					list = {}
+					g.locations[name] = list
+					g.location_names[#g.location_names + 1] = name
+				end
 				if rule ~= false then list[#list + 1] = {node(ai, 0), rule} end
 			end
 		end
 	end
 
 	-- Items the randomizer leaves in place: collected by the search when reachable.
-	local unshuffled = {}
-	if SLOT_DATA and SLOT_DATA.unshuffled_dungeons then
-		for _, d in ipairs(SLOT_DATA.unshuffled_dungeons) do unshuffled[d] = true end
-	end
-	for name, loc in pairs(DL_LOCATIONS) do
+	b.work.vanilla = function(li)
+		local name = LOCATION_NAMES[li]
+		local loc = DL_LOCATIONS[name]
 		if g.locations[name] and not hasCat(loc, "Non-Item Location") then
 			local item = isVanillaLocation(name, loc, g.start)
 			local real = not hasCat(loc, "Non-Item Location") and not hasCat(loc, "Placeholder")
@@ -579,7 +609,24 @@ local function buildGraph()
 			end
 		end
 	end
-	return g
+	return b
+end
+
+function DL.buildStep(b, budget)
+	local used = 0
+	while used < budget do
+		local phase = BUILD_PHASES[b.phase]
+		if phase == "done" then return true end
+		local limit = phase == "vanilla" and #LOCATION_NAMES or #DL_AREAS
+		if b.i > limit then
+			b.phase, b.i = b.phase + 1, 1
+		else
+			b.work[phase](b.i)
+			b.i = b.i + 1
+			used = used + (phase == "vanilla" and 0.2 or 1)
+		end
+	end
+	return BUILD_PHASES[b.phase] == "done"
 end
 
 -- Search --------------------------------------------------------------------------------------
@@ -587,7 +634,7 @@ end
 local function locationReachable(g, name)
 	local list = g.locations[name]
 	if not list then return false end
-	local reach = DL.reach
+	local reach = g.reach
 	for _, acc in ipairs(list) do
 		if reach[acc[1]] and (acc[2] == true or acc[2]()) then return true end
 	end
@@ -599,17 +646,13 @@ end
 -- has no coroutine library. DL.step(st, budget) does at most about `budget` rule evaluations
 -- (plus one node's out-edges) and returns true once the result is published.
 
--- Rebuild the graph if the settings changed. Costs a few million instructions, so only call it
--- where PopTracker does not limit Lua: item watches, Archipelago handlers, script loading.
+-- Synchronous graph (re)build, for tests and hosts without frame handlers.
 function DL.ensureGraph()
 	local key = settingsKey()
 	if DL.graph == nil or DL.graph_settings ~= key then
-		DL.graph = nil
-		DL.graph = buildGraph()
-		DL.graph_settings = key
-		local names = {}
-		for name in pairs(DL.graph.locations) do names[#names + 1] = name end
-		DL.graph.location_names = names
+		local build = DL.newBuild(key)
+		DL.buildStep(build, math.huge)
+		DL.graph, DL.graph_settings = build.g, key
 	end
 	return DL.graph
 end
@@ -621,7 +664,7 @@ function DL.newSearch()
 	extra = {}
 	for k, v in pairs(g.start) do extra[k] = (extra[k] or 0) + v end
 	for k, v in pairs(g.held) do extra[k] = (extra[k] or 0) + v end
-	local reach = DL.reach
+	local reach = g.reach
 	for k in pairs(reach) do reach[k] = nil end
 	local st = {
 		g = g, events = events, extra = extra, counts = tracker_counts,
@@ -635,7 +678,7 @@ function DL.newSearch()
 end
 
 function DL.step(st, budget)
-	local g, reach, queue = st.g, DL.reach, st.queue
+	local g, reach, queue = st.g, st.g.reach, st.queue
 	if g ~= DL.graph then return false end  -- stale; a newer search replaces it
 	-- the compiled rules read these module upvalues
 	events, extra, tracker_counts = st.events, st.extra, st.counts
@@ -780,7 +823,9 @@ end
 -- handlers fall back to computing on demand inside the rules.
 
 DL.async = ScriptHost ~= nil and ScriptHost.AddOnFrameHandler ~= nil
-DL.slice = 500
+DL.slice = 500        -- rule evaluations per frame (search)
+DL.build_slice = 15   -- areas per frame (graph build)
+DL.wanted = true
 DL.frames = 0
 DL.rule_calls = 0
 local REFRESH_CODE = "dl_logic_refresh"
@@ -790,7 +835,6 @@ local function fail(err)
 	DL.last_error = tostring(err)
 	DL.error_count = (DL.error_count or 0) + 1
 	print("DL logic error: " .. tostring(err))
-	DL.pending = nil
 	DL.result = DL.result or EMPTY
 end
 
@@ -810,31 +854,51 @@ local function ensureResult()
 end
 DL.ensureResult = ensureResult
 
--- Item watch and handlers: (re)start the search. Never called from rules.
+-- Item watch and handlers: ask for a new result. Cheap; the work happens in DLStep.
 function DLRefresh(code)
 	if code == REFRESH_CODE then return end
 	DL.dirty = true
-	if not DL.async or DL.suspended then return end
-	local ok, err = pcall(function()
-		DL.ensureGraph()
-		DL.pending = DL.newSearch()
-	end)
-	if not ok then fail(err) end
+	DL.wanted = true
 end
 DLInvalidate = DLRefresh
 
--- Frame handler: advance the pending search by one slice.
+-- Frame handler: (re)start the job when asked, then advance it by one slice: first the graph
+-- build if the settings changed, then the search. Each slice stays far below the limit.
 function DLStep()
 	DL.frames = DL.frames + 1
-	local st = DL.pending
-	if st == nil then return end
-	local ok, done = pcall(DL.step, st, DL.slice)
-	if not ok then fail(done); return end
-	if done and DL.pending == st then
-		DL.pending = nil
-		DL.dirty = false
-		local item = Tracker:FindObjectForCode(REFRESH_CODE)
-		if item then item.Active = not item.Active end
+	if DL.suspended then return end
+	local ok, err = pcall(function()
+		if DL.wanted then
+			DL.wanted = false
+			local key = settingsKey()
+			local job = DL.job
+			if job and job.build and job.build.key == key then
+				job.search = nil  -- keep building; the search starts afresh after it
+			elseif DL.graph ~= nil and DL.graph_settings == key then
+				DL.job = {search = DL.newSearch()}
+			else
+				DL.job = {build = DL.newBuild(key)}
+			end
+		end
+		local job = DL.job
+		if job == nil then return end
+		if job.build then
+			if not DL.buildStep(job.build, DL.build_slice) then return end
+			DL.graph, DL.graph_settings = job.build.g, job.build.key
+			job.build = nil
+			return
+		end
+		job.search = job.search or DL.newSearch()
+		if DL.step(job.search, DL.slice) then
+			DL.job = nil
+			DL.dirty = false
+			local item = Tracker:FindObjectForCode(REFRESH_CODE)
+			if item then item.Active = not item.Active end
+		end
+	end)
+	if not ok then
+		DL.job = nil
+		fail(err)
 	end
 end
 

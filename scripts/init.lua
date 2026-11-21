@@ -69,6 +69,3 @@ Tracker:AddLocations("locations/dungeons/hyrule castle.json")
 Tracker:FindObjectForCode("@Tutorial Locations/Obtained/").AvailableChestCount = 0
 
 occupyRoomSetting()
-
--- Build the logic graph and start the search now that the items exist (script loading has no instruction limit).
-DLRefresh()
