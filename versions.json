@@ -1,6 +1,15 @@
 {
 	"versions": [
 		{
+			"package_version": "0.1.1",
+			"download_url": "https://github.com/MasterKafey/TP_Dusklight_poptracker/releases/download/v0.1.1/TP_Dusklight_poptracker_v0.1.1.zip",
+			"sha256": "BD83B0C24ADFE9A7634DA7B79465E64A2211FFCC3714239B1321F7992C1BB2B5",
+			"changelog": [
+				"Fixed endless recursion errors (lantern check, settings lookup)",
+				"Opens on the maps instead of the tutorial page"
+			]
+		},
+		{
 			"package_version": "0.1.0",
 			"download_url": "https://github.com/MasterKafey/TP_Dusklight_poptracker/releases/download/v0.1.0/TP_Dusklight_poptracker_v0.1.0.zip",
 			"sha256": "DDDBF3EF802CF1758F1F99AB66B848994C74EA65309CE69C386632982B738A53",
