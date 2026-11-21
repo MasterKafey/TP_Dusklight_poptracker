@@ -374,6 +374,12 @@
 		"img": "images/Items/DesertKey.png"
 	},
 	{
+		"name": "Faron Woods Coro Key",
+		"type": "toggle",
+		"codes": "corokey, faronwoodscorokey",
+		"img": "images/Items/CoroKey.png"
+	},
+	{
 		"name": "Forest Temple Small Key",
 		"type": "consumable",
 		"codes": "foresttemplesmallkey, ftsmallkey, smallkeyft",

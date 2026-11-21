@@ -133,165 +133,122 @@ function ClearPortals()
 	Tracker:FindObjectForCode("stportal").CurrentStage = 0
 	Tracker:FindObjectForCode("sgportal").CurrentStage = 0
 end
-function SetSettings()
-	if SLOT_DATA["World Version"] == "v0.2.2" or SLOT_DATA["World Version"] == "v0.2.1" or SLOT_DATA["World Version"] == "v0.2.0" or SLOT_DATA["World Version"] == "v0.1.5" or SLOT_DATA["World Version"] == "v0.1.3" or SLOT_DATA["World Version"] == "v0.1.2" or SLOT_DATA["World Version"] == "v0.1.1" or SLOT_DATA["World Version"] == "v0.1" then
-		--skip if version is less than v0.2.3
+-- Dusklight slot_data["settings"] holds every randomizer setting as "Setting Name" -> option label.
+-- Each entry: setting name -> {tracker code, {option label -> stage}}
+local ON_OFF = {["On"] = 0, ["Off"] = 1}
+SETTINGS_MAPPING = {
+	["Logic Rules"] = {"glitched", {["All Locations Reachable"] = 1, ["Beatable Only"] = 1, ["No Logic"] = 0}},
+	["Golden Bugs"] = {"gbugs", ON_OFF},
+	["Sky Characters"] = {"skycharacters", ON_OFF},
+	["Gifts From NPCs"] = {"npcitems", ON_OFF},
+	["Shop Items"] = {"shopitems", ON_OFF},
+	["Hidden Skills"] = {"hiddenskills", ON_OFF},
+	["Hidden Rupees"] = {"hiddenrupees", ON_OFF},
+	["Freestanding Rupees"] = {"freerupees", ON_OFF},
+	-- The tracker only knows "poes on/off": Overworld and Dungeon show every poe.
+	["Poe Souls"] = {"poes", {["Vanilla"] = 1, ["Overworld"] = 0, ["Dungeon"] = 0, ["All"] = 0}},
+	["Hyrule Barrier Requirements"] = {"castlerequirements", {["Open"] = 0, ["Fused Shadows"] = 1, ["Mirror Shards"] = 2, ["Dungeons"] = 3, ["Vanilla"] = 4, ["Poe Souls"] = 5, ["Hearts"] = 6}},
+	["Hyrule Castle Big Key Requirements"] = {"castlebkrequirements", {["None"] = 0, ["Fused Shadows"] = 1, ["Mirror Shards"] = 2, ["Dungeons"] = 3, ["Poe Souls"] = 5, ["Hearts"] = 6}},
+	["Palace of Twilight Requirements"] = {"palacerequirements", {["Open"] = 0, ["Fused Shadows"] = 1, ["Mirror Shards"] = 2, ["Vanilla"] = 3}},
+	["Small Keys"] = {"smallkeys", {["Keysy"] = 0, ["Vanilla"] = 1, ["Own Dungeon"] = 2, ["Any Dungeon"] = 3, ["Overworld"] = 4, ["Anywhere"] = 4}},
+	["Big Keys"] = {"bigkeys", {["Keysy"] = 0, ["Vanilla"] = 1, ["Own Dungeon"] = 2, ["Any Dungeon"] = 3, ["Overworld"] = 4, ["Anywhere"] = 4}},
+	["Open Door of Time"] = {"dooroftime", ON_OFF},
+	["Active Goron Mines Magnets"] = {"goronminesshortcut", ON_OFF},
+	["Lower Hyrule Castle Chandelier"] = {"hyrulecastleshortcut", ON_OFF},
+	["Goron Mines Entrance"] = {"goronminesentrance", {["Open"] = 0, ["No Wrestling"] = 1, ["Closed"] = 2}},
+	["Lakebed Does Not Require Water Bombs"] = {"skiplakebedentrance", ON_OFF},
+	["Arbiters Does Not Require Bulblin Camp"] = {"skiparbitersentrance", ON_OFF},
+	["Snowpeak Does Not Require Reekfish Scent"] = {"skipsnowpeakentrance", ON_OFF},
+	["City Does Not Require Filled Skybook"] = {"skipcityintheskyentrance", ON_OFF},
+	["Sacred Grove Does Not Require Skull Kid"] = {"skipskullkidfight", ON_OFF},
+	["Temple of Time Sword Requirement"] = {"templeoftimeentrance", {["None"] = 0, ["Wooden Sword"] = 1, ["Ordon Sword"] = 2, ["Master Sword"] = 3, ["Light Sword"] = 4}},
+	["Faron Woods Logic"] = {"faronwoods", {["Open"] = 0, ["Closed"] = 1}},
+	["Unlock Map Regions"] = {"openmap", ON_OFF},
+	["Skip Bridge Donation"] = {"skipbridgedonation", ON_OFF},
+	["Logic Increase Wallet Capacity"] = {"walletsize", {["On"] = 3, ["Off"] = 1}},
+	["Logic Transform Anywhere"] = {"transformanywhere", ON_OFF},
+	["Bonks Do Damage"] = {"bonksdodamage", ON_OFF},
+	["Logic Damage Multiplier"] = {"damagemagnification", {["Vanilla"] = 0, ["Double"] = 1, ["Triple"] = 2, ["Quadruple"] = 3, ["OHKO"] = 4}},
+	["Ilia Memory Quest"] = {"iliaquest", {["Vanilla"] = 0, ["Letter"] = 1, ["Invoice"] = 2, ["Statue"] = 3, ["Charm"] = 4}},
+	["Skip Prologue"] = {"skipprologue", ON_OFF},
+	["Faron Twilight Cleared"] = {"farontwilightcleared", ON_OFF},
+	["Eldin Twilight Cleared"] = {"eldintwilightcleared", ON_OFF},
+	["Lanayru Twilight Cleared"] = {"lanayrutwilightcleared", ON_OFF},
+	["Skip Midna's Desperate Hour"] = {"skipmdh", ON_OFF},
+	["Randomize Dungeon Entrances"] = {"dungeonshuffled", {["Off"] = 0, ["On"] = 1, ["On + Hyrule Castle"] = 2}},
+	["Randomize Overworld Entrances"] = {"exteriorshuffled", ON_OFF},
+	["Randomize Interior Entrances"] = {"interiorshuffled", ON_OFF},
+	["Randomize Cave Entrances"] = {"caveshuffled", ON_OFF},
+	["Randomize Grotto Entrances"] = {"grottoshuffled", ON_OFF},
+	["Randomize Boss Entrances"] = {"bossshuffled", ON_OFF},
+	["Decouple Entrances"] = {"decoupledentrances", ON_OFF},
+	-- "Paired entrances" in the tracker = double doors still paired, i.e. not decoupled.
+	["Decouple Double Door Entrances"] = {"pairedentrances", {["On"] = 1, ["Off"] = 0}},
+}
+-- Requirement setting -> {amount tracker code, {requirement option -> setting holding the count}}
+SETTINGS_AMOUNTS = {
+	["Hyrule Barrier Requirements"] = {"barrieramount", {
+		["Fused Shadows"] = "Hyrule Barrier Fused Shadows",
+		["Mirror Shards"] = "Hyrule Barrier Mirror Shards",
+		["Dungeons"] = "Hyrule Barrier Dungeons",
+		["Poe Souls"] = "Hyrule Barrier Poe Souls",
+		["Hearts"] = "Hyrule Barrier Hearts",
+	}},
+	["Hyrule Castle Big Key Requirements"] = {"bigkeygateamount", {
+		["Fused Shadows"] = "Hyrule Castle Big Key Fused Shadows",
+		["Mirror Shards"] = "Hyrule Castle Big Key Mirror Shards",
+		["Dungeons"] = "Hyrule Castle Big Key Dungeons",
+		["Poe Souls"] = "Hyrule Castle Big Key Poe Souls",
+		["Hearts"] = "Hyrule Castle Big Key Hearts",
+	}},
+}
+-- Tracker settings with no Dusklight equivalent: code -> stage
+SETTINGS_FIXED = {
+	heartpieces = 0,    -- heart pieces are always shuffled
+	onewayshuffled = 1, -- Dusklight has no one-way entrance shuffle
+	hints = 1,          -- hint signs are not checks in Dusklight
+}
+
+function SetStage(code, stage)
+	local obj = Tracker:FindObjectForCode(code)
+	if obj then
+		obj.CurrentStage = stage
 	else
-		print(Dump_table(SLOT_DATA.Settings))
-		if SLOT_DATA.Settings["Logic Settings"] == "Glitchless" then
-			Tracker:FindObjectForCode("glitched").CurrentStage = 1
-		elseif (SLOT_DATA.Settings["Logic Settings"] == "No Logic") or (SLOT_DATA.Settings["Logic Settings"] == "Glitched") then
-			Tracker:FindObjectForCode("glitched").CurrentStage = 0
-		end
-		if SLOT_DATA.Settings["Poes Shuffled"] == "Yes" then
-			Tracker:FindObjectForCode("poes").CurrentStage = 0
-		elseif SLOT_DATA.Settings["Poes Shuffled"] == "No" then
-			Tracker:FindObjectForCode("poes").CurrentStage = 1
-		end
-		if SLOT_DATA.Settings["Golden Bugs Shuffled"] == "Yes" then
-			Tracker:FindObjectForCode("gbugs").CurrentStage = 0
-		elseif SLOT_DATA.Settings["Golden Bugs Shuffled"] == "No" then
-			Tracker:FindObjectForCode("gbugs").CurrentStage = 1
-		end
-		if SLOT_DATA.Settings["Castle Requirements"] == "Open" then
-			Tracker:FindObjectForCode("castlerequirements").CurrentStage = 0
-		elseif SLOT_DATA.Settings["Castle Requirements"] == "Fused Shadows" then
-			Tracker:FindObjectForCode("castlerequirements").CurrentStage = 1
-		elseif SLOT_DATA.Settings["Castle Requirements"] == "Mirror Shards" then
-			Tracker:FindObjectForCode("castlerequirements").CurrentStage = 2
-		elseif SLOT_DATA.Settings["Castle Requirements"] == "All Dungeons" then
-			Tracker:FindObjectForCode("castlerequirements").CurrentStage = 3
-		elseif SLOT_DATA.Settings["Castle Requirements"] == "Vanilla" then
-			Tracker:FindObjectForCode("castlerequirements").CurrentStage = 4
-		end
-		if SLOT_DATA.Settings["Palace of Twilight Requirements"] == "Open" then
-			Tracker:FindObjectForCode("palacerequirements").CurrentStage = 3
-		elseif SLOT_DATA.Settings["Palace of Twilight Requirements"] == "Fused Shadows" then
-			Tracker:FindObjectForCode("palacerequirements").CurrentStage = 1
-		elseif SLOT_DATA.Settings["Palace of Twilight Requirements"] == "Mirror Shards" then
-			Tracker:FindObjectForCode("palacerequirements").CurrentStage = 2
-		elseif SLOT_DATA.Settings["Palace of Twilight Requirements"] == "Vanilla" then
-			Tracker:FindObjectForCode("palacerequirements").CurrentStage = 0
-		end
-		if SLOT_DATA.Settings["Faron Woods Logic"] == "Open" then
-			Tracker:FindObjectForCode("faronwoods").CurrentStage = 0
-		elseif SLOT_DATA.Settings["Faron Woods Logic"] == "Closed" then
-			Tracker:FindObjectForCode("faronwoods").CurrentStage = 1
-		end
-		if SLOT_DATA.Settings["Lakebed Entrance Requirements"] == "Yes" then
-			Tracker:FindObjectForCode("skiplakebedentrance").CurrentStage = 0
-		elseif SLOT_DATA.Settings["Lakebed Entrance Requirements"] == "No" then
-			Tracker:FindObjectForCode("skiplakebedentrance").CurrentStage = 1
-		end
-		if SLOT_DATA.Settings["Arbiters Grounds Entrance Requirements"] == "Yes" then
-			Tracker:FindObjectForCode("skiparbitersentrance").CurrentStage = 0
-		elseif SLOT_DATA.Settings["Arbiters Grounds Entrance Requirements"] == "No" then
-			Tracker:FindObjectForCode("skiparbitersentrance").CurrentStage = 1
-		end
-		if SLOT_DATA.Settings["Snowpeak Entrance Requirements"] == "Yes" then
-			Tracker:FindObjectForCode("skipsnowpeakentrance").CurrentStage = 0
-		elseif SLOT_DATA.Settings["Snowpeak Entrance Requirements"] == "No" then
-			Tracker:FindObjectForCode("skipsnowpeakentrance").CurrentStage = 1
-		end
-		if SLOT_DATA.Settings["City in the Sky Entrance Requirements"] == "Yes" then
-			Tracker:FindObjectForCode("skipcityintheskyentrance").CurrentStage = 0
-		elseif SLOT_DATA.Settings["City in the Sky Entrance Requirements"] == "No" then
-			Tracker:FindObjectForCode("skipcityintheskyentrance").CurrentStage = 1
-		end
-		if SLOT_DATA.Settings["Goron Mines Entrance Requirements"] == "Open" then
-			Tracker:FindObjectForCode("goronminesentrance").CurrentStage = 0
-		elseif SLOT_DATA.Settings["Goron Mines Entrance Requirements"] == "No Wrestling" then
-			Tracker:FindObjectForCode("goronminesentrance").CurrentStage = 1
-		elseif SLOT_DATA.Settings["Goron Mines Entrance Requirements"] == "Closed" then
-			Tracker:FindObjectForCode("goronminesentrance").CurrentStage = 2
-		end
-		if SLOT_DATA.Settings["Temple of Time Entrance Requirements"] == "Open" then
-			Tracker:FindObjectForCode("templeoftimeentrance").CurrentStage = 0
-		elseif SLOT_DATA.Settings["Temple of Time Entrance Requirements"] == "Open Grove" then
-			Tracker:FindObjectForCode("templeoftimeentrance").CurrentStage = 1
-		elseif SLOT_DATA.Settings["Temple of Time Entrance Requirements"] == "Closed" then
-			Tracker:FindObjectForCode("templeoftimeentrance").CurrentStage = 2
-		end
-		if SLOT_DATA.Settings["Skip Prologue"] == "Yes" then
-			Tracker:FindObjectForCode("skipprologue").CurrentStage = 0
-		end
-		if SLOT_DATA.Settings["Faron Twilight Cleared"] == "Yes" then
-			Tracker:FindObjectForCode("farontwilightcleared").CurrentStage = 0
-		end
-		if SLOT_DATA.Settings["Eldin Twilight Cleared"] == "Yes" then
-			Tracker:FindObjectForCode("eldintwilightcleared").CurrentStage = 0
-		end
-		if SLOT_DATA.Settings["Lanayru Twilight Cleared"] == "Yes" then
-			Tracker:FindObjectForCode("lanayrutwilightcleared").CurrentStage = 0
-		end
-		if SLOT_DATA.Settings["Skip MDH"] == "Yes" then
-			Tracker:FindObjectForCode("skipmdh").CurrentStage = 0
-		end
-		if SLOT_DATA.Settings["Open Map"] == "Yes" then
-			Tracker:FindObjectForCode("openmap").CurrentStage = 0
-		elseif SLOT_DATA.Settings["Open Map"] == "No" then
-			Tracker:FindObjectForCode("openmap").CurrentStage = 1
-		end
-		if SLOT_DATA.Settings["Increase Wallet"] == "Yes" then
-			Tracker:FindObjectForCode("walletsize").CurrentStage = 3
-		elseif SLOT_DATA.Settings["Increase Wallet"] == "No" then
-			Tracker:FindObjectForCode("walletsize").CurrentStage = 1
-		end
-		if SLOT_DATA.Settings["Transform Anywhere"] == "Yes" then
-			Tracker:FindObjectForCode("transformanywhere").CurrentStage = 0
-		elseif SLOT_DATA.Settings["Transform Anywhere"] == "No" then
-			Tracker:FindObjectForCode("transformanywhere").CurrentStage = 1
-		end
-		if SLOT_DATA.Settings["Bonks do Damage"] == "Yes" then
-			Tracker:FindObjectForCode("bonksdodamage").CurrentStage = 0
-		elseif SLOT_DATA.Settings["Bonks do Damage"] == "No" then
-			Tracker:FindObjectForCode("bonksdodamage").CurrentStage = 1
-		end
-		if SLOT_DATA.Settings["Damage Magnification"] == "Vanilla" then
-			Tracker:FindObjectForCode("damagemagnification").CurrentStage = 0
-		elseif SLOT_DATA.Settings["Damage Magnification"] == "Double" then
-			Tracker:FindObjectForCode("damagemagnification").CurrentStage = 1
-		elseif SLOT_DATA.Settings["Damage Magnification"] == "Triple" then
-			Tracker:FindObjectForCode("damagemagnification").CurrentStage = 2
-		elseif SLOT_DATA.Settings["Damage Magnification"] == "Quadruple" then
-			Tracker:FindObjectForCode("damagemagnification").CurrentStage = 3
-		elseif SLOT_DATA.Settings["Damage Magnification"] == "Ohko" then
-			Tracker:FindObjectForCode("damagemagnification").CurrentStage = 4
-		end
-		if SLOT_DATA.Settings["Small Key Settings"] == "Vanilla" then
-			Tracker:FindObjectForCode("smallkeys").CurrentStage = 0
-		elseif SLOT_DATA.Settings["Small Key Settings"] == "Own Dungeon" then
-			Tracker:FindObjectForCode("smallkeys").CurrentStage = 1
-		elseif SLOT_DATA.Settings["Small Key Settings"] == "Any Dungeon" then
-			Tracker:FindObjectForCode("smallkeys").CurrentStage = 2
-		elseif SLOT_DATA.Settings["Small Key Settings"] == "Anywhere" then
-			Tracker:FindObjectForCode("smallkeys").CurrentStage = 3
-		elseif SLOT_DATA.Settings["Small Key Settings"] == "Startwith" then
-			Tracker:FindObjectForCode("smallkeys").CurrentStage = 4
-		end
-		if SLOT_DATA.Settings["Big Key Settings"] == "Vanilla" then
-			Tracker:FindObjectForCode("bigkeys").CurrentStage = 0
-		elseif SLOT_DATA.Settings["Big Key Settings"] == "Own Dungeon" then
-			Tracker:FindObjectForCode("bigkeys").CurrentStage = 1
-		elseif SLOT_DATA.Settings["Big Key Settings"] == "Any Dungeon" then
-			Tracker:FindObjectForCode("bigkeys").CurrentStage = 2
-		elseif SLOT_DATA.Settings["Big Key Settings"] == "Anywhere" then
-			Tracker:FindObjectForCode("bigkeys").CurrentStage = 3
-		elseif SLOT_DATA.Settings["Big Key Settings"] == "Startwith" then
-			Tracker:FindObjectForCode("bigkeys").CurrentStage = 4
-		end
-		if SLOT_DATA.Settings["Open Door of Time"] == "Yes" then
-			Tracker:FindObjectForCode("dooroftime").CurrentStage = 0
-		elseif SLOT_DATA.Settings["Open Door of Time"] == "No" then
-			Tracker:FindObjectForCode("dooroftime").CurrentStage = 1
-		end
-
-		Tracker:AddLayouts("layouts/archipelago_keys.json")
-		Tracker:AddLayouts("layouts/archipelago_item_grid.json")
-
-		--Disable Hint Signs for current versions
-		Tracker:FindObjectForCode("hints").CurrentStage = 1
+		DebugAP(string.format("SetSettings: could not find object for code '%s'", code))
 	end
+end
+
+function SetSettings()
+	local settings = SLOT_DATA and SLOT_DATA.settings
+	if not settings then
+		print("SetSettings: no 'settings' in slot_data, is this a Twilight Princess (Dusklight) slot?")
+		return
+	end
+	print(Dump_table(settings))
+	for name, v in pairs(SETTINGS_MAPPING) do
+		local value = settings[name]
+		if value ~= nil then
+			local stage = v[2][tostring(value)]
+			if stage then
+				SetStage(v[1], stage)
+			else
+				print(string.format("SetSettings: unknown value '%s' for setting '%s'", tostring(value), name))
+			end
+		end
+	end
+	for name, v in pairs(SETTINGS_AMOUNTS) do
+		local count_setting = v[2][tostring(settings[name])]
+		local obj = Tracker:FindObjectForCode(v[1])
+		if obj then
+			obj.AcquiredCount = tonumber(count_setting and settings[count_setting]) or 0
+		end
+	end
+	for code, stage in pairs(SETTINGS_FIXED) do
+		SetStage(code, stage)
+	end
+
+	Tracker:AddLayouts("layouts/archipelago_keys.json")
+	Tracker:AddLayouts("layouts/archipelago_item_grid.json")
 end
 function InitPortals()
 	if Tracker:FindObjectForCode("openmap").CurrentStage == 0 then
@@ -314,7 +271,10 @@ function InitItems()
 	Tracker:FindObjectForCode("faronvesseloflight").Active = true
 	Tracker:FindObjectForCode("eldinvesseloflight").Active = true
 	Tracker:FindObjectForCode("lanayruvesseloflight").Active = true
-	Tracker:FindObjectForCode("fwkey").Active = true
+	-- In Dusklight the North Faron Woods Gate Key is a real item, removed from the pool by Skip Prologue.
+	if SLOT_DATA and SLOT_DATA.settings and SLOT_DATA.settings["Skip Prologue"] == "On" then
+		Tracker:FindObjectForCode("fwkey").Active = true
+	end
 	Tracker:FindObjectForCode("START_OrdonLinksHouse_OutsideLinksHouse").Active = true
 end
 function InitMap()
@@ -322,60 +282,52 @@ function InitMap()
 	Tracker:UiHint("ActivateTab", "Overworld")
 	Tracker:UiHint("ActivateTab", "Main Map")
 end
-function SetHintsFromSlotData()
-	if SLOT_DATA["World Version"] == "v0.3.0" or SLOT_DATA["World Version"] == "v0.2.5" or SLOT_DATA["World Version"] == "v0.2.4" or SLOT_DATA["World Version"] == "v0.2.3" or SLOT_DATA["World Version"] == "v0.2.2" or SLOT_DATA["World Version"] == "v0.2.1" or SLOT_DATA["World Version"] == "v0.2.0" or SLOT_DATA["World Version"] == "v0.1.5" or SLOT_DATA["World Version"] == "v0.1.3" or SLOT_DATA["World Version"] == "v0.1.2" or SLOT_DATA["World Version"] == "v0.1.1" or SLOT_DATA["World Version"] == "v0.1" then
-		--skip for up to v0.3.0
-	else
-		for k, v in pairs(SLOT_DATA.LocationClassification) do
-			if v == "Excluded" then
-				UpdateHints(tonumber(k), 20)
-			elseif v == "Priority" then
-				UpdateHints(tonumber(k), 30)
-			end
-		end
-	end
-end
-function CorrectMistakes()
-	if SLOT_DATA["World Version"] == "v0.2.3" then
-		SLOT_DATA.Settings["Lakebed Entrance Requirements"] = SLOT_DATA.Settings["Lakebed Entrance Requirements"] or SLOT_DATA.Settings["Lakebed Enterance Requirements"]
-		SLOT_DATA.Settings["Arbiters Grounds Entrance Requirements"] = SLOT_DATA.Settings["Arbiters Grounds Entrance Requirements"] or SLOT_DATA.Settings["Arbiters Grounds Requirements"]
-		SLOT_DATA.Settings["Snowpeak Entrance Requirements"] = SLOT_DATA.Settings["Snowpeak Entrance Requirements"] or SLOT_DATA.Settings["Snowpeak Enterance Requirements"]
-		SLOT_DATA.Settings["City in the Sky Entrance Requirements"] = SLOT_DATA.Settings["City in the Sky Entrance Requirements"] or SLOT_DATA.Settings["City in the Sky Enterance Requirements"]
-		SLOT_DATA.Settings["Goron Mines Entrance Requirements"] = SLOT_DATA.Settings["Goron Mines Entrance Requirements"] or SLOT_DATA.Settings["Goron Mines Enterance Requirements"]
-		SLOT_DATA.Settings["Temple of Time Entrance Requirements"] = SLOT_DATA.Settings["Temple of Time Entrance Requirements"] or SLOT_DATA.Settings["Temple of Time Enterance Requirements"]
-		SLOT_DATA.Settings["Damage Magnification"] = SLOT_DATA.Settings["Damage Magnification"] or SLOT_DATA.Settings["Damage Magnifiation"]
-	end
-end
 
+-- Checking a dungeon's reward or its boss heart container means the boss is beaten.
+DUNGEON_COMPLETION = {}
+for name, code in pairs({
+	["Forest Temple Dungeon Reward"] = "ftcompleted",
+	["Forest Temple Diababa Heart Container"] = "ftcompleted",
+	["Goron Mines Dungeon Reward"] = "gmcompleted",
+	["Goron Mines Fyrus Heart Container"] = "gmcompleted",
+	["Lakebed Temple Dungeon Reward"] = "ltcompleted",
+	["Lakebed Temple Morpheel Heart Container"] = "ltcompleted",
+	["Arbiters Grounds Dungeon Reward"] = "agcompleted",
+	["Arbiters Grounds Stallord Heart Container"] = "agcompleted",
+	["Snowpeak Ruins Dungeon Reward"] = "srcompleted",
+	["Snowpeak Ruins Blizzeta Heart Container"] = "srcompleted",
+	["Temple of Time Dungeon Reward"] = "ttcompleted",
+	["Temple of Time Armogohma Heart Container"] = "ttcompleted",
+	["City in the Sky Dungeon Reward"] = "cscompleted",
+	["City in the Sky Argorok Heart Container"] = "cscompleted",
+	["Palace of Twilight Zant Heart Container"] = "ptcompleted",
+}) do
+	if LOCATION_NAME_TO_ID[name] then
+		DUNGEON_COMPLETION[LOCATION_NAME_TO_ID[name]] = code
+	end
+end
 
 function OnClear(slot_data)
 	DebugAP(string.format("called onClear, slot_data:\n%s", Dump_table(slot_data)))
 	SLOT_DATA = slot_data
-	print(Dump_table(SLOT_DATA))
-	CorrectMistakes()
 	CUR_INDEX = -1
 	PLAYER_ID = Archipelago.PlayerNumber or -1
 	TEAM_NUMBER = Archipelago.TeamNumber or 0
-	if SLOT_DATA["World Version"] == "v0.2.3" or SLOT_DATA["World Version"] == "v0.2.2" or SLOT_DATA["World Version"] == "v0.2.1" or SLOT_DATA["World Version"] == "v0.2.0" or SLOT_DATA["World Version"] == "v0.1.5" or SLOT_DATA["World Version"] == "v0.1.3" or SLOT_DATA["World Version"] == "v0.1.2" or SLOT_DATA["World Version"] == "v0.1.1" or SLOT_DATA["World Version"] == "v0.1" then
-		--skip if version is less than v0.2.4
-	elseif SLOT_DATA["World Version"] == "v0.2.4" then
-		Archipelago:SetNotify(SERVER_COPY)
-		Archipelago:Get(SERVER_COPY)
-	else --apply for all version v0.2.5+
-		local server_copy = {}
-		for _, sd in pairs(SERVER_COPY) do
-			table.insert(server_copy, "TP_"..TEAM_NUMBER.."_"..PLAYER_ID.."_"..sd)
-		end
-		Archipelago:SetNotify(server_copy)
-		Archipelago:Get(server_copy)
+	-- Data storage keys written by the old Twilight Princess client. The Dusklight mod may not
+	-- write them; subscribing anyway is harmless and picks them up if it ever does.
+	local server_copy = {}
+	for _, sd in pairs(SERVER_COPY) do
+		table.insert(server_copy, "TP_"..TEAM_NUMBER.."_"..PLAYER_ID.."_"..sd)
 	end
+	Archipelago:SetNotify(server_copy)
+	Archipelago:Get(server_copy)
 	local game_beaten = {"_read_client_status_"..TEAM_NUMBER.."_"..PLAYER_ID}
 	Archipelago:SetNotify(game_beaten)
 	Archipelago:Get(game_beaten)
 	local HINTS_ID = {"_read_hints_"..TEAM_NUMBER.."_"..PLAYER_ID}
 	Archipelago:SetNotify(HINTS_ID)
 	Archipelago:Get(HINTS_ID)
-	
+
 	ClearItems()
 	ClearLocations()
 	ClearPortals()
@@ -383,7 +335,6 @@ function OnClear(slot_data)
 	InitPortals()
 	InitItems()
 	InitMap()
-	SetHintsFromSlotData()
 end
 
 function OnItem(index, item_id, item_name, player_number)
@@ -419,6 +370,8 @@ function OnItem(index, item_id, item_name, player_number)
 			end
 		elseif v[2] == "consumable" then
 			obj.AcquiredCount = obj.AcquiredCount + obj.Increment
+		elseif v[2] == "portal" then
+			obj.CurrentStage = 1
 		else
 			DebugAP(string.format("onItem: unknown item type %s for code %s", v[2], v[1]))
 		end
@@ -432,22 +385,26 @@ function OnLocation(location_id, location_name)
 	if not AUTOTRACKER_ENABLE_LOCATION_TRACKING then
 		return
 	end
+	local completed = DUNGEON_COMPLETION[location_id]
+	if completed then
+		Tracker:FindObjectForCode(completed).Active = true
+	end
 	local v = LOCATION_MAPPING[location_id]
 	if not v then
 		DebugAP(string.format("onLocation: could not find location mapping for id %s", location_id))
-	end
-	if not v[1] then
 		return
 	end
-	local obj = Tracker:FindObjectForCode(v[1])
-	if obj then
-		if v[1]:sub(1, 1) == "@" then
-			obj.AvailableChestCount = obj.AvailableChestCount - 1
+	for _, code in ipairs(v) do
+		local obj = Tracker:FindObjectForCode(code)
+		if obj then
+			if code:sub(1, 1) == "@" then
+				obj.AvailableChestCount = obj.AvailableChestCount - 1
+			else
+				obj.Active = true
+			end
 		else
-			obj.Active = true
+			DebugAP(string.format("onLocation: could not find object for code %s", code))
 		end
-	else
-		DebugAP(string.format("onLocation: could not find object for code %s", v[1]))
 	end
 end
 
@@ -469,9 +426,7 @@ function OnNotify(_key, value, old)
 		Tracker:FindObjectForCode("hccompleted").Active = victory
 		Tracker:FindObjectForCode("@Hyrule Castle/5F/Victory/").AvailableChestCount = Tracker:FindObjectForCode("@Hyrule Castle/5F/Victory/").AvailableChestCount - (victory and 1 or 0)
 	end
-	if SLOT_DATA["World Version"] == "v0.2.4" or SLOT_DATA["World Version"] == "v0.2.3" or SLOT_DATA["World Version"] == "v0.2.2" or SLOT_DATA["World Version"] == "v0.2.1" or SLOT_DATA["World Version"] == "v0.2.0" or SLOT_DATA["World Version"] == "v0.1.5" or SLOT_DATA["World Version"] == "v0.1.3" or SLOT_DATA["World Version"] == "v0.1.2" or SLOT_DATA["World Version"] == "v0.1.1" or SLOT_DATA["World Version"] == "v0.1" then
-		--skip for up to v0.2.4
-	else
+	do
 		_, _, key = string.find(_key, "TP_.*_.*_(.*)")
 		if _key == "_read_hints_"..TEAM_NUMBER.."_"..PLAYER_ID and Highlight then
 			for _, hint in ipairs(value) do
@@ -546,41 +501,7 @@ function OnNotify(_key, value, old)
 		elseif key == "Armogohma Defeated" then
 			Tracker:FindObjectForCode("ttcompleted").Active = value
 		end
-		--if 0.3.0 or less
-		if SLOT_DATA["World Version"] == "v0.3.0" or SLOT_DATA["World Version"] == "v0.2.5" or SLOT_DATA["World Version"] == "v0.2.4" or SLOT_DATA["World Version"] == "v0.2.3" or SLOT_DATA["World Version"] == "v0.2.2" or SLOT_DATA["World Version"] == "v0.2.1" or SLOT_DATA["World Version"] == "v0.2.0" or SLOT_DATA["World Version"] == "v0.1.5" or SLOT_DATA["World Version"] == "v0.1.3" or SLOT_DATA["World Version"] == "v0.1.2" or SLOT_DATA["World Version"] == "v0.1.1" or SLOT_DATA["World Version"] == "v0.1" then
-			if key == "Current Region" and Tracker:FindObjectForCode("autotab").CurrentStage <= 1 then
-				if REGION[value] ~= "Main Map" then
-					Tracker:UiHint("ActivateTab", REGION[value])
-				end
-				if REGION[value] == "Faron Woods" then
-					Tracker:UiHint("ActivateTab", "Faron Woods")
-					Tracker:UiHint("ActivateTab", "Faron")
-					Tracker:UiHint("ActivateTab", "Overworld")
-				end
-				if REGION[value] == "Eldin Region" then
-					Tracker:UiHint("ActivateTab", "Eldin Region")
-					Tracker:UiHint("ActivateTab", "Eldin")
-					Tracker:UiHint("ActivateTab", "Overworld")
-				end
-				if REGION[value] == "Lanayru Region" then
-					Tracker:UiHint("ActivateTab", "Lanayru Region")
-					Tracker:UiHint("ActivateTab", "Lanayru")
-					Tracker:UiHint("ActivateTab", "Overworld")
-				end
-				if REGION[value] == "Ordon" or
-				REGION[value] == "Sacred Grove" or
-				REGION[value] == "Snowpeak Mountain" or
-				REGION[value] == "Castle Town" or
-				REGION[value] == "Gerudo Desert" then
-					Tracker:UiHint("ActivateTab", "Overworld")
-				end
-				if REGION[value] == "Main Map" and Tracker:FindObjectForCode("autotab").CurrentStage == 1 then
-					Tracker:UiHint("ActivateTab", "Overworld")
-					Tracker:UiHint("ActivateTab", "Main Map")
-				end
-			end
-		else
-			--if v0.4.0+
+		do
 			if Tracker:FindObjectForCode("autotab").CurrentStage <= 1 then
 				if key == "Current Room" then
 					CurrentRoom = tonumber(value) or value

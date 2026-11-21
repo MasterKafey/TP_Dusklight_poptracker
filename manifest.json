@@ -1,11 +1,10 @@
 {
-	"name": "Twilight Princess Archipelago Tracker",
-	"package_uid": "tpr_ap_tracker",
-	"package_version": "1.0.0",
-	"platform": "GameCube",
-	"versions_url": "https://raw.githubusercontent.com/Kizugaya/TPRAP_poptracker/versions/versions.json",
-	"game_name": "The Legend of Zelda: Twilight Princess",
-	"author": "Kizugaya",
+	"name": "Twilight Princess (Dusklight) Archipelago Tracker",
+	"package_uid": "tp_dusklight_ap_tracker",
+	"package_version": "0.1.0",
+	"platform": "PC",
+	"game_name": "Twilight Princess (Dusklight)",
+	"author": "Kizugaya (original), Dusklight port",
 	"min_poptracker_version": "0.35.0",
 	"variants": {
 		"standard": {

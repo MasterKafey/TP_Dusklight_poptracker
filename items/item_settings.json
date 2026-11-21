@@ -263,7 +263,7 @@
 	{
 		"name": "Barrier Amount",
 		"type": "consumable",
-		"codes": "barrieramount",
+		"codes": "barrieramount, hcamount",
 		"initial_quantity": 0,
 		"min_quantity": 0,
 		"max_quantity": 60,
@@ -279,7 +279,7 @@
 		"stages": [
 			{
 				"name": "HC BK None",
-				"codes": "castlebkrequirements, hcbkopen",
+				"codes": "castlebkrequirements, hcbkopen, hcbknone",
 				"img": "images/Settings/HCBKNone.png",
 				"inherit_codes": false
 			},
@@ -324,7 +324,7 @@
 	{
 		"name": "Big Key Gate Amount",
 		"type": "consumable",
-		"codes": "bigkeygateamount",
+		"codes": "bigkeygateamount, hcbkamount",
 		"initial_quantity": 0,
 		"min_quantity": 0,
 		"max_quantity": 60,
