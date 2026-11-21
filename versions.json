@@ -1,0 +1,12 @@
+{
+	"versions": [
+		{
+			"package_version": "0.1.0",
+			"download_url": "https://github.com/MasterKafey/TP_Dusklight_poptracker/releases/download/v0.1.0/TP_Dusklight_poptracker_v0.1.0.zip",
+			"sha256": "DDDBF3EF802CF1758F1F99AB66B848994C74EA65309CE69C386632982B738A53",
+			"changelog": [
+				"First pre-release of the Twilight Princess (Dusklight) port"
+			]
+		}
+	]
+}
