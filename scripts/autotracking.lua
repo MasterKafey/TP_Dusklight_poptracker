@@ -114,7 +114,6 @@ function ClearLocations()
 			end
 		end
 	end
-	Tracker:FindObjectForCode("@Hyrule Castle/5F/Victory/").AvailableChestCount = Tracker:FindObjectForCode("@Hyrule Castle/5F/Victory/").ChestCount
 end
 function ClearPortals()
 	Tracker:FindObjectForCode("osportal").CurrentStage = 0
@@ -275,7 +274,8 @@ function InitItems()
 	if SLOT_DATA and SLOT_DATA.settings and SLOT_DATA.settings["Skip Prologue"] == "On" then
 		Tracker:FindObjectForCode("fwkey").Active = true
 	end
-	Tracker:FindObjectForCode("START_OrdonLinksHouse_OutsideLinksHouse").Active = true
+	local start = Tracker:FindObjectForCode("START_OrdonLinksHouse_OutsideLinksHouse")
+	if start and start.ItemState then start.ItemState.Active = true end
 end
 function InitMap()
 	Tracker:UiHint("ActivateTab", "Full Map")
@@ -307,9 +307,23 @@ for name, code in pairs({
 	end
 end
 
+-- Location sections referenced by name below; some only exist in the original (emulator) pack,
+-- so a missing one yields a throwaway table instead of an error.
+function Section(code)
+	return Tracker:FindObjectForCode(code) or {AvailableChestCount = 0, ChestCount = 0}
+end
+
+-- Always resume the logic afterwards, even if a step fails (otherwise it stays suspended).
 function OnClear(slot_data)
-	DebugAP(string.format("called onClear, slot_data:\n%s", Dump_table(slot_data)))
 	DL.suspended = true
+	local ok, err = pcall(ClearAndInit, slot_data)
+	DL.suspended = false
+	DLRefresh()
+	if not ok then error(err, 0) end
+end
+
+function ClearAndInit(slot_data)
+	DebugAP(string.format("called onClear, slot_data:\n%s", Dump_table(slot_data)))
 	SLOT_DATA = slot_data
 	CUR_INDEX = -1
 	PLAYER_ID = Archipelago.PlayerNumber or -1
@@ -337,8 +351,6 @@ function OnClear(slot_data)
 	InitItems()
 	InitMap()
 	ClearUnshuffledDungeons()
-	DL.suspended = false
-	DLRefresh()
 end
 
 -- Dungeons left unshuffled by the apworld's "Shuffled Dungeons" option keep their vanilla
@@ -451,7 +463,6 @@ function OnNotify(_key, value, old)
 	if team == ""..TEAM_NUMBER and player == ""..PLAYER_ID then
 		local victory = value == 30
 		Tracker:FindObjectForCode("hccompleted").Active = victory
-		Tracker:FindObjectForCode("@Hyrule Castle/5F/Victory/").AvailableChestCount = Tracker:FindObjectForCode("@Hyrule Castle/5F/Victory/").AvailableChestCount - (victory and 1 or 0)
 	end
 	do
 		_, _, key = string.find(_key, "TP_.*_.*_(.*)")
@@ -466,22 +477,22 @@ function OnNotify(_key, value, old)
 		end
 		if key == "Death Mountain Stone" then
 			Tracker:FindObjectForCode("dmhowlingstone").Active = value
-			Tracker:FindObjectForCode("@Eldin Region/Death Mountain Golden Wolves/Ordon Spring Stone/").AvailableChestCount = Tracker:FindObjectForCode("@Eldin Region/Death Mountain Golden Wolves/Ordon Spring Stone/").AvailableChestCount - (value and 1 or 0)
+			Section("@Eldin Region/Death Mountain Golden Wolves/Ordon Spring Stone/").AvailableChestCount = Section("@Eldin Region/Death Mountain Golden Wolves/Ordon Spring Stone/").AvailableChestCount - (value and 1 or 0)
 		elseif key == "Zora River Stone" then
 			Tracker:FindObjectForCode("uzrhowlingstone").Active = value
-			Tracker:FindObjectForCode("@Lanayru Region/Upper Zora's River Golden Wolves/West Castle Town Stone/").AvailableChestCount = Tracker:FindObjectForCode("@Lanayru Region/Upper Zora's River Golden Wolves/West Castle Town Stone/").AvailableChestCount - (value and 1 or 0)
+			Section("@Lanayru Region/Upper Zora's River Golden Wolves/West Castle Town Stone/").AvailableChestCount = Section("@Lanayru Region/Upper Zora's River Golden Wolves/West Castle Town Stone/").AvailableChestCount - (value and 1 or 0)
 		elseif key == "Sacred Grove Stone" then
 			Tracker:FindObjectForCode("nfwhowlingstone").Active = value
-			Tracker:FindObjectForCode("@Faron Region/Faron Woods Golden Wolves/South Castle Town Stone/").AvailableChestCount = Tracker:FindObjectForCode("@Faron Region/Faron Woods Golden Wolves/South Castle Town Stone/").AvailableChestCount - (value and 1 or 0)
+			Section("@Faron Region/Faron Woods Golden Wolves/South Castle Town Stone/").AvailableChestCount = Section("@Faron Region/Faron Woods Golden Wolves/South Castle Town Stone/").AvailableChestCount - (value and 1 or 0)
 		elseif key == "Lake Hylia Stone" then
 			Tracker:FindObjectForCode("lhhowlingstone").Active = value
-			Tracker:FindObjectForCode("@Lanayru Region/Lake Hylia Golden Wolves/Gerudo Desert Stone/").AvailableChestCount = Tracker:FindObjectForCode("@Lanayru Region/Lake Hylia Golden Wolves/Gerudo Desert Stone/").AvailableChestCount - (value and 1 or 0)
+			Section("@Lanayru Region/Lake Hylia Golden Wolves/Gerudo Desert Stone/").AvailableChestCount = Section("@Lanayru Region/Lake Hylia Golden Wolves/Gerudo Desert Stone/").AvailableChestCount - (value and 1 or 0)
 		elseif key == "Snowpeak Stone" then
 			Tracker:FindObjectForCode("smhowlingstone").Active = value
-			Tracker:FindObjectForCode("@Snowpeak Mountain Golden Wolves/Kakariko Graveyard Stone/").AvailableChestCount = Tracker:FindObjectForCode("@Snowpeak Mountain Golden Wolves/Kakariko Graveyard Stone/").AvailableChestCount - (value and 1 or 0)
+			Section("@Snowpeak Mountain Golden Wolves/Kakariko Graveyard Stone/").AvailableChestCount = Section("@Snowpeak Mountain Golden Wolves/Kakariko Graveyard Stone/").AvailableChestCount - (value and 1 or 0)
 		elseif key == "Hidden Village Stone" then
 			Tracker:FindObjectForCode("hvhowlingstone").Active = value
-			Tracker:FindObjectForCode("@Eldin Region/Hidden Village Golden Wolves/North Castle Town Stone/").AvailableChestCount = Tracker:FindObjectForCode("@Eldin Region/Hidden Village Golden Wolves/North Castle Town Stone/").AvailableChestCount - (value and 1 or 0)
+			Section("@Eldin Region/Hidden Village Golden Wolves/North Castle Town Stone/").AvailableChestCount = Section("@Eldin Region/Hidden Village Golden Wolves/North Castle Town Stone/").AvailableChestCount - (value and 1 or 0)
 		elseif key == "Medicine Scent" then
 			Tracker:FindObjectForCode("medicinescent").Active = value
 		elseif key == "ReekFish Scent" then
@@ -490,26 +501,26 @@ function OnNotify(_key, value, old)
 			Tracker:FindObjectForCode("poescent").Active = value
 		elseif key == "Renados letter" then
 			if value == true then
-				Tracker:FindObjectForCode("@Eldin Region/Submaps/Renado's Sanctuary/Renado's Letter/").AvailableChestCount = Tracker:FindObjectForCode("@Eldin Region/Submaps/Renado's Sanctuary/Renado's Letter/").AvailableChestCount - (value and 1 or 0)
+				Section("@Eldin Region/Submaps/Renado's Sanctuary/Renado's Letter/").AvailableChestCount = Section("@Eldin Region/Submaps/Renado's Sanctuary/Renado's Letter/").AvailableChestCount - (value and 1 or 0)
 				Tracker:FindObjectForCode("renadosletter").CurrentStage = Tracker:FindObjectForCode("renadosletter").CurrentStage + 1
 			end
 		elseif key == "Telmas Invoice" then
 			if value == true then
-				Tracker:FindObjectForCode("@Castle Town/Submaps/Telma's Bar/Doctor's Invoice/").AvailableChestCount = Tracker:FindObjectForCode("@Castle Town/Submaps/Telma's Bar/Doctor's Invoice/").AvailableChestCount - (value and 1 or 0)
+				Section("@Castle Town/Submaps/Telma's Bar/Doctor's Invoice/").AvailableChestCount = Section("@Castle Town/Submaps/Telma's Bar/Doctor's Invoice/").AvailableChestCount - (value and 1 or 0)
 				Tracker:FindObjectForCode("invoice").CurrentStage = Tracker:FindObjectForCode("invoice").CurrentStage + 1
 			end
 		elseif key == "Wooden Statue" then
 			if value == true then
-				Tracker:FindObjectForCode("@Lanayru Region/Outside South Castle Town/Wooden Statue/").AvailableChestCount = Tracker:FindObjectForCode("@Lanayru Region/Outside South Castle Town/Wooden Statue/").AvailableChestCount - (value and 1 or 0)
+				Section("@Lanayru Region/Outside South Castle Town/Wooden Statue/").AvailableChestCount = Section("@Lanayru Region/Outside South Castle Town/Wooden Statue/").AvailableChestCount - (value and 1 or 0)
 				Tracker:FindObjectForCode("woodenstatue").CurrentStage = Tracker:FindObjectForCode("woodenstatue").CurrentStage + 1
 			end
 		elseif key == "Ilias Charm" then
 			if value == true then
-				Tracker:FindObjectForCode("@Eldin Region/Hidden Village/Ilia's Charm/").AvailableChestCount = Tracker:FindObjectForCode("@Eldin Region/Hidden Village/Ilia's Charm/").AvailableChestCount - (value and 1 or 0)
+				Section("@Eldin Region/Hidden Village/Ilia's Charm/").AvailableChestCount = Section("@Eldin Region/Hidden Village/Ilia's Charm/").AvailableChestCount - (value and 1 or 0)
 				Tracker:FindObjectForCode("iliascharm").CurrentStage = Tracker:FindObjectForCode("iliascharm").CurrentStage + 1
 			end
 		elseif key == "Memory Reward" and Tracker:FindObjectForCode("horsecall").Active == false then
-			Tracker:FindObjectForCode("@Eldin Region/Submaps/Renado's Sanctuary/Ilia Memory Reward/").AvailableChestCount = Tracker:FindObjectForCode("@Eldin Region/Submaps/Renado's Sanctuary/Ilia Memory Reward/").AvailableChestCount - (value and 1 or 0)
+			Section("@Eldin Region/Submaps/Renado's Sanctuary/Ilia Memory Reward/").AvailableChestCount = Section("@Eldin Region/Submaps/Renado's Sanctuary/Ilia Memory Reward/").AvailableChestCount - (value and 1 or 0)
 			Tracker:FindObjectForCode("horsecall").Active = value
 		elseif key == "Zant Defeated" then
 			Tracker:FindObjectForCode("ptcompleted").Active = value

@@ -19,6 +19,7 @@ Tracker:AddItems("items/items.json")
 Tracker:AddItems("items/dungeonnames.json")
 Tracker:AddItems("items/item_settings.json")
 Tracker:AddItems("items/entrance_rando_doors.json")
+Tracker:AddItems("items/dl_internal.json")
 
 
 
@@ -68,3 +69,6 @@ Tracker:AddLocations("locations/dungeons/hyrule castle.json")
 Tracker:FindObjectForCode("@Tutorial Locations/Obtained/").AvailableChestCount = 0
 
 occupyRoomSetting()
+
+-- Build the logic graph and start the search now that the items exist (script loading has no instruction limit).
+DLRefresh()

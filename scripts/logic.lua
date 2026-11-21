@@ -594,13 +594,27 @@ local function locationReachable(g, name)
 	return false
 end
 
-function DL.search()
+-- The search is a resumable state machine so it can run a slice at a time from a frame handler:
+-- PopTracker aborts access rules and frame handlers after 600000 Lua instructions and its Lua
+-- has no coroutine library. DL.step(st, budget) does at most about `budget` rule evaluations
+-- (plus one node's out-edges) and returns true once the result is published.
+
+-- Rebuild the graph if the settings changed. Costs a few million instructions, so only call it
+-- where PopTracker does not limit Lua: item watches, Archipelago handlers, script loading.
+function DL.ensureGraph()
 	local key = settingsKey()
 	if DL.graph == nil or DL.graph_settings ~= key then
 		DL.graph = nil
 		DL.graph = buildGraph()
 		DL.graph_settings = key
+		local names = {}
+		for name in pairs(DL.graph.locations) do names[#names + 1] = name end
+		DL.graph.location_names = names
 	end
+	return DL.graph
+end
+
+function DL.newSearch()
 	local g = DL.graph
 	tracker_counts = {}
 	events = {}
@@ -609,103 +623,219 @@ function DL.search()
 	for k, v in pairs(g.held) do extra[k] = (extra[k] or 0) + v end
 	local reach = DL.reach
 	for k in pairs(reach) do reach[k] = nil end
+	local st = {
+		g = g, events = events, extra = extra, counts = tracker_counts,
+		queue = {}, head = 1, blocked = {}, fired = {}, collected = {},
+		phase = "queue", i = 1, progress = false, locations = {},
+	}
+	for _, n in ipairs(g.roots) do
+		if not reach[n] then reach[n] = true; st.queue[#st.queue + 1] = n end
+	end
+	return st
+end
 
-	local queue, head = {}, 1
-	local blocked = {}
+function DL.step(st, budget)
+	local g, reach, queue = st.g, DL.reach, st.queue
+	if g ~= DL.graph then return false end  -- stale; a newer search replaces it
+	-- the compiled rules read these module upvalues
+	events, extra, tracker_counts = st.events, st.extra, st.counts
+	local used = 0
 	local function mark(n)
 		if not reach[n] then
 			reach[n] = true
 			queue[#queue + 1] = n
 		end
 	end
-	for _, n in ipairs(g.roots) do mark(n) end
-
-	local fired = {}
-	local collected = {}
-	while true do
-		while head <= #queue do
-			local n = queue[head]; head = head + 1
-			local list = g.out[n]
-			if list then
-				for i = 1, #list do
-					local e = list[i]
-					if not reach[e[1]] then
-						local r = e[2]
-						if r == true or r() then mark(e[1]) else blocked[#blocked + 1] = e end
-					end
-				end
-			end
-		end
-		local progress = false
-		for i, ev in ipairs(g.events) do
-			if not fired[i] and reach[ev[1]] and (ev[3] == true or ev[3]()) then
-				fired[i] = true
-				events[ev[2]] = true
-				progress = true
-			end
-		end
-		for i, v in ipairs(g.vanilla) do
-			if not collected[i] and locationReachable(g, v[1]) then
-				collected[i] = true
-				extra[v[2]] = (extra[v[2]] or 0) + 1
-				progress = true
-			end
-		end
-		-- Retry blocked edges: their rules can depend on events, collected items, and also on
-		-- other nodes reached since (form/time checks read the area's copies), so keep going
-		-- until nothing changes. Without this the result depended on the traversal order.
-		local old = blocked
-		blocked = {}
-		for i = 1, #old do
-			local e = old[i]
-			if not reach[e[1]] then
-				if e[2]() then
-					mark(e[1])
-					progress = true
-				else
-					blocked[#blocked + 1] = e
-				end
-			end
-		end
-		if not progress then
-			-- Safety net: re-check every edge out of every reached node before concluding.
-			for n in pairs(reach) do
+	while used < budget do
+		local phase = st.phase
+		if phase == "queue" then
+			if st.head > #queue then
+				st.phase, st.i, st.progress = "events", 1, false
+			else
+				local n = queue[st.head]; st.head = st.head + 1
 				local list = g.out[n]
 				if list then
 					for i = 1, #list do
 						local e = list[i]
-						if not reach[e[1]] and (e[2] == true or e[2]()) then
-							DL.safety_hits = (DL.safety_hits or 0) + 1
-							mark(e[1])
-							progress = true
+						if not reach[e[1]] then
+							local r = e[2]
+							if r ~= true then used = used + 1 end
+							if r == true or r() then mark(e[1]) else st.blocked[#st.blocked + 1] = e end
 						end
 					end
 				end
 			end
+		elseif phase == "events" then
+			local i = st.i
+			local ev = g.events[i]
+			if ev == nil then
+				st.phase, st.i = "vanilla", 1
+			else
+				st.i = i + 1
+				if not st.fired[i] and reach[ev[1]] then
+					used = used + 1
+					if ev[3] == true or ev[3]() then
+						st.fired[i] = true
+						events[ev[2]] = true
+						st.progress = true
+					end
+				end
+			end
+		elseif phase == "vanilla" then
+			local i = st.i
+			local v = g.vanilla[i]
+			if v == nil then
+				-- Retry blocked edges: their rules can depend on events, collected items and on
+				-- nodes reached since (form/time checks read the area's copies).
+				st.phase, st.i, st.old, st.blocked = "retry", 1, st.blocked, {}
+			else
+				st.i = i + 1
+				if not st.collected[i] then
+					used = used + 1
+					if locationReachable(g, v[1]) then
+						st.collected[i] = true
+						extra[v[2]] = (extra[v[2]] or 0) + 1
+						st.progress = true
+					end
+				end
+			end
+		elseif phase == "retry" then
+			local e = st.old[st.i]
+			if e == nil then
+				st.old = nil
+				if st.progress then
+					st.phase = "queue"
+				else
+					-- Safety net: re-check every edge out of every reached node before concluding.
+					local nodes = {}
+					for n in pairs(reach) do nodes[#nodes + 1] = n end
+					st.phase, st.i, st.nodes = "safety", 1, nodes
+				end
+			else
+				st.i = st.i + 1
+				if not reach[e[1]] then
+					used = used + 1
+					if e[2]() then
+						mark(e[1])
+						st.progress = true
+					else
+						st.blocked[#st.blocked + 1] = e
+					end
+				end
+			end
+		elseif phase == "safety" then
+			local n = st.nodes[st.i]
+			if n == nil then
+				st.nodes = nil
+				if st.progress then st.phase = "queue" else st.phase, st.i = "locations", 1 end
+			else
+				st.i = st.i + 1
+				local list = g.out[n]
+				if list then
+					for i = 1, #list do
+						local e = list[i]
+						if not reach[e[1]] and e[2] ~= true then
+							used = used + 1
+							if e[2]() then
+								DL.safety_hits = (DL.safety_hits or 0) + 1
+								mark(e[1])
+								st.progress = true
+							end
+						end
+					end
+				end
+			end
+		elseif phase == "locations" then
+			local name = g.location_names[st.i]
+			if name == nil then
+				local areas = {}
+				for i = 1, #DL_AREAS do areas[i] = reach[i * 64] == true end
+				DL.result = {locations = st.locations, events = events, areas = areas}
+				st.phase = "done"
+				return true
+			end
+			st.i = st.i + 1
+			used = used + 1
+			st.locations[name] = locationReachable(g, name)
+		else
+			return true
 		end
-		if not progress then break end
 	end
+	return false
+end
 
-	local locations = {}
-	for name in pairs(g.locations) do locations[name] = locationReachable(g, name) end
-	DL.result = {locations = locations, events = events}
+-- Synchronous search (tests, and hosts without frame handlers).
+function DL.search()
+	DL.ensureGraph()
+	DL.step(DL.newSearch(), math.huge)
 	DL.dirty = false
 end
 
 -- Access rule entry point ------------------------------------------------------------------------
+--
+-- In PopTracker the rules never compute: an item change rebuilds the graph if the settings
+-- changed and starts a new search (item watches run without the instruction limit), a frame
+-- handler advances it a slice per frame, and when it is done a hidden item is toggled so
+-- PopTracker re-evaluates the rules, which only read DL.result. Hosts that never run frame
+-- handlers fall back to computing on demand inside the rules.
+
+DL.async = ScriptHost ~= nil and ScriptHost.AddOnFrameHandler ~= nil
+DL.slice = 500
+DL.frames = 0
+DL.rule_calls = 0
+local REFRESH_CODE = "dl_logic_refresh"
+local EMPTY = {locations = {}, events = {}, areas = {}}
+
+local function fail(err)
+	DL.last_error = tostring(err)
+	DL.error_count = (DL.error_count or 0) + 1
+	print("DL logic error: " .. tostring(err))
+	DL.pending = nil
+	DL.result = DL.result or EMPTY
+end
 
 local function ensureResult()
-	if DL.dirty or DL.result == nil then
-		local ok, err = pcall(DL.search)
-		if not ok then
-			DL.last_error = tostring(err)
-			DL.error_count = (DL.error_count or 0) + 1
-			print("DL logic error: " .. tostring(err))
-			DL.dirty = false
-			DL.result = {locations = {}, events = {}}
-		end
+	if DL.async and DL.frames == 0 then
+		-- A host that registers frame handlers but never runs them: compute in the rules.
+		DL.rule_calls = DL.rule_calls + 1
+		if DL.rule_calls > 3000 then DL.async = false end
 	end
-	return DL.result
+	if DL.async then return DL.result or EMPTY end
+	if DL.dirty or DL.result == nil then
+		DL.dirty = false
+		local ok, err = pcall(DL.search)
+		if not ok then fail(err) end
+	end
+	return DL.result or EMPTY
+end
+DL.ensureResult = ensureResult
+
+-- Item watch and handlers: (re)start the search. Never called from rules.
+function DLRefresh(code)
+	if code == REFRESH_CODE then return end
+	DL.dirty = true
+	if not DL.async or DL.suspended then return end
+	local ok, err = pcall(function()
+		DL.ensureGraph()
+		DL.pending = DL.newSearch()
+	end)
+	if not ok then fail(err) end
+end
+DLInvalidate = DLRefresh
+
+-- Frame handler: advance the pending search by one slice.
+function DLStep()
+	DL.frames = DL.frames + 1
+	local st = DL.pending
+	if st == nil then return end
+	local ok, done = pcall(DL.step, st, DL.slice)
+	if not ok then fail(done); return end
+	if done and DL.pending == st then
+		DL.pending = nil
+		DL.dirty = false
+		local item = Tracker:FindObjectForCode(REFRESH_CODE)
+		if item then item.Active = not item.Active end
+	end
 end
 
 -- "$DLAccess|<apworld location name>": is the check in logic?
@@ -722,8 +852,8 @@ function DLArea(name)
 	if DL.setting("Logic Rules") == "No Logic" then return true end
 	local i = AREA_INDEX[name]
 	if not i then return false end
-	ensureResult()
-	return DL.reach ~= nil and DL.reach[i * 64] == true
+	local areas = ensureResult().areas
+	return areas ~= nil and areas[i] == true
 end
 
 -- "$DLEvent|<world graph event>": is the event reachable (howling stones, scents...)?
@@ -732,21 +862,9 @@ function DLEvent(name)
 	return ensureResult().events[name] == true
 end
 
-function DLInvalidate()
-	DL.dirty = true
-end
-
--- PopTracker aborts access rules (and frame handlers) after 600000 Lua instructions, while a
--- graph build costs several million and a search a few hundred thousand. So the work is done
--- here, from the item watch and the Archipelago handlers, which run without that limit; the
--- rules then only read DL.result. DL.suspended batches the many item changes of OnClear.
-function DLRefresh()
-	DL.dirty = true
-	if not DL.suspended then ensureResult() end
-end
-
 if ScriptHost and ScriptHost.AddWatchForCode then
 	ScriptHost:AddWatchForCode("DL logic", "*", DLRefresh)
-	-- Build the graph for the default settings now, while loading (no limit either).
-	ensureResult()
+end
+if DL.async then
+	ScriptHost:AddOnFrameHandler("DL logic", DLStep)
 end

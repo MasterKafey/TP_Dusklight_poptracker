@@ -1,0 +1,8 @@
+[
+	{
+		"name": "Logic refresh (internal, toggled when the logic search finishes)",
+		"type": "toggle",
+		"codes": "dl_logic_refresh",
+		"img": "images/Blank.png"
+	}
+]
