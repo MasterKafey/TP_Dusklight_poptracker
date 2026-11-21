@@ -1,6 +1,15 @@
 {
 	"versions": [
 		{
+			"package_version": "0.1.4",
+			"download_url": "https://github.com/MasterKafey/TP_Dusklight_poptracker/releases/download/v0.1.4/TP_Dusklight_poptracker_v0.1.4.zip",
+			"sha256": "108DA5A1C80C0EC7FF90B5AB1D30C92329B2282A0A566D860B9C29159BC9EC3F",
+			"changelog": [
+				"Fixed every check showing red in PopTracker",
+				"Fixed freezes when many items arrive at once"
+			]
+		},
+		{
 			"package_version": "0.1.3",
 			"download_url": "https://github.com/MasterKafey/TP_Dusklight_poptracker/releases/download/v0.1.3/TP_Dusklight_poptracker_v0.1.3.zip",
 			"sha256": "D9BF268A9A261B0DEA40CEC138B02AC4C04103B531C5F2C8CAD6D2364CD3F59D",
