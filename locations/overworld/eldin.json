@@ -7,9 +7,6 @@
 				"children": [
 					{
 						"name": "Death Mountain Trail",
-						"access_rules": [
-							"^$canAccess|DeathMountainTrail"
-						],
 						"children": [
 							{
 								"name": "Death Mountain Alcove Chest",
@@ -23,9 +20,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"gmcompleted",
-											"clawshot",
-											"[glitcheson], ^$canDoLJA"
+											"$DLAccess|Death Mountain Alcove Chest"
 										]
 									}
 								]
@@ -47,7 +42,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"shadowcrystal, gmcompleted, ^$canCompleteEldinTwilight"
+											"$DLAccess|Death Mountain Trail Poe"
 										]
 									}
 								]
@@ -68,6 +63,9 @@
 											"{^$canAccess|DeathMountainTrail, shadowcrystal}"
 										]
 									}
+								],
+								"access_rules": [
+									"^$canAccess|DeathMountainTrail"
 								]
 							},
 							{
@@ -93,15 +91,15 @@
 											"{}"
 										]
 									}
+								],
+								"access_rules": [
+									"^$canAccess|DeathMountainTrail"
 								]
 							}
 						]
 					},
 					{
 						"name": "Death Mountain Volcano",
-						"access_rules": [
-							"^$canAccess|DeathMountainVolcano"
-						],
 						"children": [
 							{
 								"name": "Death Mountain Portal",
@@ -122,6 +120,9 @@
 										],
 										"hosted_item": "dmportal"
 									}
+								],
+								"access_rules": [
+									"^$canAccess|DeathMountainVolcano"
 								]
 							},
 							{
@@ -140,29 +141,19 @@
 									{
 										"name": "Rupee 1",
 										"access_rules": [
-											"boots, ^$canDefeatGoron, ^$canCompleteEldinTwilight",
-											"boots, gmcompleted, ^$canCompleteEldinTwilight",
-											"[glitcheson], ^$hasShield, ^$canDefeatGoron, ^$canCompleteEldinTwilight",
-											"[glitcheson], ^$hasShield, gmcompleted, ^$canCompleteEldinTwilight"
+											"$DLAccess|Death Mountain Volcano Ledge Rupee 1"
 										]
 									},
 									{
 										"name": "Rupee 2",
 										"access_rules": [
-											"boots, ^$canDefeatGoron, ^$canCompleteEldinTwilight",
-											"boots, gmcompleted, ^$canCompleteEldinTwilight",
-											"[glitcheson], ^$hasShield, ^$canDefeatGoron, ^$canCompleteEldinTwilight",
-											"[glitcheson], ^$hasShield, gmcompleted, ^$canCompleteEldinTwilight"
-
+											"$DLAccess|Death Mountain Volcano Ledge Rupee 2"
 										]
 									},
 									{
 										"name": "Rupee 3",
 										"access_rules": [
-											"boots, ^$canDefeatGoron, ^$canCompleteEldinTwilight",
-											"boots, gmcompleted, ^$canCompleteEldinTwilight",
-											"[glitcheson], ^$hasShield, ^$canDefeatGoron, ^$canCompleteEldinTwilight",
-											"[glitcheson], ^$hasShield, gmcompleted, ^$canCompleteEldinTwilight"
+											"$DLAccess|Death Mountain Volcano Ledge Rupee 3"
 										]
 									}
 								]
@@ -182,8 +173,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canDefeatGoron, ^$canCompleteEldinTwilight",
-											"gmcompleted, ^$canCompleteEldinTwilight"
+											"$DLAccess|Death Mountain Volcano Pipe Ledge Rock Rupee"
 										]
 									}
 								]
@@ -197,9 +187,6 @@
 				"children": [
 					{
 						"name": "Hidden Village",
-						"access_rules": [
-							"^$canAccess|HiddenVillage"
-						],
 						"children": [
 							{
 								"name": "Cats Hide and Seek Minigame",
@@ -213,8 +200,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"bow, shadowcrystal, clawshot",
-											"[glitcheson], ^$canDoHiddenVillageGlitched, shadowcrystal"
+											"$DLAccess|Cats Hide and Seek Minigame"
 										]
 									}
 								]
@@ -231,8 +217,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"bow, woodenstatue",
-											"[glitcheson], ^$canDoHiddenVillageGlitched, woodenstatue"
+											"$DLAccess|Ilia Charm"
 										]
 									}
 								]
@@ -254,8 +239,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"bow, shadowcrystal, clawshot",
-											"^$canDoHiddenVillageGlitched, shadowcrystal"
+											"$DLAccess|Hidden Village Poe"
 										]
 									}
 								]
@@ -276,6 +260,9 @@
 											"{^$canAccess|HiddenVillage, shadowcrystal}"
 										]
 									}
+								],
+								"access_rules": [
+									"^$canAccess|HiddenVillage"
 								]
 							},
 							{
@@ -301,6 +288,9 @@
 											"{}"
 										]
 									}
+								],
+								"access_rules": [
+									"^$canAccess|HiddenVillage"
 								]
 							}
 						]
@@ -337,9 +327,6 @@
 				"children": [
 					{
 						"name": "Kakariko Gorge",
-						"access_rules": [
-							"^$canAccess|KakarikoGorge"
-						],
 						"children": [
 							{
 								"name": "Kakariko Gorge Owl Statue ",
@@ -354,16 +341,13 @@
 									{
 										"name": "Sky Character",
 										"access_rules": [
-											"powereddominionrod"
+											"$DLAccess|Kakariko Gorge Owl Statue Sky Character"
 										]
 									},
 									{
 										"name": "Chest",
 										"access_rules": [
-											"powereddominionrod",
-											"[glitcheson], ^$canDoLJA",
-											"[glitcheson], ^$canDoStorage",
-											"[glitcheson], ^$canDoEBMoonBoots"
+											"$DLAccess|Kakariko Gorge Owl Statue Chest"
 										]
 									}
 								]
@@ -380,9 +364,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"doubleclawshot",
-											"[glitcheson], ^$canDoLJA",
-											"[glitcheson], shadowcrystal"
+											"$DLAccess|Kakariko Gorge Double Clawshot Chest"
 										]
 									}
 								]
@@ -399,8 +381,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"clawshot",
-											"boomerang"
+											"$DLAccess|Kakariko Gorge Spire Heart Piece"
 										]
 									}
 								]
@@ -422,7 +403,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canCompleteEldinTwilight"
+											"$DLAccess|Kakariko Gorge Male Pill Bug"
 										]
 									}
 								]
@@ -444,7 +425,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canCompleteEldinTwilight"
+											"$DLAccess|Kakariko Gorge Female Pill Bug"
 										]
 									}
 								]
@@ -466,7 +447,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"shadowcrystal, ^$canCompleteMDH, ^$canCompleteAllTwilight"
+											"$DLAccess|Kakariko Gorge Poe"
 										]
 									}
 								]
@@ -490,6 +471,9 @@
 										],
 										"hosted_item": "kgportal"
 									}
+								],
+								"access_rules": [
+									"^$canAccess|KakarikoGorge"
 								]
 							},
 							{
@@ -507,7 +491,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canSmash"
+											"$DLAccess|Kakariko Gorge Owl Statue Boulder Rupee"
 										]
 									}
 								]
@@ -527,7 +511,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canSmash"
+											"$DLAccess|Kakariko Gorge Spire Boulder Rupee"
 										]
 									}
 								]
@@ -555,6 +539,9 @@
 											"{}"
 										]
 									}
+								],
+								"access_rules": [
+									"^$canAccess|KakarikoGorge"
 								]
 							}
 						]
@@ -598,9 +585,6 @@
 					},
 					{
 						"name": "Eldin Field",
-						"access_rules": [
-							"^$canAccess|EldinField"
-						],
 						"children": [
 							{
 								"name": "Eldin Field Bomb Rock Chest",
@@ -614,9 +598,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canSmash",
-											"[glitcheson], ^$canDoMapGlitch, ^$canCompleteEldinTwilight",
-											"[glitcheson], ^$canDoEBMoonBoots, ^$canDoLJA, ^$canCompleteEldinTwilight"
+											"$DLAccess|Eldin Field Bomb Rock Chest"
 										]
 									}
 								]
@@ -633,9 +615,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"powereddominionrod",
-											"[glitcheson], ^$canDoLJA",
-											"[glitcheson], shadowcrystal, ^$canCompleteEldinTwilight"
+											"$DLAccess|Bridge of Eldin Owl Statue Chest"
 										]
 									}
 								]
@@ -652,7 +632,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"powereddominionrod"
+											"$DLAccess|Bridge of Eldin Owl Statue Sky Character"
 										]
 									}
 								]
@@ -674,7 +654,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canCompleteEldinTwilight"
+											"$DLAccess|Eldin Field Male Grasshopper"
 										]
 									}
 								]
@@ -696,7 +676,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canCompleteEldinTwilight"
+											"$DLAccess|Eldin Field Female Grasshopper"
 										]
 									}
 								]
@@ -718,8 +698,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"clawshot, ^$canCompleteEldinTwilight",
-											"boomerang, ^$canCompleteEldinTwilight"
+											"$DLAccess|Bridge of Eldin Male Phasmid"
 										]
 									}
 								]
@@ -741,8 +720,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"clawshot, ^$canCompleteEldinTwilight",
-											"boomerang, ^$canCompleteEldinTwilight"
+											"$DLAccess|Bridge of Eldin Female Phasmid"
 										]
 									}
 								]
@@ -766,6 +744,9 @@
 										],
 										"hosted_item": "boeportal"
 									}
+								],
+								"access_rules": [
+									"^$canAccess|EldinField"
 								]
 							},
 							{
@@ -783,7 +764,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canSmash"
+											"$DLAccess|Bridge of Eldin Boulder Rupee"
 										]
 									}
 								]
@@ -811,15 +792,15 @@
 											"{}"
 										]
 									}
+								],
+								"access_rules": [
+									"^$canAccess|EldinField"
 								]
 							}
 						]
 					},
 					{
 						"name": "Eldin Field Near Castle Town",
-						"access_rules": [
-							"^$canAccess|EldinFieldNearCastleTown"
-						],
 						"children": [
 							{
 								"name": "Goron Springwater Rush",
@@ -833,9 +814,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canCompleteEldinTwilight, ^$canAccess|LowerKakarikoVillage, skipbridgedonationon",
-											"^$canCompleteEldinTwilight, ^$canAccess|LowerKakarikoVillage, canAccess|KakarikoMaloMart, $Not|reducedwalletsie",
-											"^$canCompleteEldinTwilight, ^$canAccess|LowerKakarikoVillage, canAccess|KakarikoMaloMart, mediumwallet"
+											"$DLAccess|Goron Springwater Rush"
 										]
 									}
 								]
@@ -999,9 +978,6 @@
 				"children": [
 					{
 						"name": "Lower Kakariko Village",
-						"access_rules": [
-							"^$canAccess|LowerKakarikoVillage"
-						],
 						"children": [
 							{
 								"name": "Eldin Spring Underwater Chest",
@@ -1015,9 +991,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canSmash, boots",
-											"[glitcheson], ^$hasHeavyMod, ^$canSmash",
-											"[glitcheson], ^$hasHeavyMod, ^$canDoMapGlitch"
+											"$DLAccess|Eldin Spring Underwater Chest"
 										]
 									}
 								]
@@ -1034,9 +1008,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$hasBombs, boomerang, ^$canCompleteEldinTwilight",
-											"[glitcheson], ^$canDoMapGlitch, ^$canCompleteEldinTwilight",
-											"[glitcheson], ^$canLaunchBombs, clawshot, ^$canCompleteEldinTwilight"
+											"$DLAccess|Kakariko Village Bomb Rock Spire Heart Piece"
 										]
 									}
 								]
@@ -1060,6 +1032,9 @@
 										],
 										"hosted_item": "kvportal"
 									}
+								],
+								"access_rules": [
+									"^$canAccess|LowerKakarikoVillage"
 								]
 							},
 							{
@@ -1077,8 +1052,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"shadowcrystal, ^$canLaunchBombs, ^$canCompleteEldinTwilight",
-											"[glitcheson], ^$canLaunchBombs, boomerang, ^$canCompleteEldinTwilight"
+											"$DLAccess|Kakariko Village Bell Rupee"
 										]
 									}
 								]
@@ -1098,9 +1072,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"boots, ^$canUseWaterBombs, ^$canCompleteEldinTwilight",
-											"zoraarmor, ^$canUseWaterBombs, ^$canCompleteEldinTwilight",
-											"[glitcheson], magicarmor, ^$canUseWaterBombs, ^$canCompleteEldinTwilight"
+											"$DLAccess|Eldin Spring Underwater Boulder Rupee"
 										]
 									}
 								]
@@ -1121,15 +1093,13 @@
 									{
 										"name": "Rupee 1",
 										"access_rules": [
-											"^$canSmash, ^$canCompleteEldinTwilight",
-											"[glitcheson], shadowcrystal, ^$canCompleteEldinTwilight"
+											"$DLAccess|Kakariko Village Spring Shortcut Box Rupee 1"
 										]
 									},
 									{
 										"name": "Rupee 2",
 										"access_rules": [
-											"^$canSmash, ^$canCompleteEldinTwilight",
-											"[glitcheson], shadowcrystal, ^$canCompleteEldinTwilight"
+											"$DLAccess|Kakariko Village Spring Shortcut Box Rupee 2"
 										]
 									}
 								]
@@ -1149,8 +1119,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"boomerang, ^$canCompleteEldinTwilight",
-											"[glitcheson], shadowcrystal, ^$canCompleteEldinTwilight"
+											"$DLAccess|Kakariko Village Ant House Ledge Box Rupee"
 										]
 									}
 								]
@@ -1170,8 +1139,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"shadowcrystal, ^$canCompleteEldinTwilight",
-											"boomerang, ^$canCompleteEldinTwilight"
+											"$DLAccess|Kakariko Village Hot Spring Ledge Box Rupee"
 										]
 									}
 								]
@@ -1199,15 +1167,15 @@
 											"{}"
 										]
 									}
+								],
+								"access_rules": [
+									"^$canAccess|LowerKakarikoVillage"
 								]
 							}
 						]
 					},
 					{
 						"name": "Upper Kakariko Village",
-						"access_rules": [
-							"^$canAccess|UpperKakarikoVillage"
-						],
 						"children": [
 							{
 								"name": "Kakariko Village Bomb Shop Poe",
@@ -1226,7 +1194,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"shadowcrystal, ^$canCompleteEldinTwilight"
+											"$DLAccess|Kakariko Village Bomb Shop Poe"
 										]
 									}
 								]
@@ -1248,7 +1216,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"shadowcrystal, ^$canCompleteEldinTwilight"
+											"$DLAccess|Kakariko Village Watchtower Poe"
 										]
 									}
 								]
@@ -1265,8 +1233,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canSmash, ^$canCompleteEldinTwilight",
-											"[glitcheson], shadowcrystal"
+											"$DLAccess|Kakariko Watchtower Alcove Chest"
 										]
 									}
 								]
@@ -1275,9 +1242,6 @@
 					},
 					{
 						"name": "Kakariko Top of Watchtower",
-						"access_rules": [
-							"^$canAccess|KakarikoTopofWatchtower"
-						],
 						"children": [
 							{
 								"name": "Talo Sharpshooting",
@@ -1291,7 +1255,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"gmcompleted, bow, ^$canCompleteEldinTwilight"
+											"$DLAccess|Talo Sharpshooting"
 										]
 									}
 								]
@@ -1467,9 +1431,6 @@
 					},
 					{
 						"name": "Kakariko Graveyard",
-						"access_rules": [
-							"^$canAccess|KakarikoGraveyard"
-						],
 						"children": [
 							{
 								"name": "Kakariko Graveyard Lantern Chest",
@@ -1483,7 +1444,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"lantern"
+											"$DLAccess|Kakariko Graveyard Lantern Chest"
 										]
 									}
 								]
@@ -1501,13 +1462,13 @@
 									{
 										"name": "Rutelas Blessing",
 										"access_rules": [
-											"gatekeys, ^$canCompleteEldinTwilight"
+											"$DLAccess|Rutelas Blessing"
 										]
 									},
 									{
 										"name": "Gift From Ralis",
 										"access_rules": [
-											"asheissketch, gatekeys, ^$canCompleteEldinTwilight"
+											"$DLAccess|Gift From Ralis"
 										]
 									}
 								]
@@ -1529,7 +1490,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canCompleteEldinTwilight"
+											"$DLAccess|Kakariko Graveyard Male Ant"
 										]
 									}
 								]
@@ -1551,7 +1512,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"shadowcrystal, ^$canCompleteEldinTwilight"
+											"$DLAccess|Kakariko Graveyard Grave Poe"
 										]
 									}
 								]
@@ -1573,7 +1534,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"shadowcrystal, ^$canCompleteEldinTwilight"
+											"$DLAccess|Kakariko Graveyard Open Poe"
 										]
 									}
 								]
@@ -1593,7 +1554,7 @@
 									{
 										"name": "(Snowpeak Mountain Stone)",
 										"access_rules": [
-											"shadowcrystal, ^$canAccess|SnowpeakClimbUpper, smhowlingstone"
+											"$DLAccess|Kakariko Graveyard Golden Wolf"
 										]
 									}
 								]
@@ -1613,9 +1574,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"boots, ^$canUseWaterBombs, gatekeys",
-											"zoraarmor, ^$canUseWaterBombs, gatekeys",
-											"[glitcheson], magicarmor, ^$canUseWaterBombs, gatekeys"
+											"$DLAccess|Kakariko Graveyard Underwater Boulder Rupee"
 										]
 									}
 								]
@@ -1643,6 +1602,9 @@
 											"{gatekeys}"
 										]
 									}
+								],
+								"access_rules": [
+									"^$canAccess|KakarikoGraveyard"
 								]
 							}
 						]
@@ -1654,9 +1616,6 @@
 				"children": [
 					{
 						"name": "Hidden Village Impaz House",
-						"access_rules": [
-							"^$canAccess|HiddenVillageImpazHouse"
-						],
 						"children": [
 							{
 								"name": "Skybook From Impaz",
@@ -1669,9 +1628,8 @@
 								],
 								"sections": [
 									{
-										"access_rules":[
-											"^$canAccess|HiddenVillage, bow, dominionrod",
-											"[glitcheson], ^$canAccess|HiddenVillage, ^$CanDoHiddenVillageGlitched, dominionrod"
+										"access_rules": [
+											"$DLAccess|Skybook From Impaz"
 										]
 									}
 								]
@@ -1680,9 +1638,6 @@
 					},
 					{
 						"name": "Eldin Lantern Cave",
-						"access_rules": [
-							"^$canAccess|EldinLanternCave"
-						],
 						"children": [
 							{
 								"name": "Eldin Lantern Cave First Chest",
@@ -1696,7 +1651,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canBurnWebs"
+											"$DLAccess|Eldin Lantern Cave First Chest"
 										]
 									}
 								]
@@ -1713,7 +1668,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canBurnWebs"
+											"$DLAccess|Eldin Lantern Cave Second Chest"
 										]
 									}
 								]
@@ -1730,7 +1685,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"lantern"
+											"$DLAccess|Eldin Lantern Cave Lantern Chest"
 										]
 									}
 								]
@@ -1752,7 +1707,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"shadowcrystal, ^$canBurnWebs"
+											"$DLAccess|Eldin Lantern Cave Poe"
 										]
 									}
 								]
@@ -1761,9 +1716,6 @@
 					},
 					{
 						"name": "Eldin Field Lava Cave Upper",
-						"access_rules": [
-							"^$canAccess|EldinFieldLavaCaveUpper"
-						],
 						"children": [
 							{
 								"name": "Eldin Stockcave Upper Chest",
@@ -1777,8 +1729,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"boots",
-											"[glitcheson]"
+											"$DLAccess|Eldin Stockcave Upper Chest"
 										]
 									}
 								]
@@ -1787,9 +1738,6 @@
 					},
 					{
 						"name": "Eldin Field Lava Cave Lower",
-						"access_rules": [
-							"^$canAccess|EldinFieldLavaCaveLower"
-						],
 						"children": [
 							{
 								"name": "Eldin Stockcave Lantern Chest",
@@ -1803,9 +1751,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"glitchesoff, lantern",
-											"[glitcheson], clawshot, lantern",
-											"[glitcheson], ^$canDoLJA, lantern"
+											"$DLAccess|Eldin Stockcave Lantern Chest"
 										]
 									}
 								]
@@ -1822,9 +1768,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"glitchesoff",
-											"[glitcheson], clawshot",
-											"[glitcheson], ^$canDoLJA"
+											"$DLAccess|Eldin Stockcave Lowest Chest"
 										]
 									}
 								]
@@ -1833,9 +1777,6 @@
 					},
 					{
 						"name": "Eldin Field Bomskit Grotto",
-						"access_rules": [
-							"^$canAccess|EldinFieldBomskitGrotto"
-						],
 						"children": [
 							{
 								"name": "Eldin Field Bomskit Grotto Left Chest",
@@ -1849,7 +1790,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canDefeatBomskit"
+											"$DLAccess|Eldin Field Bomskit Grotto Left Chest"
 										]
 									}
 								]
@@ -1866,7 +1807,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canDefeatBomskit, lantern"
+											"$DLAccess|Eldin Field Bomskit Grotto Lantern Chest"
 										]
 									}
 								]
@@ -1875,9 +1816,6 @@
 					},
 					{
 						"name": "Eldin Field Water Bomb Fish Grotto",
-						"access_rules": [
-							"^$canAccess|EldinFieldWaterBombFishGrotto"
-						],
 						"children": [
 							{
 								"name": "Eldin Field Water Bomb Fish Grotto Chest",
@@ -1891,7 +1829,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											""
+											"$DLAccess|Eldin Field Water Bomb Fish Grotto Chest"
 										]
 									}
 								]
@@ -1900,9 +1838,6 @@
 					},
 					{
 						"name": "Eldin Field Stalfos Grotto",
-						"access_rules": [
-							"^$canAccess|EldinFieldStalfosGrotto"
-						],
 						"children": [
 							{
 								"name": "Eldin Field Stalfos Grotto Left Small Chest",
@@ -1916,7 +1851,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											""
+											"$DLAccess|Eldin Field Stalfos Grotto Left Small Chest"
 										]
 									}
 								]
@@ -1933,7 +1868,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											""
+											"$DLAccess|Eldin Field Stalfos Grotto Right Small Chest"
 										]
 									}
 								]
@@ -1950,7 +1885,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canDefeatStalfos"
+											"$DLAccess|Eldin Field Stalfos Grotto Stalfos Chest"
 										]
 									}
 								]
@@ -1959,9 +1894,6 @@
 					},
 					{
 						"name": "Kakariko Renados Sanctuary",
-						"access_rules": [
-							"^$canAccess|KakarikoRenadosSanctuary"
-						],
 						"children": [
 							{
 								"name": "Renados Letter",
@@ -1975,8 +1907,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"ttcompleted, ^$canCompleteEldinTwilight",
-											"$Not|iliaquestvanilla, ^$canCompleteEldinTwilight"
+											"$DLAccess|Renados Letter"
 										]
 									}
 								]
@@ -1993,7 +1924,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"iliascharm"
+											"$DLAccess|Ilia Memory Reward"
 										]
 									}
 								]
@@ -2002,9 +1933,6 @@
 					},
 					{
 						"name": "Kakariko Renados Sanctuary Basement",
-						"access_rules": [
-							"^$canAccess|KakarikoRenadosSanctuaryBasement"
-						],
 						"children": [
 							{
 								"name": "Shad Dominion Rod",
@@ -2018,7 +1946,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"skybook, ^$canCompleteEldinTwilight"
+											"$DLAccess|Shad Dominion Rod"
 										]
 									}
 								]
@@ -2027,9 +1955,6 @@
 					},
 					{
 						"name": "Kakariko Malo Mart",
-						"access_rules": [
-							"^$canAccess|KakarikoMaloMart"
-						],
 						"children": [
 							{
 								"name": "Kakariko Village Malo Mart Hylian Shield",
@@ -2043,8 +1968,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canCompleteEldinTwilight, $Not|reducedwalletsize",
-											"^$canCompleteEldinTwilight, mediumwallet"
+											"$DLAccess|Kakariko Village Malo Mart Hylian Shield"
 										]
 									}
 								]
@@ -2061,8 +1985,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canCompleteEldinTwilight, $Not|reducedwalletsize",
-											"^$canCompleteEldinTwilight, mediumwallet"
+											"$DLAccess|Kakariko Village Malo Mart Red Potion"
 										]
 									}
 								]
@@ -2079,7 +2002,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canCompleteEldinTwilight"
+											"$DLAccess|Kakariko Village Malo Mart Wooden Shield"
 										]
 									}
 								]
@@ -2096,8 +2019,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"gmcompleted, ^$canAccess|KakarikoTopofWatchtower, bow, ^$canCompleteEldinTwilight, $Not|reducedwalletsize",
-											"gmcompleted, ^$canAccess|KakarikoTopofWatchtower, bow, ^$canCompleteEldinTwilight, mediumwallet"
+											"$DLAccess|Kakariko Village Malo Mart Hawkeye"
 										]
 									}
 								]
@@ -2106,9 +2028,6 @@
 					},
 					{
 						"name": "Kakariko Elde Inn",
-						"access_rules": [
-							"^$canAccess|KakarikoEldeInn"
-						],
 						"children": [
 							{
 								"name": "Kakariko Inn Chest",
@@ -2122,7 +2041,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											""
+											"$DLAccess|Kakariko Inn Chest"
 										]
 									}
 								]
@@ -2131,9 +2050,6 @@
 					},
 					{
 						"name": "Kakariko Bug House",
-						"access_rules": [
-							"^$canAccess|KakarikoBugHouse"
-						],
 						"children": [
 							{
 								"name": "Kakariko Village Female Ant",
@@ -2152,7 +2068,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canCompleteEldinTwilight"
+											"$DLAccess|Kakariko Village Female Ant"
 										]
 									}
 								]
@@ -2161,9 +2077,6 @@
 					},
 					{
 						"name": "Kakariko Barnes Bomb Shop Lower",
-						"access_rules": [
-							"^$canAccess|KakarikoBarnesBombShopLower"
-						],
 						"children": [
 							{
 								"name": "Barnes Bomb Bag",
@@ -2177,8 +2090,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canCompleteEldinTwilight, $Not|reducedwalletsize",
-											"^$canCompleteEldinTwilight, mediumwallet"
+											"$DLAccess|Barnes Bomb Bag"
 										]
 									}
 								]
@@ -2187,9 +2099,6 @@
 					},
 					{
 						"name": "Kakariko Watchtower",
-						"access_rules": [
-							"^$canAccess|KakarikoWatchtower"
-						],
 						"children": [
 							{
 								"name": "Kakariko Watchtower Chest",
@@ -2203,7 +2112,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											""
+											"$DLAccess|Kakariko Watchtower Chest"
 										]
 									}
 								]

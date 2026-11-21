@@ -4,9 +4,6 @@
 		"children": [
 			{
 				"name": "Temple of Time Armos Antechamber",
-				"access_rules": [
-					"^$canAccess|TempleofTimeArmosAntechamber"
-				],
 				"children": [
 					{
 						"name": "Armos Antechamber East Chest",
@@ -25,7 +22,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"^$canDefeatArmos"
+									"$DLAccess|Temple of Time Armos Antechamber East Chest"
 								]
 							}
 						]
@@ -47,7 +44,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									""
+									"$DLAccess|Temple of Time Armos Antechamber North Chest"
 								]
 							}
 						]
@@ -69,8 +66,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"dominionrod",
-									"[glitcheson]"
+									"$DLAccess|Temple of Time Armos Antechamber Statue Chest"
 								]
 							}
 						]
@@ -79,9 +75,6 @@
 			},
 			{
 				"name": "Temple of Time Boss Room",
-				"access_rules": [
-					"^$canAccess|TempleofTimeBossRoom"
-				],
 				"children": [
 					{
 						"name": "Armogohma Boss",
@@ -101,19 +94,19 @@
 							{
 								"name": "Armogohma Heart Container",
 								"access_rules": [
-									"^$canDefeatArmogohma"
+									"$DLAccess|Temple of Time Armogohma Heart Container"
 								]
 							},
 							{
 								"name": "Dungeon Reward",
 								"access_rules": [
-									"^$canDefeatArmogohma"
+									"$DLAccess|Temple of Time Dungeon Reward"
 								]
 							},
 							{
 								"name": "Armogohma",
 								"access_rules": [
-									"^$canDefeatArmogohma"
+									"^$canAccess|TempleofTimeBossRoom, ^$canDefeatArmogohma"
 								],
 								"hosted_item": "ttcompleted"
 							}
@@ -123,9 +116,6 @@
 			},
 			{
 				"name": "Temple of Time Central Mechanical Platform",
-				"access_rules": [
-					"^$canAccess|TempleofTimeCentralMechanicalPlatform"
-				],
 				"children": [
 					{
 						"name": "Poe Behind Gate",
@@ -149,9 +139,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"shadowcrystal, dominionrod",
-									"[glitcheson], shadowcrystal, ballchain",
-									"[glitcheson], shadowcrystal, ^$canDoHSMoonBoots"
+									"$DLAccess|Temple of Time Poe Behind Gate"
 								]
 							}
 						]
@@ -160,9 +148,6 @@
 			},
 			{
 				"name": "Temple of Time Connecting Corridors",
-				"access_rules": [
-					"^$canAccess|TempleofTimeConnectingCorridors"
-				],
 				"children": [
 					{
 						"name": "First Staircase Gohma Gate Chest",
@@ -181,7 +166,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"^$canDefeatYoungGohma"
+									"$DLAccess|Temple of Time First Staircase Gohma Gate Chest"
 								]
 							}
 						]
@@ -203,7 +188,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"^$hasRangedItem"
+									"$DLAccess|Temple of Time First Staircase Window Chest"
 								]
 							}
 						]
@@ -225,7 +210,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"^$canDefeatArmos, ^$hasRangedItem"
+									"$DLAccess|Temple of Time First Staircase Armos Chest"
 								]
 							}
 						]
@@ -234,9 +219,6 @@
 			},
 			{
 				"name": "Temple of Time Darknut Arena",
-				"access_rules": [
-					"^$canAccess|TempleofTimeDarknutArena"
-				],
 				"children": [
 					{
 						"name": "Darknut Chest",
@@ -255,7 +237,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"^$canDefeatDarknut"
+									"$DLAccess|Temple of Time Darknut Chest"
 								]
 							}
 						]
@@ -264,9 +246,6 @@
 			},
 			{
 				"name": "Temple of Time Entrance",
-				"access_rules": [
-					"^$canAccess|TempleofTimeEntrance"
-				],
 				"children": [
 					{
 						"name": "Lobby Lantern Chest",
@@ -285,7 +264,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"lantern"
+									"$DLAccess|Temple of Time Lobby Lantern Chest"
 								]
 							}
 						]
@@ -319,15 +298,15 @@
 								"chest_opened_img": "images/Items/Sign.png",
 								"chest_unopened_img": "images/Items/SignGrayed.png"
 							}
+						],
+						"access_rules": [
+							"^$canAccess|TempleofTimeEntrance"
 						]
 					}
 				]
 			},
 			{
 				"name": "Temple of Time Floor Switch Puzzle Room",
-				"access_rules": [
-					"^$canAccess|TempleofTimeFloorSwitchPuzzleRoom"
-				],
 				"children": [
 					{
 						"name": "Big Key Chest",
@@ -346,7 +325,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"^$canDefeatHelmasaur, clawshot"
+									"$DLAccess|Temple of Time Big Key Chest"
 								]
 							}
 						]
@@ -368,7 +347,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"clawshot"
+									"$DLAccess|Temple of Time Floor Switch Puzzle Room Upper Chest"
 								]
 							}
 						]
@@ -377,9 +356,6 @@
 			},
 			{
 				"name": "Temple of Time Moving Wall Hallways",
-				"access_rules": [
-					"^$canAccess|TempleofTimeMovingWallHallways"
-				],
 				"children": [
 					{
 						"name": "Moving Wall Beamos Room Chest",
@@ -398,7 +374,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"bow"
+									"$DLAccess|Temple of Time Moving Wall Beamos Room Chest"
 								]
 							}
 						]
@@ -420,8 +396,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"^$canDefeatDinalfos, dominionrod, bow",
-									"[glitcheson], ^$canDefeatDinalfos, spinner, ^$hasBombs, bow"
+									"$DLAccess|Temple of Time Moving Wall Dinalfos Room Chest"
 								]
 							}
 						]
@@ -455,15 +430,15 @@
 								"chest_opened_img": "images/Items/Sign.png",
 								"chest_unopened_img": "images/Items/SignGrayed.png"
 							}
+						],
+						"access_rules": [
+							"^$canAccess|TempleofTimeMovingWallHallways"
 						]
 					}
 				]
 			},
 			{
 				"name": "Temple of Time Scales of Time",
-				"access_rules": [
-					"^$canAccess|TempleofTimeScalesofTime"
-				],
 				"children": [
 					{
 						"name": "Scales Gohma Chest",
@@ -482,7 +457,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"^$canDefeatYoungGohma, ^$canDefeatBabyGohma"
+									"$DLAccess|Temple of Time Scales Gohma Chest"
 								]
 							}
 						]
@@ -504,7 +479,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"clawshot, spinner"
+									"$DLAccess|Temple of Time Scales Upper Chest"
 								]
 							}
 						]
@@ -531,7 +506,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"shadowcrystal, clawshot, spinner"
+									"$DLAccess|Temple of Time Poe Above Scales"
 								]
 							}
 						]
@@ -540,9 +515,6 @@
 			},
 			{
 				"name": "Temple of Time Upper Spike Trap Corridor",
-				"access_rules": [
-					"^$canAccess|TempleofTimeUpperSpikeTrapCorridor"
-				],
 				"children": [
 					{
 						"name": "Guillotine Chest",
@@ -561,7 +533,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									""
+									"$DLAccess|Temple of Time Gilloutine Chest"
 								]
 							}
 						]
@@ -583,7 +555,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"^$canDefeatArmos, ^$canDefeatBabyGohma, ^$canDefeatYoungGohma"
+									"$DLAccess|Temple of Time Chest Before Darknut"
 								]
 							}
 						]

@@ -75,9 +75,6 @@
 			},
 			{
 				"name": "Hyrule Castle Graveyard",
-				"access_rules": [
-					"^$canAccess|HyruleCastleGraveyard"
-				],
 				"children": [
 					{
 						"name": "Graveyard Grave Switch Room",
@@ -97,19 +94,19 @@
 							{
 								"name": "Right Chest",
 								"access_rules": [
-									"^$canSmash"
+									"$DLAccess|Hyrule Castle Graveyard Grave Switch Room Right Chest"
 								]
 							},
 							{
 								"name": "Front Left Chest",
 								"access_rules": [
-									"^$canSmash"
+									"$DLAccess|Hyrule Castle Graveyard Grave Switch Room Front Left Chest"
 								]
 							},
 							{
 								"name": "Back Left Chest",
 								"access_rules": [
-									"^$canSmash"
+									"$DLAccess|Hyrule Castle Graveyard Grave Switch Room Back Left Chest"
 								]
 							}
 						]
@@ -131,7 +128,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"^$canSmash, lantern, powereddominionrod"
+									"$DLAccess|Hyrule Castle Graveyard Owl Statue Chest"
 								]
 							}
 						]
@@ -140,9 +137,6 @@
 			},
 			{
 				"name": "Hyrule Castle Main Hall",
-				"access_rules": [
-					"^$canAccess|HyruleCastleMainHall"
-				],
 				"children": [
 					{
 						"name": "Main Hall Northeast Chest",
@@ -161,7 +155,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"^$canDefeatBokoblin, ^$canDefeatLizalfos, clawshot"
+									"$DLAccess|Hyrule Castle Main Hall Northeast Chest"
 								]
 							}
 						]
@@ -170,9 +164,6 @@
 			},
 			{
 				"name": "Hyrule Castle Outside East Wing",
-				"access_rules": [
-					"^$canAccess|HyruleCastleOutsideEastWing"
-				],
 				"children": [
 					{
 						"name": "East Wing Boomerang Puzzle Chest",
@@ -191,7 +182,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"boomerang"
+									"$DLAccess|Hyrule Castle East Wing Boomerang Puzzle Chest"
 								]
 							}
 						]
@@ -213,7 +204,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"boomerang"
+									"$DLAccess|Hyrule Castle East Wing Balcony Chest"
 								]
 							}
 						]
@@ -222,9 +213,6 @@
 			},
 			{
 				"name": "Hyrule Castle Outside West Wing",
-				"access_rules": [
-					"^$canAccess|HyruleCastleOutsideWestWing"
-				],
 				"children": [
 					{
 						"name": "West Courtyard North Small Chest",
@@ -243,8 +231,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"^$canDefeatBokoblin",
-									"[glitcheson]"
+									"$DLAccess|Hyrule Castle West Courtyard North Small Chest"
 								]
 							}
 						]
@@ -266,8 +253,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"^$canDefeatBokoblin",
-									"[glitcheson]"
+									"$DLAccess|Hyrule Castle West Courtyard Central Small Chest"
 								]
 							}
 						]
@@ -289,7 +275,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"^$canDefeatKingBulblinCastle"
+									"$DLAccess|Hyrule Castle King Bulblin Key"
 								]
 							}
 						]
@@ -298,9 +284,6 @@
 			},
 			{
 				"name": "Hyrule Castle Above Lantern Staircase",
-				"access_rules": [
-					"^$canAccess|HyruleCastleAboveLanternStaircase"
-				],
 				"children": [
 					{
 						"name": "Lantern Staircase Chest",
@@ -319,7 +302,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"^$canDefeatDarknut"
+									"$DLAccess|Hyrule Castle Lantern Staircase Chest"
 								]
 							}
 						]
@@ -328,9 +311,6 @@
 			},
 			{
 				"name": "Hyrule Castle After Double Darknuts",
-				"access_rules": [
-					"^$canAccess|HyruleCastleAfterDoubleDarknuts"
-				],
 				"children": [
 					{
 						"name": "Main Hall Southwest Chest",
@@ -349,7 +329,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									""
+									"$DLAccess|Hyrule Castle Main Hall Southwest Chest"
 								]
 							}
 						]
@@ -371,9 +351,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"doubleclawshot",
-									"[glitcheson], clawshot",
-									"[glitcheson], ^$canDoLJA"
+									"$DLAccess|Hyrule Castle Main Hall Northwest Chest"
 								]
 							}
 						]
@@ -382,9 +360,6 @@
 			},
 			{
 				"name": "Hyrule Castle Third Floor Balcony",
-				"access_rules": [
-					"^$canAccess|HyruleCastleThirdFloorBalcony"
-				],
 				"children": [
 					{
 						"name": "Southeast Balcony Tower Chest",
@@ -403,7 +378,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"^$canDefeatAeralfos"
+									"$DLAccess|Hyrule Castle Southeast Balcony Tower Chest"
 								]
 							}
 						]
@@ -425,7 +400,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"^$canOpenHCBKGate"
+									"$DLAccess|Hyrule Castle Big Key Chest"
 								]
 							}
 						]
@@ -434,9 +409,6 @@
 			},
 			{
 				"name": "Hyrule Castle Treasure Room",
-				"access_rules": [
-					"^$canAccess|HyruleCastleTreasureRoom"
-				],
 				"children": [
 					{
 						"name": "Treasure Room",
@@ -456,79 +428,79 @@
 							{
 								"name": "First Chest",
 								"access_rules": [
-									""
+									"$DLAccess|Hyrule Castle Treasure Room First Chest"
 								]
 							},
 							{
 								"name": "Second Chest",
 								"access_rules": [
-									""
+									"$DLAccess|Hyrule Castle Treasure Room Second Chest"
 								]
 							},
 							{
 								"name": "Third Chest",
 								"access_rules": [
-									""
+									"$DLAccess|Hyrule Castle Treasure Room Third Chest"
 								]
 							},
 							{
 								"name": "Fourth Chest",
 								"access_rules": [
-									""
+									"$DLAccess|Hyrule Castle Treasure Room Fourth Chest"
 								]
 							},
 							{
 								"name": "Fifth Chest",
 								"access_rules": [
-									""
+									"$DLAccess|Hyrule Castle Treasure Room Fifth Chest"
 								]
 							},
 							{
 								"name": "First Small Chest",
 								"access_rules": [
-									""
+									"$DLAccess|Hyrule Castle Treasure Room First Small Chest"
 								]
 							},
 							{
 								"name": "Second Small Chest",
 								"access_rules": [
-									""
+									"$DLAccess|Hyrule Castle Treasure Room Second Small Chest"
 								]
 							},
 							{
 								"name": "Third Small Chest",
 								"access_rules": [
-									""
+									"$DLAccess|Hyrule Castle Treasure Room Third Small Chest"
 								]
 							},
 							{
 								"name": "Fourth Small Chest",
 								"access_rules": [
-									""
+									"$DLAccess|Hyrule Castle Treasure Room Fourth Small Chest"
 								]
 							},
 							{
 								"name": "Fifth Small Chest",
 								"access_rules": [
-									""
+									"$DLAccess|Hyrule Castle Treasure Room Fifth Small Chest"
 								]
 							},
 							{
 								"name": "Sixth Small Chest",
 								"access_rules": [
-									""
+									"$DLAccess|Hyrule Castle Treasure Room Sixth Small Chest"
 								]
 							},
 							{
 								"name": "Seventh Small Chest",
 								"access_rules": [
-									""
+									"$DLAccess|Hyrule Castle Treasure Room Seventh Small Chest"
 								]
 							},
 							{
 								"name": "Eighth Small Chest",
 								"access_rules": [
-									""
+									"$DLAccess|Hyrule Castle Treasure Room Eighth Small Chest"
 								]
 							}
 						]

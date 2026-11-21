@@ -69,9 +69,6 @@
 					},
 					{
 						"name": "Ordon Village",
-						"access_rules": [
-							"^$canAccess|OrdonVillage"
-						],
 						"children": [
 							{
 								"name": "Ordon Bo Cliff Rupee",
@@ -88,7 +85,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											""
+											"$DLAccess|Ordon Bo Cliff Rupee"
 										]
 									}
 								]
@@ -109,19 +106,19 @@
 									{
 										"name": "Ordon Bo Roof Rupee",
 										"access_rules": [
-											""
+											"$DLAccess|Ordon Bo Roof Rupee"
 										]
 									},
 									{
 										"name": "Ordon Bo Window Rupee 1",
 										"access_rules": [
-											""
+											"$DLAccess|Ordon Bo Window Rupee 1"
 										]
 									},
 									{
 										"name": "Ordon Bo Window Rupee 2",
 										"access_rules": [
-											""
+											"$DLAccess|Ordon Bo Window Rupee 2"
 										]
 									}
 								]
@@ -141,8 +138,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"boomerang",
-											"clawshot"
+											"$DLAccess|Ordon Hidden Rusl House Rupee"
 										]
 									}
 								]
@@ -162,7 +158,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											""
+											"$DLAccess|Ordon Rupee In Grass By Bo"
 										]
 									}
 								]
@@ -183,13 +179,13 @@
 									{
 										"name": "1",
 										"access_rules": [
-											""
+											"$DLAccess|Ordon Rupee In River 1"
 										]
 									},
 									{
 										"name": "2",
 										"access_rules": [
-											""
+											"$DLAccess|Ordon Rupee In River 2"
 										]
 									}
 								]
@@ -209,7 +205,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											""
+											"$DLAccess|Ordon Rupee Under Bridge"
 										]
 									}
 								]
@@ -230,13 +226,13 @@
 									{
 										"name": "1",
 										"access_rules": [
-											""
+											"$DLAccess|Ordon Rupee Under Tall Tree 1"
 										]
 									},
 									{
 										"name": "2",
 										"access_rules": [
-											""
+											"$DLAccess|Ordon Rupee Under Tall Tree 2"
 										]
 									}
 								]
@@ -257,13 +253,13 @@
 									{
 										"name": "Rupee 1",
 										"access_rules": [
-											""
+											"$DLAccess|Ordon Rusl House Roof Rupee 1"
 										]
 									},
 									{
 										"name": "Rupee 2",
 										"access_rules": [
-											""
+											"$DLAccess|Ordon Rusl House Roof Rupee 2"
 										]
 									}
 								]
@@ -283,9 +279,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"boomerang",
-											"clawshot",
-											"[glitcheson], sword"
+											"$DLAccess|Ordon Shield House Ledge Grass Rupee"
 										]
 									}
 								]
@@ -306,13 +300,13 @@
 									{
 										"name": "Long Branch Rupee",
 										"access_rules": [
-											""
+											"$DLAccess|Ordon Tree Long Branch Rupee"
 										]
 									},
 									{
 										"name": "Short Branch Rupee",
 										"access_rules": [
-											""
+											"$DLAccess|Ordon Tree Short Branch Rupee"
 										]
 									}
 								]
@@ -329,7 +323,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canCompleteGoats1"
+											"$DLAccess|Uli Cradle Delivery"
 										]
 									}
 								]
@@ -442,9 +436,6 @@
 					},
 					{
 						"name": "Ordon Ranch",
-						"access_rules": [
-							"^$canAccess|OrdonRanch"
-						],
 						"children": [
 							{
 								"name": "Herding Goats Reward",
@@ -458,7 +449,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canCompletePrologue, ^$canCompleteGoats1"
+											"$DLAccess|Herding Goats Reward"
 										]
 									}
 								]
@@ -492,9 +483,6 @@
 					},
 					{
 						"name": "Ordon Spring",
-						"access_rules": [
-							"^$canAccess|OrdonSpring"
-						],
 						"children": [
 							{
 								"name": "Ordon Spring Golden Wolf",
@@ -511,7 +499,7 @@
 									{
 										"name": "(Death Mountain Stone)",
 										"access_rules": [
-											"shadowcrystal, ^$canAccess|DeathMountainTrail, ^$canCompletePrologue, ^$canCompleteFaronTwilight, dmhowlingstone"
+											"$DLAccess|Ordon Spring Golden Wolf"
 										]
 									}
 								]
@@ -525,9 +513,6 @@
 				"children": [
 					{
 						"name": "Ordon Links House",
-						"access_rules": [
-							"^$canAccess|OrdonLinksHouse"
-						],
 						"children": [
 							{
 								"name": "Wooden Sword Chest",
@@ -541,7 +526,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											""
+											"$DLAccess|Wooden Sword Chest"
 										]
 									}
 								]
@@ -558,7 +543,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"lantern"
+											"$DLAccess|Links Basement Chest"
 										]
 									}
 								]
@@ -567,9 +552,6 @@
 					},
 					{
 						"name": "Ordon Seras Shop",
-						"access_rules": [
-							"^$canAccess|OrdonSerasShop"
-						],
 						"children": [
 							{
 								"name": "Ordon Cat Rescue",
@@ -583,7 +565,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canAccess|OrdonVillage, fishingrod, ^$canCompleteGoats1"
+											"$DLAccess|Ordon Cat Rescue"
 										]
 									}
 								]
@@ -600,7 +582,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											""
+											"$DLAccess|Sera Shop Slingshot"
 										]
 									}
 								]
@@ -609,9 +591,6 @@
 					},
 					{
 						"name": "Ordon Shield House Upper",
-						"access_rules": [
-							"^$canAccess|OrdonShieldHouseUpper"
-						],
 						"children": [
 							{
 								"name": "Ordon Shield",
@@ -625,12 +604,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"farontwilightclearedoff, ^$canCompletePrologue, bonksdodamageoff",
-											"farontwilightclearedoff, ^$canCompletePrologue, bonksdodamageon, $Not|ohko",
-											"farontwilightclearedoff, ^$canCompletePrologue, bonksdodamageon, ^$canUseBottledFairies",
-											"farontwilightclearedon, shadowcrystal, bonksdodamageoff",
-											"farontwilightclearedon, shadowcrystal, bonksdodamageon, $Not|ohko",
-											"farontwilightclearedon, shadowcrystal, bonksdodamageon, ^$canUseBottledFairies"
+											"$DLAccess|Ordon Shield"
 										]
 									}
 								]
@@ -639,9 +613,6 @@
 					},
 					{
 						"name": "Ordon Sword House",
-						"access_rules": [
-							"^$canAccess|OrdonSwordHouse"
-						],
 						"children": [
 							{
 								"name": "Ordon Sword",
@@ -655,8 +626,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canCompletePrologue",
-											"farontwilightclearedon"
+											"$DLAccess|Ordon Sword"
 										]
 									}
 								]
@@ -665,9 +635,6 @@
 					},
 					{
 						"name": "Ordon Bos House",
-						"access_rules": [
-							"^$canAccess|OrdonBosHouse"
-						],
 						"children": [
 							{
 								"name": "Wrestling with Bo",
@@ -681,7 +648,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											""
+											"$DLAccess|Wrestling With Bo"
 										]
 									}
 								]
@@ -690,9 +657,6 @@
 					},
 					{
 						"name": "Ordon Ranch Grotto",
-						"access_rules": [
-							"^$canAccess|OrdonRanchGrotto"
-						],
 						"children": [
 							{
 								"name": "Ordon Ranch Grotto Lantern Chest",
@@ -706,7 +670,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"lantern"
+											"$DLAccess|Ordon Ranch Grotto Lantern Chest"
 										]
 									}
 								]

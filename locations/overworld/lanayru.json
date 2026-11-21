@@ -7,9 +7,6 @@
 				"children": [
 					{
 						"name": "Castle Town West",
-						"access_rules": [
-							"^$canAccess|CastleTownWest"
-						],
 						"children": [
 							{
 								"name": "Charlo Donation Blessing",
@@ -23,8 +20,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canCompleteLanayruTwilight, $Not|reducedwalletsize",
-											"^$canCompleteLanayruTwilight, mediumwallet"
+											"$DLAccess|Charlo Donation Blessing"
 										]
 									}
 								]
@@ -128,9 +124,6 @@
 					},
 					{
 						"name": "Castle Town Goron House Balcony",
-						"access_rules": [
-							"^$canAccess|CastleTownGoronHouseBalcony"
-						],
 						"children": [
 							{
 								"name": "Castle Town Goron Shop Arrow Refill",
@@ -144,7 +137,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canCompleteLanayruTwilight"
+											"$DLAccess|Castle Town Goron Shop Arrow Refill"
 										]
 									}
 								]
@@ -178,9 +171,6 @@
 					},
 					{
 						"name": "Castle Town North Behind First Door",
-						"access_rules": [
-							"^$canAccess|CastleTownNorthBehindFirstDoor"
-						],
 						"children": [
 							{
 								"name": "North Castle Town Golden Wolf",
@@ -197,7 +187,7 @@
 									{
 										"name": "(Hidden Village Stone)",
 										"access_rules": [
-											"shadowcrystal, ^$canAccess|HiddenVillage, ^$canCompleteMDH, ^$canCompleteLanayruTwilight, hvhowlingstone"
+											"$DLAccess|North Castle Town Golden Wolf"
 										]
 									}
 								]
@@ -206,9 +196,6 @@
 					},
 					{
 						"name": "Castle Town Doctors Office Balcony",
-						"access_rules": [
-							"^$canAccess|CastleTownDoctorsOfficeBalcony"
-						],
 						"children": [
 							{
 								"name": "Doctors Office Balcony Chest",
@@ -222,7 +209,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											""
+											"$DLAccess|Doctors Office Balcony Chest"
 										]
 									}
 								]
@@ -436,9 +423,6 @@
 				"children": [
 					{
 						"name": "Lanayru Field",
-						"access_rules": [
-							"^$canAccess|LanayruField"
-						],
 						"children": [
 							{
 								"name": "Lanayru Field Behind Gate Underwater Chest",
@@ -452,8 +436,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"boots",
-											"[glitcheson], ^$hasHeavyMod"
+											"$DLAccess|Lanayru Field Behind Gate Underwater Chest"
 										]
 									}
 								]
@@ -475,8 +458,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"clawshot, ^$canCompleteLanayruTwilight",
-											"boomerang, ^$canCompleteLanayruTwilight"
+											"$DLAccess|Lanayru Field Male Stag Beetle"
 										]
 									}
 								]
@@ -498,8 +480,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"clawshot, ^$canCompleteLanayruTwilight",
-											"boomerang, ^$canCompleteLanayruTwilight"
+											"$DLAccess|Lanayru Field Female Stag Beetle"
 										]
 									}
 								]
@@ -521,7 +502,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"shadowcrystal, ^$canCompleteMDH, ^$canCompleteAllTwilight"
+											"$DLAccess|Lanayru Field Bridge Poe"
 										]
 									}
 								]
@@ -541,7 +522,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canSmash"
+											"$DLAccess|Lanayru Field North Spinner Track Boulder Rupee"
 										]
 									}
 								]
@@ -561,7 +542,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"boots, ^$canUseWaterBombs"
+											"$DLAccess|Lanayru Field North Underwater Boulder Rupee"
 										]
 									}
 								]
@@ -581,7 +562,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"boots, ^$canUseWaterBombs"
+											"$DLAccess|Lanayru Field South Underwater Boulder Rupee"
 										]
 									}
 								]
@@ -601,7 +582,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canSmash"
+											"$DLAccess|Lanayru Field Tree Boulder Rupee"
 										]
 									}
 								]
@@ -629,15 +610,15 @@
 											"{}"
 										]
 									}
+								],
+								"access_rules": [
+									"^$canAccess|LanayruField"
 								]
 							}
 						]
 					},
 					{
 						"name": "Hyrule Field Near Spinner Rails",
-						"access_rules": [
-							"^$canAccess|HyruleFieldNearSpinnerRails"
-						],
 						"children": [
 							{
 								"name": "Lanayru Field Spinner Track Chest",
@@ -651,9 +632,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"glitchesoff, spinner",
-											"[glitcheson], ^$canDoMapGlitch",
-											"glitchesoff, ^$canSmash, spinner"
+											"$DLAccess|Lanayru Field Spinner Track Chest"
 										]
 									}
 								]
@@ -741,9 +720,6 @@
 					},
 					{
 						"name": "Outside Castle Town West",
-						"access_rules": [
-							"^$canAccess|OutsideCastleTownWest"
-						],
 						"children": [
 							{
 								"name": "Hyrule Field Amphitheater Owl Statue Chest",
@@ -757,10 +733,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"powereddominionrod",
-											"[glitcheson], ^$canDoLJA",
-											"[glitcheson], ^$canDoMapGlitch",
-											"[glitcheson], ^$canDoEBMoonBoots"
+											"$DLAccess|Hyrule Field Amphitheater Owl Statue Chest"
 										]
 									}
 								]
@@ -777,7 +750,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"powereddominionrod"
+											"$DLAccess|Hyrule Field Amphitheater Owl Statue Sky Character"
 										]
 									}
 								]
@@ -799,7 +772,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canCompleteLanayruTwilight"
+											"$DLAccess|West Hyrule Field Male Butterfly"
 										]
 									}
 								]
@@ -821,10 +794,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"clawshot, ^$canCompleteLanayruTwilight",
-											"boomerang, ^$canCompleteLanayruTwilight",
-											"glitchesoff, ^$canAccess|OutsideCastleTownWestGrottoLedge, ^$canCompleteLanayruTwilight",
-											"[glitcheson], ^$canDoMapGlitch, ^$canCompleteLanayruTwilight"
+											"$DLAccess|West Hyrule Field Female Butterfly"
 										]
 									}
 								]
@@ -846,7 +816,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"shadowcrystal, ^$canCompleteLanayruTwilight"
+											"$DLAccess|Hyrule Field Amphitheater Poe"
 										]
 									}
 								]
@@ -866,7 +836,7 @@
 									{
 										"name": "(Upper Zora's River Stone)",
 										"access_rules": [
-											"shadowcrystal, ^$canAccess|UpperZorasRiver, uzrhowlingstone"
+											"$DLAccess|West Hyrule Field Golden Wolf"
 										]
 									}
 								]
@@ -890,6 +860,9 @@
 										],
 										"hosted_item": "ctportal"
 									}
+								],
+								"access_rules": [
+									"^$canAccess|OutsideCastleTownWest"
 								]
 							},
 							{
@@ -907,7 +880,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canSmash"
+											"$DLAccess|West Hyrule Field Northern Boulder Rupee"
 										]
 									}
 								]
@@ -927,7 +900,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canSmash"
+											"$DLAccess|West Hyrule Field Southern Boulder Rupee"
 										]
 									}
 								]
@@ -955,6 +928,9 @@
 											"{}"
 										]
 									}
+								],
+								"access_rules": [
+									"^$canAccess|OutsideCastleTownWest"
 								]
 							}
 						]
@@ -986,9 +962,6 @@
 					},
 					{
 						"name": "Outside Castle Town East",
-						"access_rules": [
-							"^$canAccess|OutsideCastleTownEast"
-						],
 						"children": [
 							{
 								"name": "East Castle Town Bridge Poe",
@@ -1007,7 +980,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"shadowcrystal"
+											"$DLAccess|East Castle Town Bridge Poe"
 										]
 									}
 								]
@@ -1016,9 +989,6 @@
 					},
 					{
 						"name": "Outside Castle Town South",
-						"access_rules": [
-							"^$canAccess|OutsideCastleTownSouth"
-						],
 						"children": [
 							{
 								"name": "Outside South Castle Town Tightrope Chest",
@@ -1032,7 +1002,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"clawshot, shadowcrystal"
+											"$DLAccess|Outside South Castle Town Tightrope Chest"
 										]
 									}
 								]
@@ -1049,13 +1019,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"spinner, clawshot",
-											"[glitcheson], ^$canDoMapGlitch, ^$hasBottle",
-											"[glitcheson], ^$canDoMoonBoots",
-											"[glitcheson], ^$canDoBSMoonBoots",
-											"[glitcheson], ^$canDoLJA",
-											"[glitcheson], sword, hiddenskill:3",
-											"[glitcheson], sword, ^$hasBombs"
+											"$DLAccess|Outside South Castle Town Fountain Chest"
 										]
 									}
 								]
@@ -1072,14 +1036,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"doubleclawshot",
-											"[glitcheson], sword, damagevanilla",
-											"[glitcheson], sword, damagedouble",
-											"[glitcheson], sword, ^$canUseBottledFairy",
-											"[glitcheson], ^$hasBombs, ^$Not|ohko",
-											"[glitcheson], ^$hasBombs, ^$canUseBottledFairy",
-											"[glitcheson], spinner",
-											"[glitcheson], shadowcrystal"
+											"$DLAccess|Outside South Castle Town Double Clawshot Chasm Chest"
 										]
 									}
 								]
@@ -1096,7 +1053,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canAccess|CastleTownDoctorsOfficeLower, shadowcrystal, ^$canAccess|CastleTownSouth, ^$canCompleteLanayruTwilight, medicinescent"
+											"$DLAccess|Wooden Statue"
 										]
 									}
 								]
@@ -1118,7 +1075,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canCompleteLanayruTwilight"
+											"$DLAccess|Outside South Castle Town Male Ladybug"
 										]
 									}
 								]
@@ -1140,7 +1097,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canCompleteLanayruTwilight"
+											"$DLAccess|Outside South Castle Town Female Ladybug"
 										]
 									}
 								]
@@ -1162,7 +1119,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"shadowcrystal"
+											"$DLAccess|Outside South Castle Town Poe"
 										]
 									}
 								]
@@ -1182,7 +1139,7 @@
 									{
 										"name": "(North Faron Woods Stone)",
 										"access_rules": [
-											"shadowcrystal, ^$canAccess|NorthFaronWoods, nfwhowlingstone"
+											"$DLAccess|Outside South Castle Town Golden Wolf"
 										]
 									}
 								]
@@ -1202,7 +1159,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canSmash"
+											"$DLAccess|Outside South Castle Town Boulder Rupee"
 										]
 									}
 								]
@@ -1230,6 +1187,9 @@
 											"{}"
 										]
 									}
+								],
+								"access_rules": [
+									"^$canAccess|OutsideCastleTownSouth"
 								]
 							}
 						]
@@ -1261,9 +1221,6 @@
 					},
 					{
 						"name": "Lake Hylia Bridge",
-						"access_rules": [
-							"^$canAccess|LakeHyliaBridge"
-						],
 						"children": [
 							{
 								"name": "Lake Hylia Bridge Vines Chest",
@@ -1277,7 +1234,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"clawshot"
+											"$DLAccess|Lake Hylia Bridge Vines Chest"
 										]
 									}
 								]
@@ -1295,15 +1252,13 @@
 									{
 										"name": "Chest",
 										"access_rules": [
-											"powereddominionrod, clawshot",
-											"[glitcheson], ^$canDoMapGlitch, ^$canCompleteLanayruTwilight"
+											"$DLAccess|Lake Hylia Bridge Owl Statue Chest"
 										]
 									},
 									{
 										"name": "Sky Character",
 										"access_rules": [
-											"powereddominionrod, clawshot",
-											"[glitcheson], powereddominionrod, ^$canDoMapGlitch, ^$canCompleteLanayruTwilight"
+											"$DLAccess|Lake Hylia Bridge Owl Statue Sky Character"
 										]
 									}
 								]
@@ -1325,8 +1280,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"clawshot, ^$canCompleteLanayruTwilight",
-											"boomerang, ^$canCompleteLanayruTwilight"
+											"$DLAccess|Lake Hylia Bridge Male Mantis"
 										]
 									}
 								]
@@ -1348,9 +1302,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"clawshot, ^$canCompleteLanayruTwilight",
-											"boomerang, ^$canCompleteLanayruTwilight",
-											"[glitcheson], ^$canDoStorage, ^$canCompleteLanayruTwilight"
+											"$DLAccess|Lake Hylia Bridge Female Mantis"
 										]
 									}
 								]
@@ -1370,7 +1322,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canSmash"
+											"$DLAccess|Lake Hylia Bridge Faron Boulder Rupee"
 										]
 									}
 								]
@@ -1390,7 +1342,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canSmash"
+											"$DLAccess|Lake Hylia Bridge Owl Statue Boulder Rupee"
 										]
 									}
 								]
@@ -1410,7 +1362,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canSmash"
+											"$DLAccess|Lanayru Field South Spinner Track Boulder Rupee"
 										]
 									}
 								]
@@ -1438,15 +1390,15 @@
 											"{clawshot}"
 										]
 									}
+								],
+								"access_rules": [
+									"^$canAccess|LakeHyliaBridge"
 								]
 							}
 						]
 					},
 					{
 						"name": "Lake Hylia Bridge Grotto Ledge",
-						"access_rules": [
-							"^$canAccess|LakeHyliaBridgeGrottoLedge"
-						],
 						"children": [
 							{
 								"name": "Lake Hylia Bridge Cliff Chest",
@@ -1460,7 +1412,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											""
+											"$DLAccess|Lake Hylia Bridge Cliff Chest"
 										]
 									}
 								]
@@ -1482,7 +1434,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canCompleteMDH, shadowcrystal, ^$canCompleteAllTwilight"
+											"$DLAccess|Lake Hylia Bridge Cliff Poe"
 										]
 									}
 								]
@@ -1521,9 +1473,6 @@
 				"children": [
 					{
 						"name": "Lake Hylia",
-						"access_rules": [
-							"^$canAccess|LakeHylia"
-						],
 						"children": [
 							{
 								"name": "Lake Hylia Underwater Chest",
@@ -1537,8 +1486,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"boots, ^$canCompleteLanayruTwilight",
-											"[glitcheson], ^$hasHeavyMod, ^$canCompleteLanayruTwilight"
+											"$DLAccess|Lake Hylia Underwater Chest"
 										]
 									}
 								]
@@ -1555,7 +1503,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canCompleteLanayruTwilight"
+											"$DLAccess|Auru Gift To Fyer"
 										]
 									}
 								]
@@ -1577,7 +1525,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"shadowcrystal, ^$canCompleteLanayruTwilight"
+											"$DLAccess|Lake Hylia Alcove Poe"
 										]
 									}
 								]
@@ -1599,7 +1547,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"shadowcrystal, ^$canCompleteLanayruTwilight"
+											"$DLAccess|Lake Hylia Dock Poe"
 										]
 									}
 								]
@@ -1621,7 +1569,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"shadowcrystal, ^$canCompleteLanayruTwilight"
+											"$DLAccess|Lake Hylia Tower Poe"
 										]
 									}
 								]
@@ -1643,7 +1591,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"shadowcrystal, ^$canCompleteLanayruTwilight"
+											"$DLAccess|Plumm Fruit Balloon Minigame"
 										]
 									}
 								]
@@ -1667,6 +1615,9 @@
 										],
 										"hosted_item": "lhportal"
 									}
+								],
+								"access_rules": [
+									"^$canAccess|LakeHylia"
 								]
 							},
 							{
@@ -1684,8 +1635,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canCompleteLanayruTwilight, zoraarmor, ",
-											"[glitcheson], ^$canCompleteLanayruTwilight, ^$canDoAirRefill"
+											"$DLAccess|Lake Hylia Left Underwater Pillar Rupee"
 										]
 									}
 								]
@@ -1705,8 +1655,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canCompleteLanayruTwilight, zoraarmor",
-											"[glitcheson], ^$canCompleteLanayruTwilight, ^$canDoAirRefill"
+											"$DLAccess|Lake Hylia Right Underwater Pillar Rupee"
 										]
 									}
 								]
@@ -1726,8 +1675,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canCompleteLanayruTwilight, zoraarmor, boots, ^$canUseWaterBombs",
-											"[glitcheson], ^$canCompleteLanayruTwilight, ^$canDoAirRefill"
+											"$DLAccess|Lake Hylia Right Underwater Boulder Rupee"
 										]
 									}
 								]
@@ -1747,8 +1695,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canCompleteLanayruTwilight, zoraarmor, boots, ^$canUseWaterBombs",
-											"[glitcheson], ^$canCompleteLanayruTwilight, ^$canDoAirRefill"
+											"$DLAccess|Lake Hylia Left Underwater Boulder Rupee"
 										]
 									}
 								]
@@ -1769,15 +1716,15 @@
 											"{shadowcrystal}"
 										]
 									}
+								],
+								"access_rules": [
+									"^$canAccess|LakeHylia"
 								]
 							}
 						]
 					},
 					{
 						"name": "Lake Hylia Flight By Fowl",
-						"access_rules": [
-							"^$canAccess|LakeHyliaFlightByFowl"
-						],
 						"children": [
 							{
 								"name": "Outside Lanayru Spring Left Statue Chest",
@@ -1791,7 +1738,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canCompleteLanayruTwilight"
+											"$DLAccess|Outside Lanayru Spring Left Statue Chest"
 										]
 									}
 								]
@@ -1808,7 +1755,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canCompleteLanayruTwilight"
+											"$DLAccess|Outside Lanayru Spring Right Statue Chest"
 										]
 									}
 								]
@@ -1826,31 +1773,31 @@
 									{
 										"name": "Top Platform Reward",
 										"access_rules": [
-											"^$canCompleteLanayruTwilight"
+											"$DLAccess|Flight By Fowl Top Platform Reward"
 										]
 									},
 									{
 										"name": "Second Platform Chest",
 										"access_rules": [
-											"^$canCompleteLanayruTwilight"
+											"$DLAccess|Flight By Fowl Second Platform Chest"
 										]
 									},
 									{
 										"name": "Third Platform Chest",
 										"access_rules": [
-											"^$canCompleteLanayruTwilight"
+											"$DLAccess|Flight By Fowl Third Platform Chest"
 										]
 									},
 									{
 										"name": "Fourth Platform Chest",
 										"access_rules": [
-											"^$canCompleteLanayruTwilight"
+											"$DLAccess|Flight By Fowl Fourth Platform Chest"
 										]
 									},
 									{
 										"name": "Fifth Platform Chest",
 										"access_rules": [
-											"^$canCompleteLanayruTwilight"
+											"$DLAccess|Flight By Fowl Fifth Platform Chest"
 										]
 									}
 								]
@@ -1872,7 +1819,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"shadowcrystal, ^$canCompleteLanayruTwilight"
+											"$DLAccess|Flight By Fowl Ledge Poe"
 										]
 									}
 								]
@@ -1894,7 +1841,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"shadowcrystal, ^$canCompleteLanayruTwilight"
+											"$DLAccess|Isle of Riches Poe"
 										]
 									}
 								]
@@ -1922,6 +1869,9 @@
 											"{}"
 										]
 									}
+								],
+								"access_rules": [
+									"^$canAccess|LakeHyliaFlightByFowl"
 								]
 							}
 						]
@@ -2141,9 +2091,6 @@
 				"children": [
 					{
 						"name": "Upper Zoras River",
-						"access_rules": [
-							"^$canAccess|UpperZorasRiver"
-						],
 						"children": [
 							{
 								"name": "Upper Zoras River Female Dragonfly",
@@ -2162,7 +2109,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canCompleteLanayruTwilight"
+											"$DLAccess|Upper Zoras River Female Dragonfly"
 										]
 									}
 								]
@@ -2184,7 +2131,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"shadowcrystal, ^$canCompleteLanayruTwilight"
+											"$DLAccess|Upper Zoras River Poe"
 										]
 									}
 								]
@@ -2208,11 +2155,14 @@
 										],
 										"hosted_item": "uzrportal"
 									}
+								],
+								"access_rules": [
+									"^$canAccess|UpperZorasRiver"
 								]
 							},
 							{
 								"name": "Upper Zoras River East Underwater Boulder Rupee",
-								"visibility_rules":[
+								"visibility_rules": [
 									"hiddenrupeeson"
 								],
 								"map_locations": [
@@ -2225,14 +2175,14 @@
 								"sections": [
 									{
 										"access_rules": [
-											"boots, ^$canUseWaterBombs"
+											"$DLAccess|Upper Zoras River East Underwater Boulder Rupee"
 										]
 									}
 								]
 							},
 							{
 								"name": "Upper Zoras River Central Underwater Boulder Rupee",
-								"visibility_rules":[
+								"visibility_rules": [
 									"hiddenrupeeson"
 								],
 								"map_locations": [
@@ -2245,14 +2195,14 @@
 								"sections": [
 									{
 										"access_rules": [
-											"boots, ^$canUseWaterBombs"
+											"$DLAccess|Upper Zoras River Central Underwater Boulder Rupee"
 										]
 									}
 								]
 							},
 							{
 								"name": "Upper Zoras River West Underwater Boulder Rupee",
-								"visibility_rules":[
+								"visibility_rules": [
 									"hiddenrupeeson"
 								],
 								"map_locations": [
@@ -2265,14 +2215,14 @@
 								"sections": [
 									{
 										"access_rules": [
-											"boots, ^$canUseWaterBombs"
+											"$DLAccess|Upper Zoras River West Underwater Boulder Rupee"
 										]
 									}
 								]
 							},
 							{
 								"name": "Upper Zoras River Ledge Boulder Rupee",
-								"visibility_rules":[
+								"visibility_rules": [
 									"hiddenrupeeson"
 								],
 								"map_locations": [
@@ -2285,7 +2235,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canSmash"
+											"$DLAccess|Upper Zoras River Ledge Boulder Rupee"
 										]
 									}
 								]
@@ -2306,15 +2256,15 @@
 											"{shadowcrystal}"
 										]
 									}
+								],
+								"access_rules": [
+									"^$canAccess|UpperZorasRiver"
 								]
 							}
 						]
 					},
 					{
 						"name": "Upper Zoras River Izas House",
-						"access_rules": [
-							"^$canAccess|UpperZorasRiverIzasHouse"
-						],
 						"children": [
 							{
 								"name": "Iza",
@@ -2329,15 +2279,13 @@
 									{
 										"name": "Helping Hand",
 										"access_rules": [
-											"^$canAccess|UpperZorasRiver, sword, bow, ^$canCompleteLanayruTwilight",
-											"^$canAccess|UpperZorasRiver, ^$canDefeatShadowBeast, transformanywhereon, bow, ^$canCompleteLanayruTwilight"
+											"$DLAccess|Iza Helping Hand"
 										]
 									},
 									{
 										"name": "Raging Rapids Minigame",
 										"access_rules": [
-											"^$canAccess|UpperZorasRiver, sword, bow, ^$canCompleteLanayruTwilight",
-											"^$canAccess|UpperZorasRiver, ^$canDefeatShadowBeast, transformanywhereon, bow, ^$canCompleteLanayruTwilight"
+											"$DLAccess|Iza Raging Rapids Minigame"
 										]
 									}
 								]
@@ -2346,9 +2294,6 @@
 					},
 					{
 						"name": "Fishing Hole",
-						"access_rules": [
-							"^$canAccess|FishingHole"
-						],
 						"children": [
 							{
 								"name": "Fishing Hole Bottle",
@@ -2362,7 +2307,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"fishingrod"
+											"$DLAccess|Fishing Hole Bottle"
 										]
 									}
 								]
@@ -2390,15 +2335,15 @@
 											"{}"
 										]
 									}
+								],
+								"access_rules": [
+									"^$canAccess|FishingHole"
 								]
 							}
 						]
 					},
 					{
 						"name": "Fishing Hole Piece of Heart",
-						"access_rules": [
-							"^$canAccess|FishingHolePieceofHeart"
-						],
 						"children": [
 							{
 								"name": "Fishing Hole Heart Piece",
@@ -2412,7 +2357,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											""
+											"$DLAccess|Fishing Hole Heart Piece"
 										]
 									}
 								]
@@ -2421,9 +2366,6 @@
 					},
 					{
 						"name": "Zoras Domain",
-						"access_rules": [
-							"^$canAccess|ZorasDomain"
-						],
 						"children": [
 							{
 								"name": "Zoras Domain Chest By Mother and Child Isles",
@@ -2437,7 +2379,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											""
+											"$DLAccess|Zoras Domain Chest By Mother and Child Isles"
 										]
 									}
 								]
@@ -2454,11 +2396,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"shadowcrystal",
-											"[glitcheson], ^$canDoBSMoonBoots",
-											"[glitcheson], spinner",
-											"[glitcheson], ^$hasBombs, sword",
-											"[glitcheson], ^$canDoLJA"
+											"$DLAccess|Zoras Domain Chest Behind Waterfall"
 										]
 									}
 								]
@@ -2480,7 +2418,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canCompleteLanayruTwilight"
+											"$DLAccess|Zoras Domain Male Dragonfly"
 										]
 									}
 								]
@@ -2502,7 +2440,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"shadowcrystal, ^$canCompleteLanayruTwilight"
+											"$DLAccess|Zoras Domain Mother and Child Isle Poe"
 										]
 									}
 								]
@@ -2524,14 +2462,14 @@
 								"sections": [
 									{
 										"access_rules": [
-											"shadowcrystal, ^$canCompleteLanayruTwilight"
+											"$DLAccess|Zoras Domain Waterfall Poe"
 										]
 									}
 								]
 							},
 							{
 								"name": "Zoras Domain Behind Waterfall Rupee",
-								"visibility_rules":[
+								"visibility_rules": [
 									"freerupeeson"
 								],
 								"map_locations": [
@@ -2544,14 +2482,14 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canCompleteLanayruTwilight"
+											"$DLAccess|Zoras Domain Behind Waterfall Rupee"
 										]
 									}
 								]
 							},
 							{
 								"name": "Zoras Domain Central Underwater Boulder Rupee",
-								"visibility_rules":[
+								"visibility_rules": [
 									"hiddenrupeeson"
 								],
 								"map_locations": [
@@ -2564,14 +2502,14 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canCompleteLanayruTwilight, boots, ^$canUseWaterBombs"
+											"$DLAccess|Zoras Domain Central Underwater Boulder Rupee"
 										]
 									}
 								]
 							},
 							{
 								"name": "Zoras Domain North Underwater Boulder Rupee",
-								"visibility_rules":[
+								"visibility_rules": [
 									"hiddenrupeeson"
 								],
 								"map_locations": [
@@ -2584,14 +2522,14 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canCompleteLanayruTwilight, boots, ^$canUseWaterBombs"
+											"$DLAccess|Zoras Domain North Underwater Boulder Rupee"
 										]
 									}
 								]
 							},
 							{
 								"name": "Zoras Domain Shortcut Ledge Rupee",
-								"visibility_rules":[
+								"visibility_rules": [
 									"freerupeeson"
 								],
 								"map_locations": [
@@ -2604,14 +2542,14 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canCompleteLanayruTwilight"
+											"$DLAccess|Zoras Domain Shortcut Ledge Rupee"
 										]
 									}
 								]
 							},
 							{
 								"name": "Zoras Domain Top Ledge Rupee",
-								"visibility_rules":[
+								"visibility_rules": [
 									"freerupeeson"
 								],
 								"map_locations": [
@@ -2624,14 +2562,14 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canCompleteLanayruTwilight"
+											"$DLAccess|Zoras Domain Top Ledge Rupee"
 										]
 									}
 								]
 							},
 							{
 								"name": "Zoras Domain Vine Ledge Rupee",
-								"visibility_rules":[
+								"visibility_rules": [
 									"freerupeeson"
 								],
 								"map_locations": [
@@ -2644,14 +2582,14 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canCompleteLanayruTwilight"
+											"$DLAccess|Zoras Domain Vine Ledge Rupee"
 										]
 									}
 								]
 							},
 							{
 								"name": "Zoras Domain Waterfall Ledge Rupee",
-								"visibility_rules":[
+								"visibility_rules": [
 									"freerupeeson"
 								],
 								"map_locations": [
@@ -2664,7 +2602,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canCompleteLanayruTwilight"
+											"$DLAccess|Zoras Domain Waterfall Ledge Rupee"
 										]
 									}
 								]
@@ -2686,19 +2624,19 @@
 										],
 										"hosted_item": "reekfishscent"
 									}
+								],
+								"access_rules": [
+									"^$canAccess|ZorasDomain"
 								]
 							}
 						]
 					},
 					{
 						"name": "Zoras Domain West Ledge",
-						"access_rules": [
-							"^$canAccess|ZorasDomainWestLedge"
-						],
 						"children": [
 							{
 								"name": "Zoras Domain Shortcut Lower Boulder Rupee",
-								"visibility_rules":[
+								"visibility_rules": [
 									"hiddenrupeeson"
 								],
 								"map_locations": [
@@ -2711,7 +2649,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canSmash"
+											"$DLAccess|Zoras Domain Shortcut Lower Boulder Rupee"
 										]
 									}
 								]
@@ -2739,15 +2677,15 @@
 											"{}"
 										]
 									}
+								],
+								"access_rules": [
+									"^$canAccess|ZorasDomainWestLedge"
 								]
 							}
 						]
 					},
 					{
 						"name": "Zoras Domain Throne Room",
-						"access_rules": [
-							"^$canAccess|ZorasDomainThroneRoom"
-						],
 						"children": [
 							{
 								"name": "Zoras Domain Light All Torches Chest",
@@ -2761,8 +2699,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"lantern, boots",
-											"[glitcheson], lantern, ^$hasHeavyMod"
+											"$DLAccess|Zoras Domain Light All Torches Chest"
 										]
 									}
 								]
@@ -2779,8 +2716,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"boomerang, boots",
-											"[glitcheson], boomerang, ^$hasHeavyMod"
+											"$DLAccess|Zoras Domain Extinguish All Torches Chest"
 										]
 									}
 								]
@@ -2797,8 +2733,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canUseWaterBombs, boots, zoraarmor, ^$canCompleteLanayruTwilight",
-											"[glitcheson], ^$canUseWaterBombs, boots, ^$canCompleteLanayruTwilight"
+											"$DLAccess|Zoras Domain Underwater Goron"
 										]
 									}
 								]
@@ -2822,11 +2757,14 @@
 										],
 										"hosted_item": "zdportal"
 									}
+								],
+								"access_rules": [
+									"^$canAccess|ZorasDomainThroneRoom"
 								]
 							},
 							{
 								"name": "Zoras Domain Throne East Gate Underwater Rupee",
-								"visibility_rules":[
+								"visibility_rules": [
 									"freerupeeson"
 								],
 								"map_locations": [
@@ -2839,15 +2777,14 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canCompleteLanayruTwilight, boots",
-											"[glitcheson], ^$canCompleteLanayruTwilight, ^$hasHeavyMod"
+											"$DLAccess|Zoras Domain Throne East Gate Underwater Rupee"
 										]
 									}
 								]
 							},
 							{
 								"name": "Zoras Domain Throne East Underwater Rupee",
-								"visibility_rules":[
+								"visibility_rules": [
 									"freerupeeson"
 								],
 								"map_locations": [
@@ -2860,16 +2797,14 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canCompleteLanayruTwilight, boots",
-											"^$canCompleteLanayruTwilight, zoraarmor",
-											"[glitcheson], ^$canCompleteLanayruTwilight, magicarmor"
+											"$DLAccess|Zoras Domain Throne East Underwater Rupee"
 										]
 									}
 								]
 							},
 							{
 								"name": "Zoras Domain Throne Northwest Underwater Rupee",
-								"visibility_rules":[
+								"visibility_rules": [
 									"freerupeeson"
 								],
 								"map_locations": [
@@ -2882,16 +2817,14 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canCompleteLanayruTwilight, boots",
-											"^$canCompleteLanayruTwilight, zoraarmor",
-											"[glitcheson], ^$canCompleteLanayruTwilight, magicarmor"
+											"$DLAccess|Zoras Domain Throne Northwest Underwater Rupee"
 										]
 									}
 								]
 							},
 							{
 								"name": "Zoras Domain Throne South Underwater Rupee",
-								"visibility_rules":[
+								"visibility_rules": [
 									"freerupeeson"
 								],
 								"map_locations": [
@@ -2904,16 +2837,14 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canCompleteLanayruTwilight, boots",
-											"^$canCompleteLanayruTwilight, zoraarmor",
-											"[glitcheson], ^$canCompleteLanayruTwilight, magicarmor"
+											"$DLAccess|Zoras Domain Throne South Underwater Rupee"
 										]
 									}
 								]
 							},
 							{
 								"name": "Zoras Domain Throne West Gate Underwater Rupee",
-								"visibility_rules":[
+								"visibility_rules": [
 									"freerupeeson"
 								],
 								"map_locations": [
@@ -2926,15 +2857,14 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canCompleteLanayruTwilight, boots",
-											"[glitcheson], ^$canCompleteLanayruTwilight, magicarmor"
+											"$DLAccess|Zoras Domain Throne West Gate Underwater Rupee"
 										]
 									}
 								]
 							},
 							{
 								"name": "Zoras Domain Throne West Underwater Rupee",
-								"visibility_rules":[
+								"visibility_rules": [
 									"freerupeeson"
 								],
 								"map_locations": [
@@ -2947,9 +2877,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canCompleteLanayruTwilight, boots",
-											"^$canCompleteLanayruTwilight, zoraarmor",
-											"[glitcheson], ^$canCompleteLanayruTwilight, magicarmor"
+											"$DLAccess|Zoras Domain Throne West Underwater Rupee"
 										]
 									}
 								]
@@ -2958,13 +2886,10 @@
 					},
 					{
 						"name": "Zoras Domain Top of Waterfall",
-						"access_rules": [
-							"^$canAccess|ZorasDomainTopofWaterfall"
-						],
 						"children": [
 							{
 								"name": "Zoras Domain Shortcut Upper Boulder Rupee",
-								"visibility_rules":[
+								"visibility_rules": [
 									"hiddenrupeeson"
 								],
 								"map_locations": [
@@ -2977,7 +2902,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canSmash"
+											"$DLAccess|Zoras Domain Shortcut Upper Boulder Rupee"
 										]
 									}
 								]
@@ -2991,9 +2916,6 @@
 				"children": [
 					{
 						"name": "Castle Town STAR Game",
-						"access_rules": [
-							"^$canAccess|CastleTownSTARGame"
-						],
 						"children": [
 							{
 								"name": "STAR",
@@ -3008,13 +2930,13 @@
 									{
 										"name": "Prize 1",
 										"access_rules": [
-											"clawshot"
+											"$DLAccess|STAR Prize 1"
 										]
 									},
 									{
 										"name": "Prize 2",
 										"access_rules": [
-											"doubleclawshot"
+											"$DLAccess|STAR Prize 2"
 										]
 									}
 								]
@@ -3023,9 +2945,6 @@
 					},
 					{
 						"name": "Castle Town Goron House",
-						"access_rules": [
-							"^$canAccess|CastleTownGoronHouse"
-						],
 						"children": [
 							{
 								"name": "Castle Town Goron Shop Hylian Shield",
@@ -3039,8 +2958,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"$Not|reducedwalletsize",
-											"mediumwallet"
+											"$DLAccess|Castle Town Goron Shop Hylian Shield"
 										]
 									}
 								]
@@ -3057,7 +2975,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											""
+											"$DLAccess|Castle Town Goron Shop Red Potion"
 										]
 									}
 								]
@@ -3074,7 +2992,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											""
+											"$DLAccess|Castle Town Goron Shop Lantern Oil"
 										]
 									}
 								]
@@ -3083,9 +3001,6 @@
 					},
 					{
 						"name": "Castle Town Malo Mart",
-						"access_rules": [
-							"^$canAccess|CastleTownMaloMart"
-						],
 						"children": [
 							{
 								"name": "Castle Town Malo Mart Magic Armor",
@@ -3099,7 +3014,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canAccess|KakarikoMaloMart, ^$canAccess|LowerKakarikoVillage, ^$canBuyMagicArmor"
+											"$DLAccess|Castle Town Malo Mart Magic Armor"
 										]
 									}
 								]
@@ -3135,9 +3050,6 @@
 					},
 					{
 						"name": "Castle Town Agithas House",
-						"access_rules": [
-							"^$canAccess|CastleTownAgithasHouse"
-						],
 						"children": [
 							{
 								"name": "Agitha Male Ant Reward",
@@ -3151,7 +3063,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"bug0"
+											"$DLAccess|Agitha Male Ant Reward"
 										]
 									}
 								]
@@ -3168,7 +3080,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"bug1"
+											"$DLAccess|Agitha Female Ant Reward"
 										]
 									}
 								]
@@ -3178,14 +3090,14 @@
 								"map_locations": [
 									{
 										"map": "ac1f",
-										"x":  113,
+										"x": 113,
 										"y": 47
 									}
 								],
 								"sections": [
 									{
 										"access_rules": [
-											"bug2"
+											"$DLAccess|Agitha Male Dayfly Reward"
 										]
 									}
 								]
@@ -3195,14 +3107,14 @@
 								"map_locations": [
 									{
 										"map": "ac1f",
-										"x":  142,
+										"x": 142,
 										"y": 47
 									}
 								],
 								"sections": [
 									{
 										"access_rules": [
-											"bug3"
+											"$DLAccess|Agitha Female Dayfly Reward"
 										]
 									}
 								]
@@ -3212,14 +3124,14 @@
 								"map_locations": [
 									{
 										"map": "ac1f",
-										"x":  188,
+										"x": 188,
 										"y": 47
 									}
 								],
 								"sections": [
 									{
 										"access_rules": [
-											"bug4"
+											"$DLAccess|Agitha Male Beetle Reward"
 										]
 									}
 								]
@@ -3229,14 +3141,14 @@
 								"map_locations": [
 									{
 										"map": "ac1f",
-										"x":  217,
+										"x": 217,
 										"y": 47
 									}
 								],
 								"sections": [
 									{
 										"access_rules": [
-											"bug5"
+											"$DLAccess|Agitha Female Beetle Reward"
 										]
 									}
 								]
@@ -3253,7 +3165,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"bug6"
+											"$DLAccess|Agitha Male Mantis Reward"
 										]
 									}
 								]
@@ -3270,7 +3182,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"bug7"
+											"$DLAccess|Agitha Female Mantis Reward"
 										]
 									}
 								]
@@ -3280,14 +3192,14 @@
 								"map_locations": [
 									{
 										"map": "ac1f",
-										"x":  113,
+										"x": 113,
 										"y": 97
 									}
 								],
 								"sections": [
 									{
 										"access_rules": [
-											"bug8"
+											"$DLAccess|Agitha Male Stag Beetle Reward"
 										]
 									}
 								]
@@ -3297,14 +3209,14 @@
 								"map_locations": [
 									{
 										"map": "ac1f",
-										"x":  142,
+										"x": 142,
 										"y": 97
 									}
 								],
 								"sections": [
 									{
 										"access_rules": [
-											"bug9"
+											"$DLAccess|Agitha Female Stag Beetle Reward"
 										]
 									}
 								]
@@ -3314,14 +3226,14 @@
 								"map_locations": [
 									{
 										"map": "ac1f",
-										"x":  188,
+										"x": 188,
 										"y": 97
 									}
 								],
 								"sections": [
 									{
 										"access_rules": [
-											"bug10"
+											"$DLAccess|Agitha Male Pill Bug Reward"
 										]
 									}
 								]
@@ -3331,14 +3243,14 @@
 								"map_locations": [
 									{
 										"map": "ac1f",
-										"x":  217,
+										"x": 217,
 										"y": 97
 									}
 								],
 								"sections": [
 									{
 										"access_rules": [
-											"bug11"
+											"$DLAccess|Agitha Female Pill Bug Reward"
 										]
 									}
 								]
@@ -3355,7 +3267,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"bug12"
+											"$DLAccess|Agitha Male Butterfly Reward"
 										]
 									}
 								]
@@ -3372,7 +3284,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"bug13"
+											"$DLAccess|Agitha Female Butterfly Reward"
 										]
 									}
 								]
@@ -3382,14 +3294,14 @@
 								"map_locations": [
 									{
 										"map": "ac1f",
-										"x":  113,
+										"x": 113,
 										"y": 147
 									}
 								],
 								"sections": [
 									{
 										"access_rules": [
-											"bug14"
+											"$DLAccess|Agitha Male Ladybug Reward"
 										]
 									}
 								]
@@ -3399,14 +3311,14 @@
 								"map_locations": [
 									{
 										"map": "ac1f",
-										"x":  142,
+										"x": 142,
 										"y": 147
 									}
 								],
 								"sections": [
 									{
 										"access_rules": [
-											"bug15"
+											"$DLAccess|Agitha Female Ladybug Reward"
 										]
 									}
 								]
@@ -3416,14 +3328,14 @@
 								"map_locations": [
 									{
 										"map": "ac1f",
-										"x":  188,
+										"x": 188,
 										"y": 147
 									}
 								],
 								"sections": [
 									{
 										"access_rules": [
-											"bug16"
+											"$DLAccess|Agitha Male Snail Reward"
 										]
 									}
 								]
@@ -3433,14 +3345,14 @@
 								"map_locations": [
 									{
 										"map": "ac1f",
-										"x":  217,
+										"x": 217,
 										"y": 147
 									}
 								],
 								"sections": [
 									{
 										"access_rules": [
-											"bug17"
+											"$DLAccess|Agitha Female Snail Reward"
 										]
 									}
 								]
@@ -3457,7 +3369,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"bug18"
+											"$DLAccess|Agitha Male Phasmid Reward"
 										]
 									}
 								]
@@ -3474,7 +3386,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"bug19"
+											"$DLAccess|Agitha Female Phasmid Reward"
 										]
 									}
 								]
@@ -3484,14 +3396,14 @@
 								"map_locations": [
 									{
 										"map": "ac1f",
-										"x":  113,
+										"x": 113,
 										"y": 197
 									}
 								],
 								"sections": [
 									{
 										"access_rules": [
-											"bug20"
+											"$DLAccess|Agitha Male Grasshopper Reward"
 										]
 									}
 								]
@@ -3501,14 +3413,14 @@
 								"map_locations": [
 									{
 										"map": "ac1f",
-										"x":  142,
+										"x": 142,
 										"y": 197
 									}
 								],
 								"sections": [
 									{
 										"access_rules": [
-											"bug21"
+											"$DLAccess|Agitha Female Grasshopper Reward"
 										]
 									}
 								]
@@ -3518,14 +3430,14 @@
 								"map_locations": [
 									{
 										"map": "ac1f",
-										"x":  188,
+										"x": 188,
 										"y": 197
 									}
 								],
 								"sections": [
 									{
 										"access_rules": [
-											"bug22"
+											"$DLAccess|Agitha Male Dragonfly Reward"
 										]
 									}
 								]
@@ -3535,14 +3447,14 @@
 								"map_locations": [
 									{
 										"map": "ac1f",
-										"x":  217,
+										"x": 217,
 										"y": 197
 									}
 								],
 								"sections": [
 									{
 										"access_rules": [
-											"bug23"
+											"$DLAccess|Agitha Female Dragonfly Reward"
 										]
 									}
 								]
@@ -3551,9 +3463,6 @@
 					},
 					{
 						"name": "Castle Town Jovanis House",
-						"access_rules": [
-							"^$canAccess|CastleTownJovanisHouse"
-						],
 						"children": [
 							{
 								"name": "Jovani",
@@ -3568,13 +3477,13 @@
 									{
 										"name": "20 Poe Soul Reward",
 										"access_rules": [
-											"poesoul:20"
+											"$DLAccess|Jovani 20 Poe Soul Reward"
 										]
 									},
 									{
 										"name": "60 Poe Soul Reward",
 										"access_rules": [
-											"poesoul:60"
+											"$DLAccess|Jovani 60 Poe Soul Reward"
 										]
 									}
 								]
@@ -3596,7 +3505,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"shadowcrystal"
+											"$DLAccess|Jovani House Poe"
 										]
 									}
 								]
@@ -3605,9 +3514,6 @@
 					},
 					{
 						"name": "Castle Town Telmas Bar",
-						"access_rules": [
-							"^$canAccess|CastleTownTelmasBar"
-						],
 						"children": [
 							{
 								"name": "Telma Invoice",
@@ -3621,7 +3527,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"renadosletter, ^$canCompleteLanayruTwilight"
+											"$DLAccess|Telma Invoice"
 										]
 									}
 								]
@@ -3630,9 +3536,6 @@
 					},
 					{
 						"name": "Lanayru Ice Puzzle Cave",
-						"access_rules": [
-							"^$canAccess|LanayruIcePuzzleCave"
-						],
 						"children": [
 							{
 								"name": "Lanayru Ice Block Puzzle Cave Chest",
@@ -3646,7 +3549,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"ballchain"
+											"$DLAccess|Lanayru Ice Block Puzzle Cave Chest"
 										]
 									}
 								]
@@ -3655,9 +3558,6 @@
 					},
 					{
 						"name": "Lanayru Field Skulltula Grotto",
-						"access_rules": [
-							"^$canAccess|LanayruFieldSkulltulaGrotto"
-						],
 						"children": [
 							{
 								"name": "Lanayru Field Skulltula Grotto Chest",
@@ -3671,8 +3571,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canDefeatSkulltula, lantern, ^$canBreakWoodenDoor",
-											"[glitcheson], lantern, ^$canBreakWoodenDoor"
+											"$DLAccess|Lanayru Field Skulltula Grotto Chest"
 										]
 									}
 								]
@@ -3681,9 +3580,6 @@
 					},
 					{
 						"name": "Lanayru Field Poe Grotto",
-						"access_rules": [
-							"^$canAccess|LanayruFieldPoeGrotto"
-						],
 						"children": [
 							{
 								"name": "Lanayru Field Poe Grotto Left Poe",
@@ -3702,7 +3598,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"shadowcrystal"
+											"$DLAccess|Lanayru Field Poe Grotto Left Poe"
 										]
 									}
 								]
@@ -3724,7 +3620,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"shadowcrystal"
+											"$DLAccess|Lanayru Field Poe Grotto Right Poe"
 										]
 									}
 								]
@@ -3733,9 +3629,6 @@
 					},
 					{
 						"name": "Outside Castle Town West Helmasaur Grotto",
-						"access_rules": [
-							"^$canAccess|OutsideCastleTownWestHelmasaurGrotto"
-						],
 						"children": [
 							{
 								"name": "West Hyrule Field Helmasaur Grotto Chest",
@@ -3749,7 +3642,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canDefeatHelmasaur"
+											"$DLAccess|West Hyrule Field Helmasaur Grotto Chest"
 										]
 									}
 								]
@@ -3758,9 +3651,6 @@
 					},
 					{
 						"name": "Outside Castle Town South Tektite Grotto",
-						"access_rules": [
-							"^$canAccess|OutsideCastleTownSouthTektiteGrotto"
-						],
 						"children": [
 							{
 								"name": "Outside South Castle Town Tektite Grotto Chest",
@@ -3774,7 +3664,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canDefeatTektite"
+											"$DLAccess|Outside South Castle Town Tektite Grotto Chest"
 										]
 									}
 								]
@@ -3783,9 +3673,6 @@
 					},
 					{
 						"name": "Lake Hylia Bridge Bubble Grotto",
-						"access_rules": [
-							"^$canAccess|LakeHyliaBridgeBubbleGrotto"
-						],
 						"children": [
 							{
 								"name": "Lake Hylia Bridge Bubble Grotto Chest",
@@ -3799,7 +3686,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canDefeatBubble, ^$canDefeatFireBubble, ^$canDefeatIceBubble"
+											"$DLAccess|Lake Hylia Bridge Bubble Grotto Chest"
 										]
 									}
 								]
@@ -3808,9 +3695,6 @@
 					},
 					{
 						"name": "Lake Hylia Lanayru Spring",
-						"access_rules": [
-							"^$canAccess|LakeHyliaLanayruSpring"
-						],
 						"children": [
 							{
 								"name": "Lanayru Spring Underwater Left Chest",
@@ -3824,8 +3708,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"boots",
-											"[glitcheson], ^$hasHeavyMod"
+											"$DLAccess|Lanayru Spring Underwater Left Chest"
 										]
 									}
 								]
@@ -3842,8 +3725,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"boots",
-											"[glitcheson], ^$hasHeavyMod"
+											"$DLAccess|Lanayru Spring Underwater Right Chest"
 										]
 									}
 								]
@@ -3860,8 +3742,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"clawshot",
-											"[glitcheson], ^$canDoBSMoonBoots"
+											"$DLAccess|Lanayru Spring Back Room Left Chest"
 										]
 									}
 								]
@@ -3878,8 +3759,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"clawshot",
-											"[glitcheson], ^$canDoBSMoonBoots"
+											"$DLAccess|Lanayru Spring Back Room Right Chest"
 										]
 									}
 								]
@@ -3896,8 +3776,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"clawshot, lantern",
-											"[glitcheson], lantern, ^$canDoBSMoonBoots"
+											"$DLAccess|Lanayru Spring Back Room Lantern Chest"
 										]
 									}
 								]
@@ -3914,7 +3793,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"doubleclawshot"
+											"$DLAccess|Lanayru Spring East Double Clawshot Chest"
 										]
 									}
 								]
@@ -3931,14 +3810,14 @@
 								"sections": [
 									{
 										"access_rules": [
-											"doubleclawshot"
+											"$DLAccess|Lanayru Spring West Double Clawshot Chest"
 										]
 									}
 								]
 							},
 							{
 								"name": "Lanayru Spring Upper Underwater Boulder Rupee",
-								"visibility_rules":[
+								"visibility_rules": [
 									"hiddenrupeeson"
 								],
 								"map_locations": [
@@ -3951,15 +3830,14 @@
 								"sections": [
 									{
 										"access_rules": [
-											"boots, ^$canUseWaterBombs",
-											"[glitcheson], magicarmor, ^$canUseWaterBombs"
+											"$DLAccess|Lanayru Spring Upper Underwater Boulder Rupee"
 										]
 									}
 								]
 							},
 							{
 								"name": "Lanayru Spring Lower Underwater Boulder Rupee",
-								"visibility_rules":[
+								"visibility_rules": [
 									"hiddenrupeeson"
 								],
 								"map_locations": [
@@ -3972,8 +3850,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"boots, ^$canUseWaterBombs",
-											"[glitcheson], magicarmor, ^$canUseWaterBombs"
+											"$DLAccess|Lanayru Spring Lower Underwater Boulder Rupee"
 										]
 									}
 								]
@@ -4003,15 +3880,15 @@
 											"{glitcheson, ^$hasHeavyMod}"
 										]
 									}
+								],
+								"access_rules": [
+									"^$canAccess|LakeHyliaLanayruSpring"
 								]
 							}
 						]
 					},
 					{
 						"name": "Lake Hylia Long Cave",
-						"access_rules": [
-							"^$canAccess|LakeHyliaLongCave"
-						],
 						"children": [
 							{
 								"name": "Lake Lantern Cave First Chest",
@@ -4025,8 +3902,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canSmash, lantern",
-											"[glitcheson], ^$canSmash"
+											"$DLAccess|Lake Lantern Cave First Chest"
 										]
 									}
 								]
@@ -4043,8 +3919,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canSmash, lantern",
-											"[glitcheson], ^$canSmash"
+											"$DLAccess|Lake Lantern Cave Second Chest"
 										]
 									}
 								]
@@ -4061,8 +3936,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canSmash, lantern",
-											"[glitcheson], ^$canSmash"
+											"$DLAccess|Lake Lantern Cave Third Chest"
 										]
 									}
 								]
@@ -4079,8 +3953,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canSmash, lantern",
-											"[glitcheson], ^$canSmash"
+											"$DLAccess|Lake Lantern Cave Fourth Chest"
 										]
 									}
 								]
@@ -4097,8 +3970,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canSmash, lantern",
-											"[glitcheson], ^$canSmash"
+											"$DLAccess|Lake Lantern Cave Fifth Chest"
 										]
 									}
 								]
@@ -4115,7 +3987,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canSmash, lantern"
+											"$DLAccess|Lake Lantern Cave Sixth Chest"
 										]
 									}
 								]
@@ -4132,8 +4004,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canSmash, lantern",
-											"[glitcheson], ^$canSmash"
+											"$DLAccess|Lake Lantern Cave Seventh Chest"
 										]
 									}
 								]
@@ -4150,8 +4021,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canSmash, lantern",
-											"[glitcheson], ^$canSmash"
+											"$DLAccess|Lake Lantern Cave Eighth Chest"
 										]
 									}
 								]
@@ -4168,8 +4038,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canSmash, lantern",
-											"[glitcheson], ^$canSmash"
+											"$DLAccess|Lake Lantern Cave Ninth Chest"
 										]
 									}
 								]
@@ -4186,8 +4055,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canSmash, lantern",
-											"[glitcheson], ^$canSmash"
+											"$DLAccess|Lake Lantern Cave Tenth Chest"
 										]
 									}
 								]
@@ -4204,8 +4072,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canSmash, lantern",
-											"[glitcheson], ^$canSmash"
+											"$DLAccess|Lake Lantern Cave Twelfth Chest"
 										]
 									}
 								]
@@ -4222,8 +4089,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canSmash, lantern",
-											"[glitcheson], ^$canSmash"
+											"$DLAccess|Lake Lantern Cave Eleventh Chest"
 										]
 									}
 								]
@@ -4240,8 +4106,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canSmash, lantern",
-											"[glitcheson], ^$canSmash"
+											"$DLAccess|Lake Lantern Cave Thirteenth Chest"
 										]
 									}
 								]
@@ -4258,8 +4123,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canSmash, lantern",
-											"[glitcheson], ^$canSmash"
+											"$DLAccess|Lake Lantern Cave Fourteenth Chest"
 										]
 									}
 								]
@@ -4276,7 +4140,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canSmash, lantern"
+											"$DLAccess|Lake Lantern Cave End Lantern Chest"
 										]
 									}
 								]
@@ -4298,8 +4162,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"shadowcrystal, ^$canSmash, lantern",
-											"[glitcheson], shadowcrystal, ^$canSmash"
+											"$DLAccess|Lake Lantern Cave First Poe"
 										]
 									}
 								]
@@ -4321,8 +4184,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"shadowcrystal, ^$canSmash, lantern",
-											"[glitcheson], shadowcrystal, ^$canSmash"
+											"$DLAccess|Lake Lantern Cave Second Poe"
 										]
 									}
 								]
@@ -4344,8 +4206,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"shadowcrystal, ^$canSmash, lantern",
-											"[glitcheson], shadowcrystal, ^$canSmash"
+											"$DLAccess|Lake Lantern Cave Final Poe"
 										]
 									}
 								]
@@ -4374,15 +4235,15 @@
 											"{[glitcheson], ^$canSmash}"
 										]
 									}
+								],
+								"access_rules": [
+									"^$canAccess|LakeHyliaLongCave"
 								]
 							}
 						]
 					},
 					{
 						"name": "Lake Hylia Shell Blade Grotto",
-						"access_rules": [
-							"^$canAccess|LakeHyliaShellBladeGrotto"
-						],
 						"children": [
 							{
 								"name": "Lake Hylia Shell Blade Grotto Chest",
@@ -4396,7 +4257,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canDefeatShellBlade"
+											"$DLAccess|Lake Hylia Shell Blade Grotto Chest"
 										]
 									}
 								]
@@ -4405,9 +4266,6 @@
 					},
 					{
 						"name": "Lake Hylia Water Toadpoli Grotto",
-						"access_rules": [
-							"^$canAccess|LakeHyliaWaterToadpoliGrotto"
-						],
 						"children": [
 							{
 								"name": "Lake Hylia Water Toadpoli Grotto Chest",
@@ -4421,7 +4279,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"^$canDefeatWaterToadpoli"
+											"$DLAccess|Lake Hylia Water Toadpoli Grotto Chest"
 										]
 									}
 								]

@@ -7,9 +7,6 @@
 				"children": [
 					{
 						"name": "Snowpeak Climb Lower",
-						"access_rules": [
-							"^$canAccess|SnowpeakClimbLower"
-						],
 						"children": [
 							{
 								"name": "Ashei Sketch",
@@ -23,7 +20,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											""
+											"$DLAccess|Ashei Sketch"
 										]
 									}
 								]
@@ -51,15 +48,15 @@
 											"{}"
 										]
 									}
+								],
+								"access_rules": [
+									"^$canAccess|SnowpeakClimbLower"
 								]
 							}
 						]
 					},
 					{
 						"name": "Snowpeak Climb Upper",
-						"access_rules": [
-							"^$canAccess|SnowpeakClimbUpper"
-						],
 						"children": [
 							{
 								"name": "Snowpeak Above Freezard Grotto Poe",
@@ -78,7 +75,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"shadowcrystal"
+											"$DLAccess|Snowpeak Above Freezard Grotto Poe"
 										]
 									}
 								]
@@ -100,7 +97,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"shadowcrystal"
+											"$DLAccess|Snowpeak Blizzard Poe"
 										]
 									}
 								]
@@ -122,7 +119,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"shadowcrystal"
+											"$DLAccess|Snowpeak Poe Among Trees"
 										]
 									}
 								]
@@ -143,6 +140,9 @@
 											"{shadowcrystal}"
 										]
 									}
+								],
+								"access_rules": [
+									"^$canAccess|SnowpeakClimbUpper"
 								]
 							}
 						]
@@ -174,9 +174,6 @@
 					},
 					{
 						"name": "Snowpeak Summit Upper",
-						"access_rules": [
-							"^$canAccess|SnowpeakSummitUpper"
-						],
 						"children": [
 							{
 								"name": "Snowpeak Cave Ice Lantern Chest",
@@ -190,7 +187,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"lantern, ballchain"
+											"$DLAccess|Snowpeak Cave Ice Lantern Chest"
 										]
 									}
 								]
@@ -207,8 +204,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"srcompleted, stportalactive",
-											"srcompleted, ^$canDefeatShadowBeast"
+											"$DLAccess|Snowboard Racing Prize"
 										]
 									}
 								]
@@ -230,7 +226,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"shadowcrystal, ballchain"
+											"$DLAccess|Snowpeak Cave Ice Poe"
 										]
 									}
 								]
@@ -253,6 +249,9 @@
 											"^$canDefeatShadowBeast"
 										]
 									}
+								],
+								"access_rules": [
+									"^$canAccess|SnowpeakSummitUpper"
 								]
 							},
 							{
@@ -270,14 +269,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"stportalactive, bonksdodamageoff",
-											"stportalactive, bonksdodamageon, $Not|ohko",
-											"stportalactive, bonksdodamageon, ^$canUseBottledFairy",
-											"stportalactive, srcompleted",
-											"^$canDefeatShadowBeast, bonksdodamageoff",
-											"^$canDefeatShadowBeast, bonksdodamageon, $Not|ohko",
-											"^$canDefeatShadowBeast, bonksdodamageon, ^$canUseBottledFairy",
-											"^$canDefeatShadowBeast, srcompleted"
+											"$DLAccess|Snowboarding Bridge Ledge Bottom Rupee"
 										]
 									}
 								]
@@ -297,14 +289,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"stportalactive, bonksdodamageoff",
-											"stportalactive, bonksdodamageon, $Not|ohko",
-											"stportalactive, bonksdodamageon, ^$canUseBottledFairy",
-											"stportalactive, srcompleted",
-											"^$canDefeatShadowBeast, bonksdodamageoff",
-											"^$canDefeatShadowBeast, bonksdodamageon, $Not|ohko",
-											"^$canDefeatShadowBeast, bonksdodamageon, ^$canUseBottledFairy",
-											"^$canDefeatShadowBeast, srcompleted"
+											"$DLAccess|Snowboarding Bridge Ledge Middle Rupee"
 										]
 									}
 								]
@@ -324,14 +309,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"stportalactive, bonksdodamageoff",
-											"stportalactive, bonksdodamageon, $Not|ohko",
-											"stportalactive, bonksdodamageon, ^$canUseBottledFairy",
-											"stportalactive, srcompleted",
-											"^$canDefeatShadowBeast, bonksdodamageoff",
-											"^$canDefeatShadowBeast, bonksdodamageon, $Not|ohko",
-											"^$canDefeatShadowBeast, bonksdodamageon, ^$canUseBottledFairy",
-											"^$canDefeatShadowBeast, srcompleted"
+											"$DLAccess|Snowboarding Bridge Ledge Upper Rupee"
 										]
 									}
 								]
@@ -351,14 +329,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"stportalactive, bonksdodamageoff",
-											"stportalactive, bonksdodamageon, $Not|ohko",
-											"stportalactive, bonksdodamageon, ^$canUseBottledFairy",
-											"stportalactive, srcompleted",
-											"^$canDefeatShadowBeast, bonksdodamageoff",
-											"^$canDefeatShadowBeast, bonksdodamageon, $Not|ohko",
-											"^$canDefeatShadowBeast, bonksdodamageon, ^$canUseBottledFairy",
-											"^$canDefeatShadowBeast, srcompleted"
+											"$DLAccess|Snowboarding Shortcut Rupee 1"
 										]
 									}
 								]
@@ -378,14 +349,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"stportalactive, bonksdodamageoff",
-											"stportalactive, bonksdodamageon, $Not|ohko",
-											"stportalactive, bonksdodamageon, ^$canUseBottledFairy",
-											"stportalactive, srcompleted",
-											"^$canDefeatShadowBeast, bonksdodamageoff",
-											"^$canDefeatShadowBeast, bonksdodamageon, $Not|ohko",
-											"^$canDefeatShadowBeast, bonksdodamageon, ^$canUseBottledFairy",
-											"^$canDefeatShadowBeast, srcompleted"
+											"$DLAccess|Snowboarding Shortcut Rupee 2"
 										]
 									}
 								]
@@ -405,14 +369,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"stportalactive, bonksdodamageoff",
-											"stportalactive, bonksdodamageon, $Not|ohko",
-											"stportalactive, bonksdodamageon, ^$canUseBottledFairy",
-											"stportalactive, srcompleted",
-											"^$canDefeatShadowBeast, bonksdodamageoff",
-											"^$canDefeatShadowBeast, bonksdodamageon, $Not|ohko",
-											"^$canDefeatShadowBeast, bonksdodamageon, ^$canUseBottledFairy",
-											"^$canDefeatShadowBeast, srcompleted"
+											"$DLAccess|Snowboarding Shortcut Rupee 3"
 										]
 									}
 								]
@@ -432,14 +389,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"stportalactive, bonksdodamageoff",
-											"stportalactive, bonksdodamageon, $Not|ohko",
-											"stportalactive, bonksdodamageon, ^$canUseBottledFairy",
-											"stportalactive, srcompleted",
-											"^$canDefeatShadowBeast, bonksdodamageoff",
-											"^$canDefeatShadowBeast, bonksdodamageon, $Not|ohko",
-											"^$canDefeatShadowBeast, bonksdodamageon, ^$canUseBottledFairy",
-											"^$canDefeatShadowBeast, srcompleted"
+											"$DLAccess|Snowboarding Shortcut Rupee 4"
 										]
 									}
 								]
@@ -459,14 +409,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"stportalactive, bonksdodamageoff",
-											"stportalactive, bonksdodamageon, $Not|ohko",
-											"stportalactive, bonksdodamageon, ^$canUseBottledFairy",
-											"stportalactive, srcompleted",
-											"^$canDefeatShadowBeast, bonksdodamageoff",
-											"^$canDefeatShadowBeast, bonksdodamageon, $Not|ohko",
-											"^$canDefeatShadowBeast, bonksdodamageon, ^$canUseBottledFairy",
-											"^$canDefeatShadowBeast, srcompleted"
+											"$DLAccess|Snowboarding Shortcut Rupee 5"
 										]
 									}
 								]
@@ -486,14 +429,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"stportalactive, bonksdodamageoff",
-											"stportalactive, bonksdodamageon, $Not|ohko",
-											"stportalactive, bonksdodamageon, ^$canUseBottledFairy",
-											"stportalactive, srcompleted",
-											"^$canDefeatShadowBeast, bonksdodamageoff",
-											"^$canDefeatShadowBeast, bonksdodamageon, $Not|ohko",
-											"^$canDefeatShadowBeast, bonksdodamageon, ^$canUseBottledFairy",
-											"^$canDefeatShadowBeast, srcompleted"
+											"$DLAccess|Snowboarding Shortcut Rupee 6"
 										]
 									}
 								]
@@ -513,14 +449,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"stportalactive, bonksdodamageoff",
-											"stportalactive, bonksdodamageon, $Not|ohko",
-											"stportalactive, bonksdodamageon, ^$canUseBottledFairy",
-											"stportalactive, srcompleted",
-											"^$canDefeatShadowBeast, bonksdodamageoff",
-											"^$canDefeatShadowBeast, bonksdodamageon, $Not|ohko",
-											"^$canDefeatShadowBeast, bonksdodamageon, ^$canUseBottledFairy",
-											"^$canDefeatShadowBeast, srcompleted"
+											"$DLAccess|Snowboarding Shortcut Rupee 7"
 										]
 									}
 								]
@@ -540,14 +469,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"stportalactive, bonksdodamageoff",
-											"stportalactive, bonksdodamageon, $Not|ohko",
-											"stportalactive, bonksdodamageon, ^$canUseBottledFairy",
-											"stportalactive, srcompleted",
-											"^$canDefeatShadowBeast, bonksdodamageoff",
-											"^$canDefeatShadowBeast, bonksdodamageon, $Not|ohko",
-											"^$canDefeatShadowBeast, bonksdodamageon, ^$canUseBottledFairy",
-											"^$canDefeatShadowBeast, srcompleted"
+											"$DLAccess|Snowboarding Shortcut Rupee 8"
 										]
 									}
 								]
@@ -567,14 +489,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"stportalactive, bonksdodamageoff",
-											"stportalactive, bonksdodamageon, $Not|ohko",
-											"stportalactive, bonksdodamageon, ^$canUseBottledFairy",
-											"stportalactive, srcompleted",
-											"^$canDefeatShadowBeast, bonksdodamageoff",
-											"^$canDefeatShadowBeast, bonksdodamageon, $Not|ohko",
-											"^$canDefeatShadowBeast, bonksdodamageon, ^$canUseBottledFairy",
-											"^$canDefeatShadowBeast, srcompleted"
+											"$DLAccess|Snowboarding Shortcut Rupee 9"
 										]
 									}
 								]
@@ -594,14 +509,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"stportalactive, bonksdodamageoff",
-											"stportalactive, bonksdodamageon, $Not|ohko",
-											"stportalactive, bonksdodamageon, ^$canUseBottledFairy",
-											"stportalactive, srcompleted",
-											"^$canDefeatShadowBeast, bonksdodamageoff",
-											"^$canDefeatShadowBeast, bonksdodamageon, $Not|ohko",
-											"^$canDefeatShadowBeast, bonksdodamageon, ^$canUseBottledFairy",
-											"^$canDefeatShadowBeast, srcompleted"
+											"$DLAccess|Snowboarding Shortcut Rupee 10"
 										]
 									}
 								]
@@ -621,14 +529,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"stportalactive, bonksdodamageoff",
-											"stportalactive, bonksdodamageon, $Not|ohko",
-											"stportalactive, bonksdodamageon, ^$canUseBottledFairy",
-											"stportalactive, srcompleted",
-											"^$canDefeatShadowBeast, bonksdodamageoff",
-											"^$canDefeatShadowBeast, bonksdodamageon, $Not|ohko",
-											"^$canDefeatShadowBeast, bonksdodamageon, ^$canUseBottledFairy",
-											"^$canDefeatShadowBeast, srcompleted"
+											"$DLAccess|Snowboarding Shortcut Rupee 11"
 										]
 									}
 								]
@@ -648,14 +549,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"stportalactive, bonksdodamageoff",
-											"stportalactive, bonksdodamageon, $Not|ohko",
-											"stportalactive, bonksdodamageon, ^$canUseBottledFairy",
-											"stportalactive, srcompleted",
-											"^$canDefeatShadowBeast, bonksdodamageoff",
-											"^$canDefeatShadowBeast, bonksdodamageon, $Not|ohko",
-											"^$canDefeatShadowBeast, bonksdodamageon, ^$canUseBottledFairy",
-											"^$canDefeatShadowBeast, srcompleted"
+											"$DLAccess|Snowboarding Snowy Tree Top Rupee 1"
 										]
 									}
 								]
@@ -675,14 +569,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"stportalactive, bonksdodamageoff",
-											"stportalactive, bonksdodamageon, $Not|ohko",
-											"stportalactive, bonksdodamageon, ^$canUseBottledFairy",
-											"stportalactive, srcompleted",
-											"^$canDefeatShadowBeast, bonksdodamageoff",
-											"^$canDefeatShadowBeast, bonksdodamageon, $Not|ohko",
-											"^$canDefeatShadowBeast, bonksdodamageon, ^$canUseBottledFairy",
-											"^$canDefeatShadowBeast, srcompleted"
+											"$DLAccess|Snowboarding Snowy Tree Top Rupee 2"
 										]
 									}
 								]
@@ -702,14 +589,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"stportalactive, bonksdodamageoff",
-											"stportalactive, bonksdodamageon, $Not|ohko",
-											"stportalactive, bonksdodamageon, ^$canUseBottledFairy",
-											"stportalactive, srcompleted",
-											"^$canDefeatShadowBeast, bonksdodamageoff",
-											"^$canDefeatShadowBeast, bonksdodamageon, $Not|ohko",
-											"^$canDefeatShadowBeast, bonksdodamageon, ^$canUseBottledFairy",
-											"^$canDefeatShadowBeast, srcompleted"
+											"$DLAccess|Snowboarding Snowy Tree Top Rupee 3"
 										]
 									}
 								]
@@ -729,14 +609,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"stportalactive, bonksdodamageoff",
-											"stportalactive, bonksdodamageon, $Not|ohko",
-											"stportalactive, bonksdodamageon, ^$canUseBottledFairy",
-											"stportalactive, srcompleted",
-											"^$canDefeatShadowBeast, bonksdodamageoff",
-											"^$canDefeatShadowBeast, bonksdodamageon, $Not|ohko",
-											"^$canDefeatShadowBeast, bonksdodamageon, ^$canUseBottledFairy",
-											"^$canDefeatShadowBeast, srcompleted"
+											"$DLAccess|Snowboarding Top Left Rupee"
 										]
 									}
 								]
@@ -756,14 +629,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"stportalactive, bonksdodamageoff",
-											"stportalactive, bonksdodamageon, $Not|ohko",
-											"stportalactive, bonksdodamageon, ^$canUseBottledFairy",
-											"stportalactive, srcompleted",
-											"^$canDefeatShadowBeast, bonksdodamageoff",
-											"^$canDefeatShadowBeast, bonksdodamageon, $Not|ohko",
-											"^$canDefeatShadowBeast, bonksdodamageon, ^$canUseBottledFairy",
-											"^$canDefeatShadowBeast, srcompleted"
+											"$DLAccess|Snowboarding Top Right Rupee"
 										]
 									}
 								]
@@ -772,9 +638,6 @@
 					},
 					{
 						"name": "Snowpeak Summit Lower",
-						"access_rules": [
-							"^$canAccess|SnowpeakSummitLower"
-						],
 						"children": [
 							{
 								"name": "Snowpeak Icy Summit Poe",
@@ -793,7 +656,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"shadowcrystal"
+											"$DLAccess|Snowpeak Icy Summit Poe"
 										]
 									}
 								]
@@ -807,9 +670,6 @@
 				"children": [
 					{
 						"name": "Snowpeak Freezard Grotto",
-						"access_rules": [
-							"^$canAccess|SnowpeakFreezardGrotto"
-						],
 						"children": [
 							{
 								"name": "Snowpeak Freezard Grotto Chest",
@@ -823,7 +683,7 @@
 								"sections": [
 									{
 										"access_rules": [
-											"ballchain"
+											"$DLAccess|Snowpeak Freezard Grotto Chest"
 										]
 									}
 								]

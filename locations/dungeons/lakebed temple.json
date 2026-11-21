@@ -4,9 +4,6 @@
 		"children": [
 			{
 				"name": "Lakebed Temple Boss Room",
-				"access_rules": [
-					"^$canAccess|LakebedTempleBossRoom"
-				],
 				"children": [
 					{
 						"name": "Morpheel Boss",
@@ -26,19 +23,19 @@
 							{
 								"name": "Morpheel Heart Container",
 								"access_rules": [
-									"^$canDefeatMorpheel"
+									"$DLAccess|Lakebed Temple Morpheel Heart Container"
 								]
 							},
 							{
 								"name": "Dungeon Reward",
 								"access_rules": [
-									"^$canDefeatMorpheel"
+									"$DLAccess|Lakebed Temple Dungeon Reward"
 								]
 							},
 							{
 								"name": "Morpheel",
 								"access_rules": [
-									"^$canDefeatMorpheel"
+									"^$canAccess|LakebedTempleBossRoom, ^$canDefeatMorpheel"
 								],
 								"hosted_item": "ltcompleted"
 							}
@@ -48,9 +45,6 @@
 			},
 			{
 				"name": "Lakebed Temple Central Room",
-				"access_rules": [
-					"^$canAccess|LakebedTempleCentralRoom"
-				],
 				"children": [
 					{
 						"name": "Central Room Small Chest",
@@ -69,7 +63,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									""
+									"$DLAccess|Lakebed Temple Central Room Small Chest"
 								]
 							}
 						]
@@ -91,7 +85,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									""
+									"$DLAccess|Lakebed Temple Central Room Chest"
 								]
 							}
 						]
@@ -113,7 +107,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"clawshot"
+									"$DLAccess|Lakebed Temple Chandelier Chest"
 								]
 							}
 						]
@@ -135,8 +129,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"ltsmallkey:3, boots, ^$canLaunchBombs",
-									"[glitcheson], clawshot, sword, boots"
+									"$DLAccess|Lakebed Temple Central Room Spire Chest"
 								]
 							}
 						]
@@ -170,15 +163,15 @@
 								"chest_opened_img": "images/Items/Sign.png",
 								"chest_unopened_img": "images/Items/SignGrayed.png"
 							}
+						],
+						"access_rules": [
+							"^$canAccess|LakebedTempleCentralRoom"
 						]
 					}
 				]
 			},
 			{
 				"name": "Lakebed Temple East Wing First Floor",
-				"access_rules": [
-					"^$canAccess|LakebedTempleEastWingFirstFloor"
-				],
 				"children": [
 					{
 						"name": "East Lower Waterwheel Stalactite Chest",
@@ -197,8 +190,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"^$canLaunchBombs",
-									"[glitcheson], ^$canDoLJA"
+									"$DLAccess|Lakebed Temple East Lower Waterwheel Stalactite Chest"
 								]
 							}
 						]
@@ -220,14 +212,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"glitchesoff, clawshot, ltsmallkey:3, ^$canLaunchBombs",
-									"[glitcheson], ^$canDoLJA",
-									"[glitcheson], clawshot, ^$hasBombs",
-									"[glitcheson], ^$canAccess|LakebedTempleEastWingSecondFloor, clawshot, shadowcrystal",
-									"[glitcheson], ^$canAccess|LakebedTempleEastWingSecondFloor, clawshot, ^$hasBombs, sword",
-									"[glitcheson], ^$canAccess|LakebedTempleEastWingSecondFloor, ^$canLaunchBombs, shadowcrystal",
-									"[glitcheson], ^$canAccess|LakebedTempleEastWingSecondFloor, ^$canLaunchBombs, ^$hasBombs, sword",
-									"[glitcheson], ^$canAccess|LakebedTempleWestWing, ^$canLaunchBombs"
+									"$DLAccess|Lakebed Temple East Lower Waterwheel Bridge Chest"
 								]
 							}
 						]
@@ -249,12 +234,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"skvanilla, ^$canDefeatDekuToad, ltsmallkey:2, zoraarmor, boots, ^$canUseWaterBombs, clawshot",
-									"ltsmallkey:3, ^$canLaunchBombs",
-									"ltsmallkey:3, clawshot, ^$canSmash",
-									"[glitcheson], ^$canDoLJA",
-									"[glitcheson], ltsmallkey:2, ^$canLaunchBombs",
-									"[glitcheson], ltsmallkey:2, clawshot"
+									"$DLAccess|Lakebed Temple Before Deku Toad Alcove Chest"
 								]
 							}
 						]
@@ -276,12 +256,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"zoraarmor, boots, ltsmallkey:3, ^$canLaunchBombs",
-									"zoraarmor, boots, ltsmallkey:3, clawshot, ^$canSmash",
-									"[glitcheson], ^$canDoLJA, ^$canSkipKeyToDekuToad, ^$hasHeavyMod",
-									"[glitcheson], ^$canDoLJA, ltsmallkey:1, ^$hasHeavyMod",
-									"[glitcheson], ^$canSkipKeyToDekuToad, clawshot, ^$canLaunchBombs, ^$hasHeavyMod",
-									"[glitcheson], ltsmallkey:3, clawshot, ^$canLaunchBombs, ^$hasHeavyMod"
+									"$DLAccess|Lakebed Temple Before Deku Toad Underwater Left Chest"
 								]
 							}
 						]
@@ -303,12 +278,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"zoraarmor, boots, ltsmallkey:3, ^$canLaunchBombs",
-									"zoraarmor, boots, ltsmallkey:3, clawshot, ^$canSmash",
-									"[glitcheson], ^$canDoLJA, ^$canSkipKeyToDekuToad, ^$hasHeavyMod",
-									"[glitcheson], ^$canDoLJA, ltsmallkey:1, ^$hasHeavyMod",
-									"[glitcheson], ^$canSkipKeyToDekuToad, clawshot, ^$canLaunchBombs, ^$hasHeavyMod",
-									"[glitcheson], ltsmallkey:3, clawshot, ^$canLaunchBombs, ^$hasHeavyMod"
+									"$DLAccess|Lakebed Temple Before Deku Toad Underwater Right Chest"
 								]
 							}
 						]
@@ -330,16 +300,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"glitchesoff, ^$canDefeatDekuToad, ltsmallkey:3, zoraarmor, boots, ^$canUseWaterBombs, ^$canLaunchBombs",
-									"glitchesoff, ^$canDefeatDekuToad, ltsmallkey:3, zoraarmor, boots, ^$canUseWaterBombs, clawshot, ^$canSmash",
-									"[glitcheson], ^$canDefeatDekuToad, ^$canDoLJA, ^$canSkipKeyToDekuToad, ^$hasHeavyMod, ^$canUseWaterBombs",
-									"[glitcheson], ^$canDefeatDekuToad, ^$canDoLJA, ^$canSkipKeyToDekuToad, ^$hasHeavyMod, zoraarmor",
-									"[glitcheson], ^$canDefeatDekuToad, ^$canDoLJA, ltsmallkey:1, ^$hasHeavyMod, ^$canUseWaterBombs",
-									"[glitcheson], ^$canDefeatDekuToad, ^$canDoLJA, ltsmallkey:1, ^$hasHeavyMod, zoraarmor",
-									"[glitcheson], ^$canDefeatDekuToad, ^$canSkipKeyToDekuToad, clawshot, ^$canLaunchBombs, ^$hasHeavyMod, ^$canUseWaterBombs",
-									"[glitcheson], ^$canDefeatDekuToad, ^$canSkipKeyToDekuToad, clawshot, ^$canLaunchBombs, ^$hasHeavyMod, zoraarmor",
-									"[glitcheson], ^$canDefeatDekuToad, ltsmallkey:3, clawshot, ^$canLaunchBombs, ^$hasHeavyMod, ^$canUseWaterBombs",
-									"[glitcheson], ^$canDefeatDekuToad, ltsmallkey:3, clawshot, ^$canLaunchBombs, ^$hasHeavyMod, zoraarmor"
+									"$DLAccess|Lakebed Temple Deku Toad Chest"
 								]
 							}
 						]
@@ -348,9 +309,6 @@
 			},
 			{
 				"name": "Lakebed Temple East Wing Second Floor",
-				"access_rules": [
-					"^$canAccess|LakebedTempleEastWingSecondFloor"
-				],
 				"children": [
 					{
 						"name": "East Second Floor Southwest Chest",
@@ -369,7 +327,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									""
+									"$DLAccess|Lakebed Temple East Second Floor Southwest Chest"
 								]
 							}
 						]
@@ -391,8 +349,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"^$canLaunchBombs",
-									"clawshot, ^$canSmash"
+									"$DLAccess|Lakebed Temple East Second Floor Southeast Chest"
 								]
 							}
 						]
@@ -414,10 +371,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"ltsmallkey:3, clawshot, ^$canSmash, boots",
-									"ltsmallkey:3, ^$canLaunchBombs, ^$canSmash, boots",
-									"[glitcheson], ltsmallkey:3, ^$canLaunchBombs",
-									"[glitcheson], ltsmallkey:3, clawshot, ^$canSmash"
+									"$DLAccess|Lakebed Temple East Water Supply Small Chest"
 								]
 							}
 						]
@@ -439,8 +393,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"ltsmallkey:3, clawshot, ^$canSmash, boots",
-									"[glitcheson], ltsmallkey:3, clawshot, ^$canSmash"
+									"$DLAccess|Lakebed Temple East Water Supply Clawshot Chest"
 								]
 							}
 						]
@@ -449,9 +402,6 @@
 			},
 			{
 				"name": "Lakebed Temple Entrance",
-				"access_rules": [
-					"^$canAccess|LakebedTempleEntrance"
-				],
 				"children": [
 					{
 						"name": "Lobby Left Chest",
@@ -470,8 +420,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"zoraarmor",
-									"[glitcheson], ^$canDoAirRefill"
+									"$DLAccess|Lakebed Temple Lobby Left Chest"
 								]
 							}
 						]
@@ -493,8 +442,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"zoraarmor",
-									"[glitcheson], ^$canDoAirRefill"
+									"$DLAccess|Lakebed Temple Lobby Rear Chest"
 								]
 							}
 						]
@@ -516,10 +464,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"^$canLaunchBombs, zoraarmor",
-									"[glitcheson], ^$canLaunchBombs, ^$canDoAirRefill",
-									"[glitcheson], ^$canDoLJA, zoraarmor",
-									"[glitcheson], ^$canDoLJA, ^$canDoAirRefill"
+									"$DLAccess|Lakebed Temple Stalactite Room Chest"
 								]
 							}
 						]
@@ -528,9 +473,6 @@
 			},
 			{
 				"name": "Lakebed Temple West Wing",
-				"access_rules": [
-					"^$canAccess|LakebedTempleWestWing"
-				],
 				"children": [
 					{
 						"name": "West Lower Small Chest",
@@ -549,8 +491,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"clawshot",
-									"[glitcheson], ^$canDoLJA"
+									"$DLAccess|Lakebed Temple West Lower Small Chest"
 								]
 							}
 						]
@@ -572,7 +513,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"clawshot"
+									"$DLAccess|Lakebed Temple West Second Floor Central Small Chest"
 								]
 							}
 						]
@@ -594,8 +535,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"zoraarmor, clawshot, ^$canLaunchBombs",
-									"[glitcheson], clawshot, ^$canDoLJA, ^$canLaunchBombs"
+									"$DLAccess|Lakebed Temple Underwater Maze Small Chest"
 								]
 							}
 						]
@@ -617,9 +557,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"clawshot, ^$canUseWaterBombs, zoraarmor, ^$canLaunchBombs, boots",
-									"[glitcheson], clawshot, zoraarmor, ^$canLaunchBombs",
-									"[glitcheson], clawshot, ^$canDoLJA, ^$canLaunchBombs"
+									"$DLAccess|Lakebed Temple Big Key Chest"
 								]
 							}
 						]
@@ -641,7 +579,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"clawshot, boots, ^$canLaunchBombs"
+									"$DLAccess|Lakebed Temple West Second Floor Southwest Underwater Chest"
 								]
 							}
 						]
@@ -663,7 +601,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"clawshot, ^$canLaunchBombs"
+									"$DLAccess|Lakebed Temple West Second Floor Northeast Chest"
 								]
 							}
 						]
@@ -685,7 +623,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"clawshot, ^$canLaunchBombs"
+									"$DLAccess|Lakebed Temple West Second Floor Southeast Chest"
 								]
 							}
 						]
@@ -707,8 +645,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"clawshot, ^$canLaunchBombs, boots",
-									"[glitcheson], clawshot, ^$canLaunchBombs"
+									"$DLAccess|Lakebed Temple West Water Supply Small Chest"
 								]
 							}
 						]
@@ -730,8 +667,7 @@
 						"sections": [
 							{
 								"access_rules": [
-									"clawshot, ^$canLaunchBombs, boots",
-									"[glitcheson], clawshot, ^$canLaunchBombs"
+									"$DLAccess|Lakebed Temple West Water Supply Chest"
 								]
 							}
 						]

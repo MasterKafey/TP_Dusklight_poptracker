@@ -4,6 +4,8 @@ ENABLE_DEBUG_LOG = true
 ScriptHost:LoadScript("scripts/region_rules.lua")
 ScriptHost:LoadScript("scripts/item_mapping.lua")
 ScriptHost:LoadScript("scripts/location_mapping.lua")
+ScriptHost:LoadScript("scripts/logic_data.lua")
+ScriptHost:LoadScript("scripts/logic.lua")
 ScriptHost:LoadScript("scripts/region_mapping.lua")
 ScriptHost:LoadScript("scripts/server_copy_keys.lua")
 ScriptHost:LoadScript("scripts/control.lua")

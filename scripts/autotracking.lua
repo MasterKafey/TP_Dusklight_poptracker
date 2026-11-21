@@ -335,6 +335,31 @@ function OnClear(slot_data)
 	InitPortals()
 	InitItems()
 	InitMap()
+	ClearUnshuffledDungeons()
+	DLInvalidate()
+end
+
+-- Dungeons left unshuffled by the apworld's "Shuffled Dungeons" option keep their vanilla
+-- contents and are not checks: the server never reports them, so mark them done.
+function ClearUnshuffledDungeons()
+	local unshuffled = SLOT_DATA and SLOT_DATA.unshuffled_dungeons
+	if not unshuffled then return end
+	for _, dungeon in pairs(unshuffled) do
+		for name, id in pairs(LOCATION_NAME_TO_ID) do
+			local loc = DL_LOCATIONS[name]
+			local in_dungeon, is_dungeon = false, false
+			for _, c in ipairs(loc and loc.cats or {}) do
+				if c == "Dungeon" then is_dungeon = true end
+				if c == dungeon then in_dungeon = true end
+			end
+			if is_dungeon and in_dungeon then
+				for _, code in ipairs(LOCATION_MAPPING[id] or {}) do
+					local obj = Tracker:FindObjectForCode(code)
+					if obj and code:sub(1, 1) == "@" then obj.AvailableChestCount = 0 end
+				end
+			end
+		end
+	end
 end
 
 function OnItem(index, item_id, item_name, player_number)
