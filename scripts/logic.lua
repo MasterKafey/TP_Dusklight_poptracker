@@ -47,9 +47,49 @@ local function slotSettings()
 	return SLOT_DATA and SLOT_DATA.settings or nil
 end
 
+-- Settings the tracker shows (settings popup) drive the logic, so changing one by hand, or
+-- playing without a server connection, is reflected. Entrance settings are forced Off by the
+-- apworld and "Logic Rules" is only taken from the slot.
+local UI_IGNORED = {
+	["Logic Rules"] = true,
+	["Randomize Dungeon Entrances"] = true, ["Randomize Overworld Entrances"] = true,
+	["Randomize Interior Entrances"] = true, ["Randomize Cave Entrances"] = true,
+	["Randomize Grotto Entrances"] = true, ["Randomize Boss Entrances"] = true,
+	["Decouple Entrances"] = true, ["Decouple Double Door Entrances"] = true,
+}
+
+local function trackerSetting(name, slot_value)
+	local m = SETTINGS_MAPPING and SETTINGS_MAPPING[name]
+	if not m or UI_IGNORED[name] then return nil end
+	local obj = Tracker:FindObjectForCode(m[1])
+	if not obj then return nil end
+	local stage = obj.CurrentStage
+	-- Keep the slot's value while the tracker still shows it: the tracker merges some options
+	-- (Poe Souls Overworld/Dungeon/All are one stage).
+	if slot_value ~= nil and m[2][tostring(slot_value)] == stage then return tostring(slot_value) end
+	local options = DL_SETTINGS[name].options
+	for i = #options, 1, -1 do -- last match = the most open option (All, Anywhere...)
+		if m[2][options[i]] == stage then return options[i] end
+	end
+	return nil
+end
+
+-- Count settings (e.g. "Hyrule Barrier Poe Souls") follow the tracker's amount counters.
+local function trackerAmount(name)
+	for req, v in pairs(SETTINGS_AMOUNTS or {}) do
+		if v[2][DL.setting(req)] == name then
+			local obj = Tracker:FindObjectForCode(v[1])
+			if obj then return tostring(obj.AcquiredCount) end
+		end
+	end
+	return nil
+end
+
 function DL.setting(name)
 	local s = slotSettings()
 	local v = s and s[name]
+	local t = trackerSetting(name, v) or trackerAmount(name)
+	if t ~= nil then return t end
 	if v == nil then v = DL_SETTINGS[name].default end
 	return tostring(v)
 end
@@ -326,15 +366,13 @@ end
 
 -- Graph ---------------------------------------------------------------------------------------
 
+local SETTING_NAMES = {}
+for name in pairs(DL_SETTINGS) do SETTING_NAMES[#SETTING_NAMES + 1] = name end
+table.sort(SETTING_NAMES)
+
 local function settingsKey()
-	local s = slotSettings()
 	local parts = {}
-	if s then
-		local names = {}
-		for k in pairs(s) do names[#names + 1] = k end
-		table.sort(names)
-		for _, k in ipairs(names) do parts[#parts + 1] = k .. "=" .. tostring(s[k]) end
-	end
+	for _, k in ipairs(SETTING_NAMES) do parts[#parts + 1] = k .. "=" .. DL.setting(k) end
 	if SLOT_DATA and SLOT_DATA.unshuffled_dungeons then
 		for _, d in ipairs(SLOT_DATA.unshuffled_dungeons) do parts[#parts + 1] = "u:" .. d end
 	end

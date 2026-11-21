@@ -63,6 +63,10 @@
 						"heartcontainer",
 						"fusedshadow",
 						"mirrorshard",
+						"fwkey",
+						"corokey"
+					],
+					[
 						"autotab",
 						"splitmap"
 					]
@@ -133,7 +137,9 @@
 						"heartpiece",
 						"heartcontainer",
 						"fusedshadow",
-						"mirrorshard"
+						"mirrorshard",
+						"fwkey",
+						"corokey"
 					]
 				]
 			}

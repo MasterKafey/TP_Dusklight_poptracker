@@ -6,7 +6,7 @@
 		"item_size": "96,96",
 		"rows": [
 			[
-				"glitched",
+				"skipprologue",
 				"goldenbugs",
 				"skycharacters",
 				"npcitems",
@@ -18,7 +18,7 @@
 			[
 				"hiddenskills",
 				"poes",
-				"heartpieces",
+				"skipmdh",
 				"freerupees",
 				"hiddenrupees",
 				"",
@@ -68,6 +68,11 @@
 				"iliaquest",
 				"",
 				"autozoom"
+			],
+			[
+				"farontwilightcleared",
+				"eldintwilightcleared",
+				"lanayrutwilightcleared"
 			]
 		]
 	}

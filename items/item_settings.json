@@ -25,7 +25,7 @@
 		"type": "progressive",
 		"loop": true,
 		"allow_disabled": false,
-		"initial_stage_idx": 0,
+		"initial_stage_idx": 1,
 		"stages": [
 			{
 				"name": "Golden Bugs Enabled",
@@ -46,7 +46,7 @@
 		"type": "progressive",
 		"loop": true,
 		"allow_disabled": false,
-		"initial_stage_idx": 0,
+		"initial_stage_idx": 1,
 		"stages": [
 			{
 				"name": "Sky Characters Enabled",
@@ -67,7 +67,7 @@
 		"type": "progressive",
 		"loop": true,
 		"allow_disabled": false,
-		"initial_stage_idx": 0,
+		"initial_stage_idx": 1,
 		"stages": [
 			{
 				"name": "NPC Items Enabled",
@@ -88,7 +88,7 @@
 		"type": "progressive",
 		"loop": true,
 		"allow_disabled": false,
-		"initial_stage_idx": 0,
+		"initial_stage_idx": 1,
 		"stages": [
 			{
 				"name": "Shop Items Enabled",
@@ -109,7 +109,7 @@
 		"type": "progressive",
 		"loop": true,
 		"allow_disabled": false,
-		"initial_stage_idx": 0,
+		"initial_stage_idx": 1,
 		"stages": [
 			{
 				"name": "Hidden Skills Enabled",
@@ -130,7 +130,7 @@
 		"type": "progressive",
 		"loop": true,
 		"allow_disabled": false,
-		"initial_stage_idx": 0,
+		"initial_stage_idx": 1,
 		"stages": [
 			{
 				"name": "Poes Enabled",
@@ -172,7 +172,7 @@
 		"type": "progressive",
 		"loop": true,
 		"allow_disabled": false,
-		"initial_stage_idx": 0,
+		"initial_stage_idx": 1,
 		"stages": [
 			{
 				"name": "Freestanding Rupees Enabled",
@@ -193,7 +193,7 @@
 		"type": "progressive",
 		"loop": true,
 		"allow_disabled": false,
-		"initial_stage_idx": 0,
+		"initial_stage_idx": 1,
 		"stages": [
 			{
 				"name": "Hidden Rupees Enabled",
@@ -214,7 +214,7 @@
 		"type": "progressive",
 		"loop": true,
 		"allow_disabled": false,
-		"initial_stage_idx": 0,
+		"initial_stage_idx": 4,
 		"stages": [
 			{
 				"name": "HC Open",
@@ -336,7 +336,7 @@
 		"type": "progressive",
 		"loop": true,
 		"allow_disabled": false,
-		"initial_stage_idx": 0,
+		"initial_stage_idx": 3,
 		"stages": [
 			{
 				"name": "PT Open",
@@ -369,7 +369,7 @@
 		"type": "progressive",
 		"loop": true,
 		"allow_disabled": false,
-		"initial_stage_idx": 0,
+		"initial_stage_idx": 1,
 		"stages": [
 			{
 				"name": "SK Start with",
@@ -408,7 +408,7 @@
 		"type": "progressive",
 		"loop": true,
 		"allow_disabled": false,
-		"initial_stage_idx": 0,
+		"initial_stage_idx": 1,
 		"stages": [
 			{
 				"name": "BK Start with",
@@ -447,7 +447,7 @@
 		"type": "progressive",
 		"loop": true,
 		"allow_disabled": false,
-		"initial_stage_idx": 0,
+		"initial_stage_idx": 1,
 		"stages": [
 			{
 				"name": "Door of Time Open",
@@ -468,7 +468,7 @@
 		"type": "progressive",
 		"loop": true,
 		"allow_disabled": false,
-		"initial_stage_idx": 0,
+		"initial_stage_idx": 1,
 		"stages": [
 			{
 				"name": "Goron Mines Shortcut Enabled",
@@ -489,7 +489,7 @@
 		"type": "progressive",
 		"loop": true,
 		"allow_disabled": false,
-		"initial_stage_idx": 0,
+		"initial_stage_idx": 1,
 		"stages": [
 			{
 				"name": "Hyrule Castle Shortcut Enabled",
@@ -510,7 +510,7 @@
 		"type": "progressive",
 		"loop": true,
 		"allow_disabled": false,
-		"initial_stage_idx": 0,
+		"initial_stage_idx": 2,
 		"stages": [
 			{
 				"name": "GM Open",
@@ -537,7 +537,7 @@
 		"type": "progressive",
 		"loop": true,
 		"allow_disabled": false,
-		"initial_stage_idx": 0,
+		"initial_stage_idx": 1,
 		"stages": [
 			{
 				"name": "Skip Lakebed Entrance Enabled",
@@ -558,7 +558,7 @@
 		"type": "progressive",
 		"loop": true,
 		"allow_disabled": false,
-		"initial_stage_idx": 0,
+		"initial_stage_idx": 1,
 		"stages": [
 			{
 				"name": "Skip Arbiter's Entrance Enabled",
@@ -579,7 +579,7 @@
 		"type": "progressive",
 		"loop": true,
 		"allow_disabled": false,
-		"initial_stage_idx": 0,
+		"initial_stage_idx": 1,
 		"stages": [
 			{
 				"name": "Skip Snowpeak Entrance Enabled",
@@ -600,7 +600,7 @@
 		"type": "progressive",
 		"loop": true,
 		"allow_disabled": false,
-		"initial_stage_idx": 0,
+		"initial_stage_idx": 1,
 		"stages": [
 			{
 				"name": "Skip City in the Sky Entrance Enabled",
@@ -621,7 +621,7 @@
 		"type": "progressive",
 		"loop": true,
 		"allow_disabled": false,
-		"initial_stage_idx": 0,
+		"initial_stage_idx": 1,
 		"stages": [
 			{
 				"name": "Skip Skull Kid Fight Enabled",
@@ -681,7 +681,7 @@
 		"type": "progressive",
 		"loop": true,
 		"allow_disabled": false,
-		"initial_stage_idx": 0,
+		"initial_stage_idx": 1,
 		"stages": [
 			{
 				"name": "Faron Woods Open",
@@ -702,7 +702,7 @@
 		"type": "progressive",
 		"loop": true,
 		"allow_disabled": false,
-		"initial_stage_idx": 0,
+		"initial_stage_idx": 1,
 		"stages": [
 			{
 				"name": "Open Map Enabled",
@@ -723,7 +723,7 @@
 		"type": "progressive",
 		"loop": true,
 		"allow_disabled": false,
-		"initial_stage_idx": 0,
+		"initial_stage_idx": 1,
 		"stages": [
 			{
 				"name": "Skip Bridge Donation Enabled",
@@ -1078,7 +1078,7 @@
 		"type": "progressive",
 		"loop": true,
 		"allow_disabled": false,
-		"initial_stage_idx": 0,
+		"initial_stage_idx": 1,
 		"stages": [
 			{
 				"name": "Skip Prologue Enabled",
@@ -1099,7 +1099,7 @@
 		"type": "progressive",
 		"loop": true,
 		"allow_disabled": false,
-		"initial_stage_idx": 0,
+		"initial_stage_idx": 1,
 		"stages": [
 			{
 				"name": "Faron Twilight Cleared Enabled",
@@ -1120,7 +1120,7 @@
 		"type": "progressive",
 		"loop": true,
 		"allow_disabled": false,
-		"initial_stage_idx": 0,
+		"initial_stage_idx": 1,
 		"stages": [
 			{
 				"name": "Eldin Twilight Cleared Enabled",
@@ -1141,7 +1141,7 @@
 		"type": "progressive",
 		"loop": true,
 		"allow_disabled": false,
-		"initial_stage_idx": 0,
+		"initial_stage_idx": 1,
 		"stages": [
 			{
 				"name": "Lanayru Twilight Cleared Enabled",
@@ -1162,7 +1162,7 @@
 		"type": "progressive",
 		"loop": true,
 		"allow_disabled": false,
-		"initial_stage_idx": 0,
+		"initial_stage_idx": 1,
 		"stages": [
 			{
 				"name": "Skip Midna's Desperate Hour Enabled",
