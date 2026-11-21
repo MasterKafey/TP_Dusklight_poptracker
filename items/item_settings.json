@@ -1057,7 +1057,7 @@
 		"type": "progressive",
 		"loop": true,
 		"allow_disabled": false,
-		"initial_stage_idx": 1,
+		"initial_stage_idx": 0,
 		"stages": [
 			{
 				"name": "Tutorial Off",

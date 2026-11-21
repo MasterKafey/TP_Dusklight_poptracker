@@ -3,7 +3,10 @@
 function has(item)
 	if type(item) == "boolean" then return item end
 	if item == "lantern" or item == "lamp" then
-		return hasAll({"lantern", canRefillOil()})
+		-- (was hasAll({"lantern", ...}), which calls has("lantern") again: endless recursion)
+		local oil = canRefillOil()
+		if oil == false or oil == AccessibilityLevel.None then return false end
+		return Tracker:ProviderCountForCode("lantern") >= 1
 	elseif item == "p_bow" or item == "bow" or item == "smallquiver" or item == "mediumquiver" or item == "largequiver" then
 		if not canGetArrows() then return false end
 	end

@@ -12,6 +12,7 @@ ScriptHost:LoadScript("scripts/control.lua")
 ScriptHost:LoadScript("scripts/autotracking.lua")
 ScriptHost:LoadScript("scripts/code_watchers.lua")
 ScriptHost:LoadScript("scripts/init_rando_doors.lua")
+ScriptHost:LoadScript("scripts/logic_compat.lua")
 
 --
 Tracker:AddItems("items/items.json")
@@ -39,7 +40,8 @@ Tracker:AddLayouts("layouts/layout_settings.json")
 Tracker:AddLayouts("layouts/broadcast_items.json")
 
 
-Tracker:AddLayouts("layouts/tutorial.json")
+-- Start on the maps (the original pack opened on a tutorial page instead).
+Tracker:AddLayouts("layouts/layouts_maps.json")
 
 --
 Tracker:AddLocations("locations/tutorial.json")

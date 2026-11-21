@@ -74,10 +74,21 @@ local function trackerSetting(name, slot_value)
 	return nil
 end
 
--- Count settings (e.g. "Hyrule Barrier Poe Souls") follow the tracker's amount counters.
+-- A setting from the tracker's settings panel, else the slot, else the apworld default.
+local function baseSetting(name)
+	local s = slotSettings()
+	local v = s and s[name]
+	local t = trackerSetting(name, v)
+	if t ~= nil then return t end
+	if v == nil then v = DL_SETTINGS[name].default end
+	return tostring(v)
+end
+
+-- Count settings (e.g. "Hyrule Barrier Poe Souls") follow the tracker's amount counters while
+-- their requirement setting selects them. Never calls DL.setting: no recursion.
 local function trackerAmount(name)
 	for req, v in pairs(SETTINGS_AMOUNTS or {}) do
-		if v[2][DL.setting(req)] == name then
+		if req ~= name and v[2][baseSetting(req)] == name then
 			local obj = Tracker:FindObjectForCode(v[1])
 			if obj then return tostring(obj.AcquiredCount) end
 		end
@@ -86,12 +97,7 @@ local function trackerAmount(name)
 end
 
 function DL.setting(name)
-	local s = slotSettings()
-	local v = s and s[name]
-	local t = trackerSetting(name, v) or trackerAmount(name)
-	if t ~= nil then return t end
-	if v == nil then v = DL_SETTINGS[name].default end
-	return tostring(v)
+	return trackerAmount(name) or baseSetting(name)
 end
 
 local function settingIndex(name, option)
@@ -645,15 +651,39 @@ function DL.search()
 				progress = true
 			end
 		end
-		if not progress then break end
+		-- Retry blocked edges: their rules can depend on events, collected items, and also on
+		-- other nodes reached since (form/time checks read the area's copies), so keep going
+		-- until nothing changes. Without this the result depended on the traversal order.
 		local old = blocked
 		blocked = {}
 		for i = 1, #old do
 			local e = old[i]
 			if not reach[e[1]] then
-				if e[2]() then mark(e[1]) else blocked[#blocked + 1] = e end
+				if e[2]() then
+					mark(e[1])
+					progress = true
+				else
+					blocked[#blocked + 1] = e
+				end
 			end
 		end
+		if not progress then
+			-- Safety net: re-check every edge out of every reached node before concluding.
+			for n in pairs(reach) do
+				local list = g.out[n]
+				if list then
+					for i = 1, #list do
+						local e = list[i]
+						if not reach[e[1]] and (e[2] == true or e[2]()) then
+							DL.safety_hits = (DL.safety_hits or 0) + 1
+							mark(e[1])
+							progress = true
+						end
+					end
+				end
+			end
+		end
+		if not progress then break end
 	end
 
 	local locations = {}
@@ -668,6 +698,8 @@ local function ensureResult()
 	if DL.dirty or DL.result == nil then
 		local ok, err = pcall(DL.search)
 		if not ok then
+			DL.last_error = tostring(err)
+			DL.error_count = (DL.error_count or 0) + 1
 			print("DL logic error: " .. tostring(err))
 			DL.dirty = false
 			DL.result = {locations = {}, events = {}}
@@ -680,6 +712,18 @@ end
 function DLAccess(name)
 	if DL.setting("Logic Rules") == "No Logic" then return true end
 	return ensureResult().locations[name] == true
+end
+
+local AREA_INDEX = {}
+for i, area in ipairs(DL_AREAS) do AREA_INDEX[area.name] = i end
+
+-- Is the area reachable in any form/time? (used by scripts/logic_compat.lua)
+function DLArea(name)
+	if DL.setting("Logic Rules") == "No Logic" then return true end
+	local i = AREA_INDEX[name]
+	if not i then return false end
+	ensureResult()
+	return DL.reach ~= nil and DL.reach[i * 64] == true
 end
 
 -- "$DLEvent|<world graph event>": is the event reachable (howling stones, scents...)?
