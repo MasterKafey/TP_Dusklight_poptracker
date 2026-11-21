@@ -1,6 +1,14 @@
 {
 	"versions": [
 		{
+			"package_version": "0.1.5",
+			"download_url": "https://github.com/MasterKafey/TP_Dusklight_poptracker/releases/download/v0.1.5/TP_Dusklight_poptracker_v0.1.5.zip",
+			"sha256": "C35D7DB1288D038F761D2E8AAD34F041EE6A2B4371370C2A40E0A9E899C7F91D",
+			"changelog": [
+				"Faster pack load: the logic is built in the background, a slice per frame"
+			]
+		},
+		{
 			"package_version": "0.1.4",
 			"download_url": "https://github.com/MasterKafey/TP_Dusklight_poptracker/releases/download/v0.1.4/TP_Dusklight_poptracker_v0.1.4.zip",
 			"sha256": "108DA5A1C80C0EC7FF90B5AB1D30C92329B2282A0A566D860B9C29159BC9EC3F",
