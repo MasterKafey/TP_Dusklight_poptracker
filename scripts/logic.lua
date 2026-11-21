@@ -736,6 +736,17 @@ function DLInvalidate()
 	DL.dirty = true
 end
 
+-- PopTracker aborts access rules (and frame handlers) after 600000 Lua instructions, while a
+-- graph build costs several million and a search a few hundred thousand. So the work is done
+-- here, from the item watch and the Archipelago handlers, which run without that limit; the
+-- rules then only read DL.result. DL.suspended batches the many item changes of OnClear.
+function DLRefresh()
+	DL.dirty = true
+	if not DL.suspended then ensureResult() end
+end
+
 if ScriptHost and ScriptHost.AddWatchForCode then
-	ScriptHost:AddWatchForCode("DL logic", "*", DLInvalidate)
+	ScriptHost:AddWatchForCode("DL logic", "*", DLRefresh)
+	-- Build the graph for the default settings now, while loading (no limit either).
+	ensureResult()
 end

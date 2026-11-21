@@ -309,6 +309,7 @@ end
 
 function OnClear(slot_data)
 	DebugAP(string.format("called onClear, slot_data:\n%s", Dump_table(slot_data)))
+	DL.suspended = true
 	SLOT_DATA = slot_data
 	CUR_INDEX = -1
 	PLAYER_ID = Archipelago.PlayerNumber or -1
@@ -336,7 +337,8 @@ function OnClear(slot_data)
 	InitItems()
 	InitMap()
 	ClearUnshuffledDungeons()
-	DLInvalidate()
+	DL.suspended = false
+	DLRefresh()
 end
 
 -- Dungeons left unshuffled by the apworld's "Shuffled Dungeons" option keep their vanilla
